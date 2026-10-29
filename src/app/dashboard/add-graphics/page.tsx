@@ -11,7 +11,7 @@ export default function AddKeycapsPage() {
       <div className="fixed inset-0 z-0 grayscale">
 
         <Image
-          src="https://i.pinimg.com/1200x/48/42/59/484259c4e730b21ae20456322a60f266.jpg"
+          src="https://i.pinimg.com/1200x/87/2d/3d/872d3d46755568b377be9bd905992f6e.jpg"
           alt="Studio Sinners Background"
           fill
           className="object-cover"
