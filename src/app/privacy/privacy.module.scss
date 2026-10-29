@@ -1,0 +1,37 @@
+@use "../../styles/theme" as *;
+
+.privacy {
+  padding: $space-xxl 0;
+  min-height: 70vh;
+
+  :global(.container) {
+    @include container;
+  }
+
+  h1 {
+    @include heading-1;
+    margin-bottom: $space-lg;
+    color: $secondary;
+  }
+
+  .content {
+    max-width: 800px;
+    
+    section {
+      margin-bottom: $space-xl;
+      
+      h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: $space-sm;
+        color: $secondary;
+      }
+      
+      p {
+        font-size: 1.125rem;
+        line-height: 1.8;
+        color: $text-muted;
+      }
+    }
+  }
+}

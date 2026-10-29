@@ -1,0 +1,135 @@
+@use "../../styles/variables" as *;
+
+.section {
+  background: var(--obsidian);
+  overflow: hidden;
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 80vh;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+  &.dark {
+    background: #0D0D0D;
+    color: var(--silver);
+  }
+
+  &.light {
+    background: #111; // Darker background to avoid 'white box' effect
+    color: var(--silver);
+
+    .index, p, .exploreBtn {
+      color: rgba(26, 26, 26, 0.7);
+    }
+    
+    .exploreBtn::after {
+      background: #1A1A1A;
+    }
+  }
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding: 60px 0;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 10%;
+  position: relative;
+  z-index: 10;
+
+  .index {
+    font-family: $font-bebas;
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.2);
+    margin-bottom: 20px;
+    letter-spacing: 0.2em;
+  }
+
+  h2 {
+    font-family: var(--font-space);
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    line-height: 0.85;
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    font-size: 1.2rem;
+    max-width: 400px;
+    margin-bottom: 40px;
+    opacity: 0.8;
+  }
+}
+
+.exploreBtn {
+  font-family: $font-bebas;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  color: white;
+  text-decoration: none;
+  position: relative;
+  width: fit-content;
+  padding-bottom: 8px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: var(--neon-lime);
+    transition: width 0.3s ease;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  
+  @media (max-width: 900px) {
+    height: 400px;
+    margin-top: 40px;
+  }
+}
+
+.image {
+  position: absolute;
+  top: -10%;
+  left: 0;
+  width: 100%;
+  height: 120%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: grayscale(1) contrast(1.1);
+  opacity: 0.6;
+  transition: filter 0.5s ease, opacity 0.5s ease;
+
+  &:hover {
+    filter: grayscale(0) contrast(1);
+    opacity: 1;
+  }
+}

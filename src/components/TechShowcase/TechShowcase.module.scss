@@ -1,0 +1,118 @@
+@use "../../styles/variables" as *;
+
+.section {
+  min-height: 100vh;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: background-color 0.8s ease;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  max-width: 1440px;
+  width: 100%;
+  padding: 0 10%;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+    gap: 60px;
+    text-align: center;
+  }
+}
+
+.textSide {
+  z-index: 10;
+  
+  h2 {
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    line-height: 0.9;
+    margin-bottom: 20px;
+    
+    span {
+      color: #D9FF00;
+      font-style: italic;
+    }
+  }
+
+  p {
+    font-size: 1.25rem;
+    max-width: 450px;
+    opacity: 0.8;
+    margin-bottom: 50px;
+    
+    @media (max-width: 1024px) {
+      margin: 0 auto 50px;
+    }
+  }
+}
+
+.features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+
+  .feat {
+    h4 {
+      font-family: $font-bebas;
+      font-size: 1.5rem;
+      color: #D9FF00;
+      margin-bottom: 8px;
+    }
+    p {
+      font-size: 0.9rem;
+      margin: 0;
+    }
+  }
+}
+
+.visualSide {
+  perspective: 1000px;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.keyboardBody {
+  position: relative;
+  width: 400px;
+  height: 150px;
+  transform-style: preserve-3d;
+}
+
+.part1, .part2, .part3, .base {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-bebas;
+  font-size: 1.5rem;
+  font-style: italic;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.part1 { 
+    background: rgba(217, 255, 0, 0.2); 
+    transform: translateZ(90px);
+    backdrop-filter: blur(5px);
+}
+.part2 { 
+    background: rgba(255, 255, 255, 0.1); 
+    transform: translateZ(60px); 
+}
+.part3 { 
+    background: rgba(255, 255, 255, 0.05); 
+    transform: translateZ(30px); 
+}
+.base { 
+    background: #111; 
+    transform: translateZ(0); 
+}

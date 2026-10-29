@@ -1,0 +1,32 @@
+@use "../../../../styles/variables" as *;
+
+.section {
+    padding: 100px 5%;
+    color: white;
+    min-height: 100vh;
+}
+
+.detailsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    margin-top: 40px;
+
+    @media (max-width: 968px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.imageWrapper {
+    position: relative;
+    aspect-ratio: 1/1;
+    background: #0a0a0a;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}

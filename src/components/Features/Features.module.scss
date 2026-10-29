@@ -1,0 +1,70 @@
+@use "../../styles/theme" as *;
+
+.features {
+  padding: $space-xxl 0;
+  background-color: $background;
+
+  :global(.container) {
+    @include container;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: $space-xxl;
+
+    h2 {
+      @include heading-2;
+      color: $secondary;
+      margin-bottom: $space-xs;
+    }
+
+    p {
+      color: $text-muted;
+      font-size: 1.125rem;
+    }
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: $space-lg;
+  }
+
+  .card {
+    padding: $space-xl;
+    border-radius: $radius-xl;
+    background-color: $surface;
+    transition: $transition-normal;
+    border: 1px solid $border;
+    box-shadow: $shadow-sm;
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: $shadow-xl;
+      border-color: rgba($primary, 0.3);
+      
+      .icon {
+        transform: scale(1.1) rotate(5deg);
+      }
+    }
+
+    .icon {
+      font-size: 2.5rem;
+      margin-bottom: $space-md;
+      display: inline-block;
+      transition: $transition-normal;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: $space-sm;
+      color: $secondary;
+    }
+
+    p {
+      color: $text-muted;
+      line-height: $line-height-base;
+    }
+  }
+}

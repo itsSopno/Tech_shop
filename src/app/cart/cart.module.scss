@@ -1,0 +1,103 @@
+@use "../../styles/theme" as *;
+
+.cart {
+  padding: $space-xxl 0;
+  background-color: $background;
+  min-height: 80vh;
+
+  h1 {
+    @include heading-2;
+    margin-bottom: $space-xl;
+    color: $secondary;
+  }
+}
+
+.cartGrid {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: $space-xl;
+
+  @include tablet {
+    grid-template-columns: 1fr;
+  }
+}
+
+.itemList {
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+}
+
+.cartItem {
+  background-color: $surface;
+  padding: $space-md;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-sm;
+  border: 1px solid $border;
+  @include flex-between;
+  transition: $transition-normal;
+
+  &:hover {
+    box-shadow: $shadow-md;
+    border-color: rgba($primary, 0.2);
+  }
+
+  .info {
+    h3 {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: $secondary;
+      margin-bottom: $space-xs;
+    }
+    p {
+      color: $text-muted;
+      font-size: 0.875rem;
+    }
+  }
+
+  .price {
+    font-weight: 700;
+    color: $primary;
+    font-size: 1.125rem;
+  }
+}
+
+.summary {
+  background-color: $surface;
+  padding: $space-xl;
+  border-radius: $radius-xl;
+  box-shadow: $shadow-lg;
+  border: 1px solid $border;
+  height: fit-content;
+  position: sticky;
+  top: 100px;
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: $space-lg;
+    color: $secondary;
+  }
+
+  .row {
+    @include flex-between;
+    margin-bottom: $space-md;
+    color: $text-muted;
+    font-size: 1rem;
+  }
+
+  .total {
+    border-top: 1px solid $border;
+    padding-top: $space-md;
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: $secondary;
+  }
+
+  .checkoutBtn {
+    @include btn-primary;
+    width: 100%;
+    margin-top: $space-lg;
+    font-size: 1.125rem;
+  }
+}

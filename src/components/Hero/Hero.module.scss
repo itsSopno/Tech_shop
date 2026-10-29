@@ -1,0 +1,82 @@
+@use "../../styles/theme" as *;
+
+.hero {
+  @include flex-center;
+  flex-direction: column;
+  padding: $space-xxl 0;
+  text-align: center;
+  background: radial-gradient(circle at top, rgba($primary, 0.05) 0%, transparent 70%);
+  min-height: 70vh;
+
+  :global(.container) {
+    @include container;
+    @include flex-center;
+    flex-direction: column;
+  }
+
+  h1 {
+    @include heading-1;
+    margin-bottom: $space-md;
+    color: $secondary;
+    max-width: 800px;
+
+    span {
+      @include gradient-text;
+    }
+  }
+
+  p {
+    font-size: 1.25rem;
+    color: $text-muted;
+    max-width: 600px;
+    margin-bottom: $space-xl;
+    line-height: $line-height-base;
+
+    @include tablet {
+      font-size: 1.125rem;
+    }
+  }
+
+  .cta {
+    @include flex-center;
+    gap: $space-md;
+    
+    @include mobile {
+      flex-direction: column;
+      width: 100%;
+    }
+  }
+
+  .primaryBtn {
+    @include btn-primary;
+    text-decoration: none;
+    font-size: 1.125rem;
+    
+    @include mobile {
+      width: 100%;
+    }
+  }
+
+  .secondaryBtn {
+    padding: 0.75rem 1.5rem;
+    border-radius: $radius-lg;
+    font-weight: 600;
+    cursor: pointer;
+    transition: $transition-normal;
+    border: 1px solid $border;
+    background: transparent;
+    color: $text;
+    text-decoration: none;
+    font-size: 1.125rem;
+    
+    @include mobile {
+      width: 100%;
+    }
+
+    &:hover {
+      background: $background;
+      border-color: $text;
+      transform: translateY(-2px);
+    }
+  }
+}

@@ -1,0 +1,53 @@
+@use "../../styles/theme" as *;
+
+.dashboard {
+  padding: $space-xxl 0;
+
+  .header {
+    margin-bottom: $space-xl;
+
+    h1 {
+      @include heading-2;
+      color: $secondary;
+    }
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: $space-lg;
+    margin-bottom: $space-xxl;
+  }
+
+  .statCard {
+    background-color: $surface;
+    padding: $space-xl;
+    border-radius: $radius-xl;
+    box-shadow: $shadow-sm;
+    border: 1px solid $border;
+    text-align: center;
+    transition: $transition-normal;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: $shadow-lg;
+      border-color: rgba($primary, 0.2);
+    }
+
+    label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: $text-muted;
+      margin-bottom: $space-xs;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .value {
+      font-size: 2rem;
+      font-weight: 800;
+      color: $primary;
+    }
+  }
+}
