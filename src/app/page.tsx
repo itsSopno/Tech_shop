@@ -2,7 +2,7 @@
 // import FeaturedProducts from "@/components/FeaturedProducts/FeaturedProducts";
 // import CategorySection from "@/components/CategorySection/CategorySection";
 import KeycapsSection from "@/components/KeycapsSection/KeycapsSection";
-import TestiMonial from '@/components/Testimonial/Testimonial'
+// import TestiMonial from '@/components/Testimonial/Testimonial'
 import TechPartners from "@/components/Pertner/Partner";
 import TopProducts from "@/components/TopProduct/product";
 import AboutPage from "@/components/About/about";
@@ -19,8 +19,8 @@ export default async function Home() {
      
       {/* <Collection /> */}
       <KeycapsSection />
-      <TopProducts></TopProducts>
-      <TestiMonial></TestiMonial>
+      {/* <TopProducts></TopProducts> */}
+      {/* <TestiMonial></TestiMonial> */}
       <AboutPage></AboutPage>
       <TechPartners />
       <Footer />
