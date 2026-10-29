@@ -1,206 +1,503 @@
 "use client";
 
-import { useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
 
-const Navbar = () => {
-  const pathname = usePathname();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { data: session } = useSession();
+interface NavbarProps {
+  cartCount?: number; // Cart state thakle pass korben, na hole badge dekhabe na
+}
 
-  if (pathname.startsWith("/Community") || pathname.startsWith("/dashboard")) return null;
+const CHAMFER =
+  "polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))";
+
+const NAV_ITEMS = [
+  { key: "keyboards", label: "Keyboards", href: "/Store?category=keyboards" },
+  { key: "mice", label: "Mice", href: "/Store?category=mice" },
+  { key: "controller", label: "Controller", href: "/Store?category=controller" },
+  { key: "keycaps", label: "KeyCaps", href: "/Store?category=keycaps" },
+  { key: "gaming", label: "Gaming", href: "/Store?category=gaming" },
+  { key: "story", label: "Story", href: "/Story", gapBefore: true },
+  { key: "archive", label: "Archive", href: "/Caps" },
+];
+
+/* ───────── small icons ───────── */
+const Icon = ({ children, size = 20 }: { children: React.ReactNode; size?: number }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.8"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    {children}
+  </svg>
+);
+const SearchIcon = () => (
+  <Icon>
+    <circle cx="11" cy="11" r="7" />
+    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+  </Icon>
+);
+const BagIcon = () => (
+  <Icon>
+    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
+    <path d="M3 6h18" />
+    <path d="M16 10a4 4 0 0 1-8 0" />
+  </Icon>
+);
+const MenuIcon = () => (
+  <Icon size={24}>
+    <path d="M4 8h16M4 16h10" />
+  </Icon>
+);
+const CloseIcon = () => (
+  <Icon size={24}>
+    <path d="M18 6L6 18M6 6l12 12" />
+  </Icon>
+);
+
+/* ───────── logo ───────── */
+const Logo = () => (
+  <Link href="/" aria-label="Sinners Tech home" className="flex items-center gap-3">
+    <svg width="30" height="30" viewBox="0 0 40 40" aria-hidden="true">
+      <path d="M8 34 L19 6 H25 L14 34 Z" fill="#6366f1" />
+      <path d="M20 34 L31 6 H37 L26 34 Z" fill="#fff" />
+    </svg>
+    <span className="font-space text-xl font-extrabold uppercase italic leading-none tracking-tighter text-white">
+      Sinners
+      <span className="text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.6)]">Tech</span>
+    </span>
+  </Link>
+);
+
+const Navbar = ({ cartCount = 0 }: NavbarProps) => {
+  const pathname = usePathname();
+  const router = useRouter();
+  const { data: session, status } = useSession();
+
+  const [collapsed, setCollapsed] = useState(false); // scroll down hole menu row lukay
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false); // mobile search
+  const [accountOpen, setAccountOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const [bar, setBar] = useState({ left: 0, width: 0, show: false });
+
+  const lastY = useRef(0);
+  const searchRef = useRef<HTMLInputElement>(null);
+  const mobileSearchRef = useRef<HTMLInputElement>(null);
+  const accountRef = useRef<HTMLDivElement>(null);
+  const itemRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
+
   const isAdmin = session?.user?.email === "admin@user";
+  const initial = (session?.user?.name?.[0] ?? session?.user?.email?.[0] ?? "U").toUpperCase();
+
+  // Query chhara link (Story, Archive) hole active dhorbo
+  const activeKey = NAV_ITEMS.find((i) => !i.href.includes("?") && pathname === i.href)?.key ?? null;
+
+  /* ── sliding indicator ── */
+  const moveTo = useCallback((key: string | null) => {
+    const el = key ? itemRefs.current[key] : null;
+    if (!el) return setBar((b) => ({ ...b, show: false }));
+    setBar({ left: el.offsetLeft, width: el.offsetWidth, show: true });
+  }, []);
+
+  useEffect(() => {
+    moveTo(activeKey);
+  }, [activeKey, moveTo]);
+
+  /* ── scroll: niche gele menu row collapse, upore gele abar ashe ── */
+  useEffect(() => {
+    const onScroll = () => {
+      const y = window.scrollY;
+      if (Math.abs(y - lastY.current) < 3) return;
+      if (y < 80) setCollapsed(false);
+      else setCollapsed(y > lastY.current);
+      lastY.current = y;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  /* ── "/" chaple search focus ── */
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const t = e.target as HTMLElement;
+      const typing = t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable;
+      if (e.key === "/" && !typing) {
+        e.preventDefault();
+        searchRef.current?.focus();
+      }
+      if (e.key === "Escape") {
+        setDrawerOpen(false);
+        setSearchOpen(false);
+        setAccountOpen(false);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+  /* ── account dropdown-er baire click ── */
+  useEffect(() => {
+    if (!accountOpen) return;
+    const onDown = (e: MouseEvent) => {
+      if (!accountRef.current?.contains(e.target as Node)) setAccountOpen(false);
+    };
+    document.addEventListener("mousedown", onDown);
+    return () => document.removeEventListener("mousedown", onDown);
+  }, [accountOpen]);
+
+  /* ── drawer cholar somoy page scroll bondho ── */
+  useEffect(() => {
+    document.body.style.overflow = drawerOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [drawerOpen]);
+
+  /* ── page change hole sob bondho ── */
+  useEffect(() => {
+    setDrawerOpen(false);
+    setSearchOpen(false);
+    setAccountOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (searchOpen) mobileSearchRef.current?.focus();
+  }, [searchOpen]);
+
+  const submitSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    const q = query.trim();
+    router.push(q ? `/Store?search=${encodeURIComponent(q)}` : "/Store");
+    setSearchOpen(false);
+    searchRef.current?.blur();
+  };
+
+  const handleLogout = async () => {
+    try {
+      await Promise.allSettled([
+        fetch("https://t-mark-4.vercel.app/api/logout", { method: "GET", credentials: "include" }),
+        fetch("https://t-mark-4.vercel.app/api/google/logout", { method: "GET", credentials: "include" }),
+      ]);
+    } catch (e) {
+      console.error("Backend logout error", e);
+    }
+    setAccountOpen(false);
+    setDrawerOpen(false);
+    signOut();
+  };
+
+  // Hook gulo sob upore, tai early return ekhane
+  if (pathname?.startsWith("/Community") || pathname?.startsWith("/dashboard")) return null;
+
+  const cartBadge =
+    cartCount > 0 ? (
+      <span className="absolute -right-1.5 -top-1.5 flex h-5 min-w-5 items-center justify-center bg-indigo-500 px-1 text-xs font-bold text-white">
+        {cartCount}
+      </span>
+    ) : null;
+
+  const iconBtn =
+    "relative flex h-11 w-11 items-center justify-center text-white/70 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400";
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-[100] px-6 md:px-[60px] py-6 md:py-8 flex items-center justify-between pointer-events-none w-full">
+    <>
+      <header className="fixed inset-x-0 top-0 z-[100] border-b border-white/10 bg-[#09090b]/85 backdrop-blur-xl">
+        {/* ═════ ROW 1: logo, search, actions ═════ */}
+        <div className="mx-auto flex h-16 max-w-[1500px] items-center gap-2 px-4 sm:px-6 lg:grid lg:h-[72px] lg:grid-cols-[auto_1fr_auto] lg:gap-10 lg:px-10">
+          <Logo />
 
-      {/* Left Side: Store Button (Moved to Left for Mobile Design Match) */}
-      <div className="flex items-center pointer-events-auto">
-        <Link
-          href="/Store"
-          className="text-white h-[48px] md:h-[62px] px-4 md:px-12 flex bg-indigo-500/20 backdrop-blur-sm border border-indigo-500/50 hover:bg-indigo-500 items-center gap-2 hover:text-black transition-all duration-300 shadow-sm active:scale-95"
-        >
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="mb-0.5"
-          >
-            <path d="M6 2L3 6V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
-            <path d="M3 6h18" />
-            <path d="M16 10a4 4 0 0 1-8 0" />
-          </svg>
-          <span className="font-bebas text-xl md:text-2xl font-bold uppercase tracking-wider mt-1">
-            Store
-          </span>
-        </Link>
-        {/* {isAdmin && (
-          <Link
-            href="/dashboard"
-            className="bg-neon-lime text-[#161e00] h-[48px] md:h-[62px] px-4 md:px-8 flex items-center gap-2 hover:bg-white hover:text-black transition-all duration-300 shadow-sm active:scale-95 ml-3"
-          >
-            <span className="font-bebas text-xl md:text-2xl font-bold uppercase tracking-wider mt-1">
-              Dashboard
+          {/* Desktop search */}
+          <form onSubmit={submitSearch} role="search" className="relative mx-auto hidden w-full max-w-2xl lg:block">
+            <label htmlFor="nav-search" className="sr-only">
+              Search products
+            </label>
+            <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-white/35">
+              <SearchIcon />
             </span>
-          </Link>
-        )} */}
-      </div>
-
-      {/* Center: Stylized LN Logo */}
-      <div className="absolute left-1/2 -translate-x-1/2 pointer-events-auto">
-        <Link href="/" className="flex items-center justify-center group" aria-label="Home">
-          <svg width="34" height="34" viewBox="0 0 100 100" fill="none" className="transform skew-x-[-15deg]">
-            {/* Stylized LN4 Logo Representation - Two Parallel Slanted Shapes */}
-            <path
-              d="M20 80 L45 20 L55 20 L30 80 Z"
-              fill="currentColor"
-              className="group-hover:fill-neon-lime transition-colors duration-300"
+            <input
+              id="nav-search"
+              ref={searchRef}
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search keyboards, mice, keycaps"
+              style={{ clipPath: CHAMFER }}
+              className="peer h-11 w-full bg-white/[0.05] pl-12 pr-14 text-base text-white outline-none ring-1 ring-inset ring-white/10 transition placeholder:text-white/35 focus:bg-white/[0.08] focus:ring-indigo-400"
             />
-            <path
-              d="M50 80 L75 20 L85 20 L60 80 Z"
-              fill="currentColor"
-              className="group-hover:fill-neon-lime transition-colors duration-300"
-            />
-          </svg>
-        </Link>
-      </div>
+            <kbd className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 border border-white/20 px-2 py-0.5 text-xs text-white/40 peer-focus:hidden">
+              /
+            </kbd>
+          </form>
 
-      {/* Right Side: Menu Toggle Button */}
-      <div className="flex items-center pointer-events-auto">
-        <button
-          className="group h-[52px] w-[52px] md:h-[62px] md:w-[62px] flex flex-col items-center justify-center gap-[5px] transition-all duration-300 bg-transparent"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          <div className="w-6 h-[2.5px] bg-silver group-hover:bg-indigo-500/20 transition-all ml-auto mr-3"></div>
-          <div className="w-6 h-[2.5px] bg-silver group-hover:bg-indigo-500/20 transition-all ml-auto mr-5"></div>
-        </button>
-      </div>
+          {/* Actions */}
+          <div className="ml-auto flex items-center gap-1 lg:gap-2">
+            <button
+              className={`${iconBtn} lg:hidden`}
+              aria-label="Search"
+              aria-expanded={searchOpen}
+              onClick={() => setSearchOpen((v) => !v)}
+            >
+              <SearchIcon />
+            </button>
 
-      {/* Fullscreen Menu Overlay (Matches New Reference Image) */}
-      {isMobileMenuOpen && (
-        <div className="fixed inset-0 bg-obsidian z-[200] overflow-y-auto overflow-x-hidden flex flex-col pointer-events-auto animate-in fade-in duration-500">
-
-          {/* Topographic Background Pattern Overlay */}
-          <div className="absolute inset-0 opacity-[0.08] pointer-events-none" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='800' height='800' viewBox='0 0 800 800' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 100 Q 200 50 400 100 T 800 100 M0 250 Q 200 200 400 250 T 800 250 M0 400 Q 200 350 400 400 T 800 400 M0 550 Q 200 500 400 550 T 800 550 M0 700 Q 200 650 400 700 T 800 700' stroke='%23D9FF00' fill='none' stroke-width='2'/%3E%3C/svg%3E")`, backgroundSize: 'cover' }}></div>
-
-          {/* Top Bar inside Menu - Updated Layout (Store Left, Close Right) */}
-          <div className="flex items-center justify-between px-6 py-8 w-full relative z-[210]">
-            <div className="flex items-center gap-3">
-              <Link
-                href="/Store"
-                className="text-white h-12 px-6 flex bg-indigo-500/20 backdrop-blur-sm border border-indigo-500/50 hover:bg-indigo-500 items-center gap-2 hover:text-black transition-all duration-300 shadow-sm active:scale-95 group"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                <span className="font-bebas text-xl font-bold uppercase tracking-wider mt-1">Store</span>
+            {session && (
+              <Link href="/Payment" aria-label="Payment and cart" className={iconBtn}>
+                <BagIcon />
+                {cartBadge}
               </Link>
+            )}
 
-              {/* {isAdmin && (
-                <Link
-                  href="/dashboard"
-                  className="bg-neon-lime text-[#161e00] h-12 px-6 flex items-center gap-2 hover:bg-white transition-all duration-300 shadow-sm active:scale-95 group"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  <span className="font-bebas text-xl font-bold uppercase tracking-wider mt-1">Dashboard</span>
-                </Link>
-              )} */}
+            {/* Desktop account */}
+            <div className="hidden lg:block">
+              {status === "loading" ? (
+                <div className="h-11 w-36 animate-pulse bg-white/[0.05]" />
+              ) : session ? (
+                <div ref={accountRef} className="relative">
+                  <button
+                    onClick={() => setAccountOpen((v) => !v)}
+                    aria-haspopup="menu"
+                    aria-expanded={accountOpen}
+                    className="flex h-11 items-center gap-3 pl-1 pr-3 text-white/80 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400"
+                  >
+                    <span
+                      style={{ clipPath: CHAMFER }}
+                      className="flex h-9 w-9 items-center justify-center bg-indigo-500 font-bebas text-xl text-white"
+                    >
+                      {initial}
+                    </span>
+                    <span className="max-w-[120px] truncate font-bebas text-xl">
+                      {session.user?.name ?? "Account"}
+                    </span>
+                  </button>
+
+                  {accountOpen && (
+                    <div
+                      role="menu"
+                      style={{ clipPath: CHAMFER }}
+                      className="absolute right-0 top-full mt-3 w-56 bg-[#101015] py-2 ring-1 ring-white/10"
+                    >
+                      {[
+                        { label: "Profile", href: "/Profile" },
+                        { label: "Payment", href: "/Payment" },
+                        ...(isAdmin ? [{ label: "Dashboard", href: "/dashboard" }] : []),
+                      ].map((l) => (
+                        <Link
+                          key={l.href}
+                          href={l.href}
+                          role="menuitem"
+                          className="block px-5 py-2.5 font-bebas text-xl text-white/70 transition-colors hover:bg-white/[0.06] hover:text-white"
+                        >
+                          {l.label}
+                        </Link>
+                      ))}
+                      <div className="my-2 h-px bg-white/10" />
+                      <button
+                        role="menuitem"
+                        onClick={handleLogout}
+                        className="block w-full px-5 py-2.5 text-left font-bebas text-xl text-white/70 transition-colors hover:bg-white/[0.06] hover:text-white"
+                      >
+                        Log out
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div className="flex items-center gap-2">
+                  <Link
+                    href="/login"
+                    className="px-4 py-2 font-bebas text-xl text-white/80 transition-colors hover:text-white"
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    href="/register"
+                    style={{ clipPath: CHAMFER }}
+                    className="bg-white px-6 py-2.5 font-bebas text-xl text-black transition-colors hover:bg-indigo-500 hover:text-white"
+                  >
+                    Register
+                  </Link>
+                </div>
+              )}
             </div>
 
+            {/* Mobile menu button */}
+            <button className={`${iconBtn} lg:hidden`} aria-label="Open menu" onClick={() => setDrawerOpen(true)}>
+              <MenuIcon />
+            </button>
+          </div>
+        </div>
+
+        {/* ═════ Mobile search row ═════ */}
+        {searchOpen && (
+          <form onSubmit={submitSearch} role="search" className="border-t border-white/10 px-4 py-3 sm:px-6 lg:hidden">
+            <input
+              ref={mobileSearchRef}
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search keyboards, mice, keycaps"
+              aria-label="Search products"
+              style={{ clipPath: CHAMFER }}
+              className="h-11 w-full bg-white/[0.06] px-4 text-base text-white outline-none ring-1 ring-inset ring-white/10 placeholder:text-white/35 focus:ring-indigo-400"
+            />
+          </form>
+        )}
+
+        {/* ═════ ROW 2: category menu (desktop), scroll-e collapse ═════ */}
+        <div
+          className={`hidden grid-cols-1 transition-[grid-template-rows] duration-300 lg:grid ${
+            collapsed ? "grid-rows-[0fr]" : "grid-rows-[1fr]"
+          }`}
+        >
+          <div className="min-h-0 overflow-hidden">
+            <div className="mx-auto flex h-11 max-w-[1500px] items-stretch justify-between border-t border-white/[0.06] px-10">
+              <ul className="relative flex items-stretch" onMouseLeave={() => moveTo(activeKey)}>
+                {NAV_ITEMS.map((item) => (
+                  <React.Fragment key={item.key}>
+                    {item.gapBefore && (
+                      <li aria-hidden="true" className="mx-3 h-4 w-px -skew-x-[20deg] self-center bg-white/25" />
+                    )}
+                    <li>
+                      <Link
+                        href={item.href}
+                        ref={(el) => {
+                          itemRefs.current[item.key] = el;
+                        }}
+                        onMouseEnter={() => moveTo(item.key)}
+                        onFocus={() => moveTo(item.key)}
+                        onBlur={() => moveTo(activeKey)}
+                        aria-current={activeKey === item.key ? "page" : undefined}
+                        className={`flex h-11 items-center px-4 font-bebas text-xl tracking-wide transition-colors ${
+                          activeKey === item.key ? "text-white" : "text-white/55 hover:text-white"
+                        }`}
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  </React.Fragment>
+                ))}
+
+                {/* Ekta indicator, hover onujayi slide kore */}
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute bottom-0 h-[3px] -skew-x-[20deg] bg-indigo-500 shadow-[0_0_12px_rgba(99,102,241,0.7)] transition-all duration-300 ease-out"
+                  style={{ left: bar.left, width: bar.width, opacity: bar.show ? 1 : 0 }}
+                />
+              </ul>
+
+              <p className="hidden items-center gap-2.5 text-sm text-white/45 xl:flex">
+                <span className="h-2 w-2 animate-pulse rounded-full bg-indigo-500" />
+                Shipping all over Bangladesh
+              </p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Header fixed, tai niche-r content jate dhaka na pore */}
+      <div aria-hidden="true" className="h-16 lg:h-[117px]" />
+
+      {/* ═════ MOBILE DRAWER ═════ */}
+      <div
+        className={`fixed inset-0 z-[200] lg:hidden ${drawerOpen ? "visible" : "invisible"}`}
+        aria-hidden={!drawerOpen}
+      >
+        <div
+          onClick={() => setDrawerOpen(false)}
+          className={`absolute inset-0 bg-black/70 backdrop-blur-sm transition-opacity duration-300 ${
+            drawerOpen ? "opacity-100" : "opacity-0"
+          }`}
+        />
+
+        <aside
+          role="dialog"
+          aria-modal="true"
+          aria-label="Menu"
+          style={{ clipPath: "polygon(28px 0, 100% 0, 100% 100%, 0 100%, 0 28px)" }}
+          className={`absolute right-0 top-0 flex h-full w-[88%] max-w-sm flex-col overflow-y-auto bg-[#0c0c10] transition-transform duration-300 ease-out ${
+            drawerOpen ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
+          <div className="flex h-16 items-center justify-between px-5">
+            <span className="font-bebas text-2xl text-white/50">Menu</span>
             <button
-              className="h-[52px] w-[52px] flex items-center justify-center bg-white hover:bg-neon-lime transition-all duration-300"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={() => setDrawerOpen(false)}
+              aria-label="Close menu"
+              className="flex h-11 w-11 items-center justify-center text-white hover:text-indigo-300"
             >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" strokeWidth="3" strokeLinecap="round">
-                <path d="M18 6L6 18M6 6l12 12" />
-              </svg>
+              <CloseIcon />
             </button>
           </div>
 
-          {/* Main Menu Content - Centered for Mobile */}
-          <div className="flex-1 flex flex-col items-center justify-center relative z-[210] px-6">
-
-            {/* Large Bold Links & Dynamic Auth */}
-            <div className="flex flex-col items-center gap-2 mb-12">
-              {[
-                { name: "HOME", href: "/" },
-                { name: "KEYCAPS", href: "/#keycaps" },
-                { name: "STORY", href: "/Story" },
-                { name: "ARCHIVE", href: "/Caps" },
-                { name: "PROFILE", href: "/Profile" },
-                ...(isAdmin ? [{ name: "DASHBOARD", href: "/dashboard" }] : []),
-                ...(session
-                  ? [{ name: "LOGOUT", isLogout: true }, { name: "PAYMENT", href: "/Payment" }]
-                  : [
-                    { name: "REGISTER", href: "/register" },
-                    { name: "LOGIN", href: "/login" }
-                  ]
-                )
-              ].map((item, idx) => (
-                <div key={item.name} className="relative group text-center">
-                  {item.isLogout ? (
-                    <button
-                      className={`font-bebas text-[54px] sm:text-[70px] leading-[0.85] uppercase transition-all duration-300 hover:text-white ${idx === 0 ? 'text-white' : 'text-white/40'}`}
-                      onClick={async () => {
-                        try {
-                          await Promise.allSettled([
-                            fetch("https://t-mark-4.vercel.app/api/logout", { method: "GET", credentials: "include" }),
-                            fetch("https://t-mark-4.vercel.app/api/google/logout", { method: "GET", credentials: "include" })
-                          ]);
-                        } catch (e) {
-                          console.error("Backend logout error", e);
-                        }
-                        signOut();
-                        setIsMobileMenuOpen(false);
-                      }}
-                    >
-                      {item.name}
-                    </button>
-                  ) : (
-                    <Link
-                      href={item.href!}
-                      className={`font-bebas text-[54px] sm:text-[70px] leading-[0.85] uppercase transition-all duration-300 hover:text-white ${idx === 0 ? 'text-white' : 'text-white/40'}`}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      {item.name}
-                    </Link>
-                  )}
-                  {idx === 0 && (
-                    <div className="absolute top-1/2 left-[-10%] w-[120%] h-[4px] bg-neon-lime pointer-events-none shadow-[0_0_15px_rgba(195,244,0,0.5)]"></div>
-                  )}
-                </div>
+          <nav aria-label="Main" className="px-5">
+            <ul>
+              <li>
+                <Link
+                  href="/Store"
+                  className="flex items-center justify-between border-b border-white/10 py-4 font-bebas text-3xl text-white"
+                >
+                  All products
+                </Link>
+              </li>
+              {NAV_ITEMS.map((item) => (
+                <li key={item.key}>
+                  <Link
+                    href={item.href}
+                    className={`flex items-center justify-between border-b border-white/10 py-4 font-bebas text-3xl transition-colors hover:text-white ${
+                      activeKey === item.key ? "text-indigo-300" : "text-white/60"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
               ))}
-            </div>
+            </ul>
+          </nav>
 
-            {/* Middle Section Detail */}
-            <div className="flex flex-col items-center mb-16">
-              <div className="w-16 h-16 mb-4 flex items-center justify-center">
-                <svg viewBox="0 0 100 100" className="w-full h-full fill-white/80">
-                  <path d="M50 0 L100 100 L50 80 L0 100 Z" /> {/* Stylized Badge Shape */}
-                </svg>
+          {/* Auth */}
+          <div className="mt-auto space-y-3 p-5 pt-8">
+            {session ? (
+              <>
+                <p className="truncate text-sm text-white/50">
+                  Signed in as {session.user?.name ?? session.user?.email}
+                </p>
+                <div className="grid grid-cols-2 gap-3">
+                  <Link href="/Profile" className="border border-white/20 py-3 text-center font-bebas text-xl text-white">
+                    Profile
+                  </Link>
+                  <Link href="/Payment" className="border border-white/20 py-3 text-center font-bebas text-xl text-white">
+                    Payment
+                  </Link>
+                </div>
+                {isAdmin && (
+                  <Link href="/dashboard" className="block border border-indigo-500/60 py-3 text-center font-bebas text-xl text-indigo-200">
+                    Dashboard
+                  </Link>
+                )}
+                <button onClick={handleLogout} className="w-full bg-white py-3 font-bebas text-xl text-black hover:bg-indigo-500 hover:text-white">
+                  Log out
+                </button>
+              </>
+            ) : (
+              <div className="grid grid-cols-2 gap-3">
+                <Link href="/login" className="border border-white/25 py-3 text-center font-bebas text-xl text-white">
+                  Login
+                </Link>
+                <Link href="/register" className="bg-white py-3 text-center font-bebas text-xl text-black hover:bg-indigo-500 hover:text-white">
+                  Register
+                </Link>
               </div>
-              <span className="font-bebas text-sm tracking-[0.4em] text-white/50 uppercase">MCLAREN F1 SINCE 2019</span>
-            </div>
-
-            {/* Footer Section */}
-            <div className="w-full flex flex-col items-center gap-8 mt-auto pb-12">
-              <span className="font-bebas text-base text-white/80 tracking-[0.3em] uppercase font-bold">Business Enquiries</span>
-              <div className="flex flex-wrap justify-center gap-x-8 gap-y-2">
-                {['TIKTOK', 'INSTAGRAM', 'YOUTUBE', 'TWITCH'].map(social => (
-                  <Link key={social} href="#" className="font-bebas text-sm text-white/40 hover:text-[#D9FF00] transition-colors tracking-[0.2em]">{social}</Link>
-                ))}
-              </div>
-            </div>
-
+            )}
           </div>
-        </div>
-      )}
-    </nav>
+        </aside>
+      </div>
+    </>
   );
 };
 
