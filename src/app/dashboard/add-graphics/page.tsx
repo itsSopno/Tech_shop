@@ -29,12 +29,12 @@ export default function AddKeycapsPage() {
           <div className="flex items-center justify-center gap-3 mb-2">
             <div className="w-1.5 h-1.5 bg-[#D9FF00] rounded-none shadow-[0_0_10px_#D9FF00]" />
             <span className="text-[11px] text-white/50 font-mono font-bold uppercase tracking-[5px]">
-              Brand KeyBoard
+              
             </span>
           </div>
 
           <h1 className="font-bebas text-7xl md:text-9xl tracking-tighter text-white uppercase italic leading-none">
-            Manage_<span className="text-white/10">Keyboards</span>
+            Graphics<span className="text-white/10">Card</span>
           </h1>
 
           <div className="h-[1px] w-24 bg-[#D9FF00] mx-auto mt-8" />
