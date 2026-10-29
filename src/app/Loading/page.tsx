@@ -1,141 +1,152 @@
-
 "use client";
-import React, { useEffect, useRef, useState, useMemo } from "react";
+
+import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import Image from "next/image";
-import img1 from './Sinners_ hero.png'
-import img2 from './Sinners_ 2nd.png'
-import img3 from './3rd.png'
-import img4 from './Sinners_3rd.png'
+import img1 from "./Sinners_ hero.png"; // Poramorsho: file name theke space soriye "Sinners_hero.png" korun
+import img2 from "./Sinners_ 2nd.png";
+import img3 from "./3rd.png";
+import img4 from "./Sinners_3rd.png";
 
+// Component-er baire, tai render-e bar bar toiri hoy na (useMemo lagbe na)
+const LOADER_IMAGES = [
+  { id: 1, src: img4, alt: "Archive 01" },
+  { id: 2, src: img3, alt: "Archive 02" },
+  { id: 3, src: img2, alt: "Archive 03" },
+  { id: 4, src: img1, alt: "Studio Sinners" },
+];
 
-const OchiComponentLoader = ({ onComplete }: { onComplete: () => void }) => {
-    const [percent, setPercent] = useState(0);
-    const loaderRef = useRef<HTMLDivElement>(null);
+interface LoaderProps {
+  onComplete: () => void;
+}
 
+const OchiComponentLoader = ({ onComplete }: LoaderProps) => {
+  const [percent, setPercent] = useState(0);
+  const loaderRef = useRef<HTMLDivElement>(null);
 
-    const loaderImages = useMemo(() => [
-        { id: 1, src: img4, alt: "Archive 01" },
-        { id: 2, src: img3, alt: "Archive 02" },
-        { id: 3, src: img2, alt: "Archive 03" },
-        { id: 4, src: img1, alt: "Studio Sinners" },
-    ], []);
+  // Parent inline function dileo timeline restart hobe na
+  const onCompleteRef = useRef(onComplete);
+  useEffect(() => {
+    onCompleteRef.current = onComplete;
+  }, [onComplete]);
 
-    useEffect(() => {
+  useEffect(() => {
+    // Loader cholar somoy pichoner page scroll bondho
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
 
-        const style = document.createElement("style");
-        style.textContent = `
-            .perspective-2000 { perspective: 2000px; }
-            .loader-card { 
-                will-change: transform, opacity; 
-                backface-visibility: hidden;
-                transform: translateZ(0); 
-            }
-        `;
-        document.head.appendChild(style);
+    const finish = () => {
+      if (loaderRef.current) {
+        loaderRef.current.style.pointerEvents = "none";
+        loaderRef.current.style.display = "none";
+      }
+      document.body.style.overflow = prevOverflow;
+      onCompleteRef.current();
+    };
 
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-        const ctx = gsap.context(() => {
-            const tl = gsap.timeline({
-                defaults: { ease: "expo.inOut", force3D: true }
-            });
+    const ctx = gsap.context(() => {
+      // Reduced motion: animation chhara shudhu halka fade
+      if (reduceMotion) {
+        gsap.set(".loader-card:last-child", { opacity: 1 });
+        setPercent(100);
+        gsap.to(loaderRef.current, { opacity: 0, duration: 0.4, delay: 0.4, onComplete: finish });
+        return;
+      }
 
+      const counter = { value: 0 };
+      const tl = gsap.timeline({ defaults: { ease: "expo.inOut", force3D: true } });
 
-            tl.to({}, {
-                duration: 3,
-                onUpdate: function () {
-                    const p = Math.round(this.progress() * 100);
+      // Percent counter: linear (agey expo ease chhilo, tai 0% ar 100%-e atke thakto)
+      tl.to(counter, {
+        value: 100,
+        duration: 3,
+        ease: "none",
+        onUpdate: () => setPercent(Math.round(counter.value)),
+      });
 
-                    setPercent((prev) => (prev !== p ? p : prev));
-                },
-            });
+      // Card gulo niche theke uthe ashe
+      tl.fromTo(
+        ".loader-card",
+        { y: "100vh", rotationX: 10, opacity: 0 },
+        {
+          y: (i: number) => `${i * -5}px`,
+          rotationX: 0,
+          opacity: 1,
+          duration: 1.2,
+          stagger: 0.25,
+        },
+        0
+      );
 
+      // Baki card gulo niche chole jay
+      tl.to(
+        ".loader-card:not(:last-child)",
+        { y: "100vh", opacity: 0, duration: 0.8, stagger: 0.04 },
+        "+=0.2"
+      );
 
-            tl.fromTo(".loader-card",
-                { y: "100vh", rotationX: 10, opacity: 0 },
-                {
-                    y: (i) => `${i * -5}px`,
-                    rotationX: 0,
-                    opacity: 1,
-                    duration: 1.2,
-                    stagger: 0.25,
-                },
-                0
-            );
+      // Shesh card full screen hoy (y: 0 diye 15px gap fix)
+      tl.to(
+        ".loader-card:last-child",
+        { width: "100vw", height: "100vh", borderRadius: 0, y: 0, duration: 1 },
+        "-=0.5"
+      );
 
+      tl.to(loaderRef.current, { opacity: 0, duration: 0.4, onComplete: finish }, "+=0.1");
+    }, loaderRef);
 
-            tl.to(".loader-card:not(:last-child)", {
-                y: "100vh",
-                opacity: 0,
-                duration: 0.8,
-                stagger: 0.04,
-            }, "+=0.2");
+    return () => {
+      ctx.revert();
+      document.body.style.overflow = prevOverflow;
+    };
+  }, []);
 
-            tl.to(".loader-card:last-child", {
-                width: "100vw",
-                height: "100vh",
-                borderRadius: "0px",
-                duration: 1,
-            }, "-=0.5");
+  return (
+    <div
+      ref={loaderRef}
+      role="status"
+      aria-label="Loading Sinners Tech"
+      className="fixed inset-0 z-[99999] flex items-center justify-center overflow-hidden bg-black [perspective:2000px]"
+    >
+      <div className="relative flex h-full w-full items-center justify-center">
+        {LOADER_IMAGES.map((image, index) => {
+          const isLast = index === LOADER_IMAGES.length - 1;
+          return (
+            <div
+              key={image.id}
+              // opacity: 0 shuru thekei, jate animation shuru hobar agey card ekbar jhalke na ashe
+              style={{ zIndex: index + 1, opacity: 0 }}
+              className="loader-card absolute h-[50%] w-[80%] overflow-hidden rounded-[20px] bg-neutral-950 will-change-transform [backface-visibility:hidden] md:h-[70%] md:w-[60%] md:rounded-[40px]"
+            >
+              {/* Agey p-4/p-12 chhilo kintu fill image padding mane na, tai inset diye fix */}
+              <div className="absolute inset-4 md:inset-12">
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  sizes="(max-width: 768px) 80vw, 60vw"
+                  className="object-contain"
+                  priority
+                  quality={60}
+                />
+              </div>
 
-            tl.to(loaderRef.current, {
-                opacity: 0,
-                duration: 0.4,
-                onComplete: () => {
-
-                    if (loaderRef.current) {
-                        loaderRef.current.style.pointerEvents = "none";
-                        loaderRef.current.style.display = "none";
-                    }
-                    onComplete();
-                },
-            }, "+=0.1");
-
-        }, loaderRef);
-
-        return () => {
-            ctx.revert();
-            style.remove();
-        };
-    }, [onComplete]);
-
-    return (
-        <div ref={loaderRef} className="fixed inset-0 z-[99999] bg-black overflow-hidden perspective-2000 flex items-center justify-center">
-            <div className="relative w-full h-full flex items-center justify-center">
-                {loaderImages.map((image, index) => (
-                    <div
-                        key={image.id}
-                        className="loader-card absolute w-[80%] h-[50%] md:w-[60%] md:h-[70%] overflow-hidden rounded-[20px] md:rounded-[40px]"
-                        style={{ zIndex: index + 1 }}
-                    >
-                        <div className="relative w-full h-full p-4 md:p-12">
-                            <Image
-                                src={image.src}
-                                alt={image.alt}
-                                fill
-                                sizes="(max-width: 768px) 80vw, 60vw"
-                                className="object-contain"
-                                priority={index >= loaderImages.length - 2}
-                                quality={60}
-                            />
-                        </div>
-
-                        {index === loaderImages.length - 1 && (
-                            <div className="absolute bottom-6 right-8 md:bottom-12 md:right-12 z-[100]">
-                                <div className="flex flex-col items-end">
-                                    <span className="text-[10px] font-mono tracking-[4px] text-[#D9FF00] uppercase mb-1 opacity-50">
-                                    </span>
-                                    <div className="font-bebas text-[20vw] md:text-[10vw] leading-none text-indigo-500/20 tracking-tighter shadow-2xl">
-                                        {percent}%
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-                    </div>
-                ))}
+              {isLast && (
+                <div
+                  aria-hidden="true"
+                  className="absolute bottom-6 right-8 z-[100] font-bebas text-[20vw] leading-none tracking-tighter text-indigo-500/20 tabular-nums md:bottom-12 md:right-12 md:text-[10vw]"
+                >
+                  {percent}%
+                </div>
+              )}
             </div>
-        </div>
-    );
+          );
+        })}
+      </div>
+    </div>
+  );
 };
 
 export default OchiComponentLoader;
