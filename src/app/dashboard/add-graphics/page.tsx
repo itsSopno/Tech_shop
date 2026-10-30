@@ -1,6 +1,6 @@
 "use client";
 
-import ItemForm from "@/components/Dashboard/ItemForm";
+import GraphicsForm from "@/components/Dashboard/graphicsFrom";
 import Image from "next/image";
 
 export default function AddKeycapsPage() {
@@ -43,7 +43,7 @@ export default function AddKeycapsPage() {
           </p>
         </div>
         <div className="w-full max-w-2xl bg-black/40 p-12 border border-white/5 backdrop-blur-sm shadow-2xl">
-          <ItemForm type="keyboard" />
+          <GraphicsForm type="Graphics Card" />
         </div>
         <div className="mt-20 text-center text-[9px] font-mono text-white/20 tracking-[4px] uppercase">
           Authorized Personnel Only // Operational_Status: Nominal
