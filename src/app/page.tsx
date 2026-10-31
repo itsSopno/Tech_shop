@@ -10,6 +10,7 @@ import Footer from "@/components/Footer/Footer";
 // import Collection from "@/components/Collection/collection"
 import { auth } from "@/auth";
 import HeroBento from "@/components/Hero/Hero";
+import GraphicsCard from "@/components/GraphicsCard/graphicsCollection";
 
 export default async function Home() {
   const session = await auth();
@@ -19,6 +20,7 @@ export default async function Home() {
      
       {/* <Collection /> */}
       <KeycapsSection />
+      <GraphicsCard></GraphicsCard>
       {/* <TopProducts></TopProducts> */}
       {/* <TestiMonial></TestiMonial> */}
       <AboutPage></AboutPage>

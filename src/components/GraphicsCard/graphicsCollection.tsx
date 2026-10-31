@@ -1,7 +1,6 @@
-
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { gsap } from "gsap";
@@ -14,25 +13,17 @@ interface Keycap {
   id?: string;
   name: string;
   image: string;
-  description: string;
-  brand:string;
-  model:string;
-  oldPrice:string;
-  stock:string;
-  images:string;
-  vramSize:string;
-  vramType:string;
-  coreClocl:string;
-  bootsClock:string;
-  powerConnectors:string;
-  displayOutputs : string;
-  port:string;
-  dlss:string;
-  rayTracing:boolean;
-  isFeatured:boolean;
+  description?: string;
+  brand?: string;
+  price: number | string;
+  oldPrice?: number | string;
+  stock?: number | string;
+  images?: string[];
+  isFeatured?: boolean;
 }
 
-const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/api/keycaps`;
+const API_BASE = process.env.NEXT_PUBLIC_API_URL;
+const API_URL = API_BASE ? `${API_BASE}/api/graphics` : null;
 const FALLBACK_URL = "/key.json";
 const CURRENCY = "$"; // BDT chaile "৳" kore din
 
@@ -47,13 +38,22 @@ const hrefFor = (item: Keycap) => {
   return `/keycaps/${id ?? slugify(item.name)}`;
 };
 
+const formatPrice = (p: number | string) => {
+  const n = Number(p);
+  return Number.isFinite(n) ? n.toLocaleString("en-US") : String(p);
+};
+
 const fetchJson = async (url: string) => {
   const res = await fetch(url);
   if (!res.ok) throw new Error(`${url} responded ${res.status}`);
   return res.json();
 };
 
-const GraphicsSection = () => {
+const prefersReducedMotion = () =>
+  typeof window !== "undefined" &&
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+const GraphicsCard = () => {
   const [keycaps, setKeycaps] = useState<Keycap[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -61,41 +61,49 @@ const GraphicsSection = () => {
 
   const sectionRef = useRef<HTMLElement>(null);
   const stageImgRef = useRef<HTMLDivElement>(null);
+  const mounted = useRef(true);
 
-  const load = async () => {
+  const load = useCallback(async () => {
     setLoading(true);
     setError(false);
     try {
       let list: Keycap[] = [];
-      try {
-        const data = await fetchJson(API_URL);
-        const maybe = data.keycaps || data;
-        if (Array.isArray(maybe)) list = maybe;
-      } catch {
-        // API fail hole niche local fallback use hobe
+      if (API_URL) {
+        try {
+          const data = await fetchJson(API_URL);
+          const maybe = data.keycaps || data;
+          if (Array.isArray(maybe)) list = maybe;
+        } catch {
+          // API fail hole niche local fallback use hobe
+        }
       }
       if (list.length === 0) {
         const local = await fetchJson(FALLBACK_URL);
         list = Array.isArray(local) ? local : local.keycaps ?? [];
       }
+      if (!mounted.current) return;
       setKeycaps(list);
       setActive(0);
     } catch (err) {
       console.error("Keycaps load failed:", err);
-      setError(true);
+      if (mounted.current) setError(true);
     } finally {
-      setLoading(false);
+      if (mounted.current) setLoading(false);
     }
-  };
-
-  useEffect(() => {
-    load();
   }, []);
 
-  // Scroll-e section dhukle ekbar entrance
+  useEffect(() => {
+    mounted.current = true;
+    load();
+    return () => {
+      mounted.current = false;
+    };
+  }, [load]);
+
+  // Section-e dhukle ekbar entrance
   useEffect(() => {
     if (loading || keycaps.length === 0) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (prefersReducedMotion()) return;
 
     const ctx = gsap.context(() => {
       gsap.from(".ks-anim", {
@@ -114,7 +122,7 @@ const GraphicsSection = () => {
   // Keycap bodlale stage-er image ar text smooth change
   useEffect(() => {
     if (loading || !stageImgRef.current) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (prefersReducedMotion()) return;
 
     const ctx = gsap.context(() => {
       gsap.fromTo(
@@ -138,7 +146,10 @@ const GraphicsSection = () => {
     return (
       <section className="w-full bg-[#09090b] px-3 py-20 sm:px-6 lg:px-10">
         <div className="mx-auto grid max-w-[1500px] gap-4 lg:grid-cols-12">
-          <div style={{ clipPath: CHAMFER }} className="h-[420px] animate-pulse bg-white/[0.05] lg:col-span-7 lg:h-[560px]" />
+          <div
+            style={{ clipPath: CHAMFER }}
+            className="h-[420px] animate-pulse bg-white/[0.05] lg:col-span-7 lg:h-[560px]"
+          />
           <div className="flex flex-col gap-2 lg:col-span-5">
             {Array.from({ length: 5 }).map((_, i) => (
               <div key={i} className="h-24 animate-pulse bg-white/[0.04]" />
@@ -192,40 +203,46 @@ const GraphicsSection = () => {
         </div>
 
         <div className="grid gap-4 lg:grid-cols-12">
-          {/* ── STAGE: ja select kora ache ── */}
+          {/* ── STAGE ── */}
           <div
             style={{ clipPath: CHAMFER }}
             className="ks-anim relative min-h-[460px] overflow-hidden bg-neutral-900 lg:col-span-7 lg:min-h-[600px]"
           >
             <div ref={stageImgRef} className="absolute inset-0">
-              <Image
-                key={current._id || current.id || active}
-                src={current.image}
-                alt={current.name}
-                fill
-                priority={active === 0}
-                sizes="(min-width: 1024px) 55vw, 100vw"
-                className="object-cover"
-              />
+              {current.image && (
+                <Image
+                  key={current._id || current.id || active}
+                  src={current.image}
+                  alt={current.name}
+                  fill
+                  priority={active === 0}
+                  sizes="(min-width: 1024px) 55vw, 100vw"
+                  className="object-cover"
+                />
+              )}
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
 
-            <span className="stage-text absolute left-6 top-6 bg-indigo-500 px-3 py-1 font-bebas text-lg text-white">
-              {current.brand}
-            </span>
+            {current.brand && (
+              <span className="stage-text absolute left-6 top-6 bg-indigo-500 px-3 py-1 font-bebas text-lg text-white">
+                {current.brand}
+              </span>
+            )}
 
             <div className="absolute inset-x-6 bottom-6 sm:inset-x-10 sm:bottom-10">
               <h3 className="stage-text max-w-2xl font-space text-[clamp(28px,4.5vw,60px)] font-extrabold uppercase italic leading-[0.95] tracking-tight text-white">
                 {current.name}
               </h3>
-              <p className="stage-text mt-4 line-clamp-2 max-w-lg text-base text-white/65">
-                {current.description}
-              </p>
+              {current.description && (
+                <p className="stage-text mt-4 line-clamp-2 max-w-lg text-base text-white/65">
+                  {current.description}
+                </p>
+              )}
 
               <div className="stage-text mt-6 flex flex-wrap items-center gap-5">
                 <span className="font-bebas text-5xl leading-none text-white">
                   {CURRENCY}
-                  {current.price}
+                  {formatPrice(current.price)}
                 </span>
                 <Link
                   href={hrefFor(current)}
@@ -246,45 +263,50 @@ const GraphicsSection = () => {
             {keycaps.map((item, i) => {
               const isActive = i === active;
               return (
-                <button
-                  key={item._id || item.id || i}
-                  role="listitem"
-                  onMouseEnter={() => setActive(i)}
-                  onFocus={() => setActive(i)}
-                  onClick={() => setActive(i)}
-                  aria-current={isActive}
-                  className={`flex min-w-[250px] shrink-0 items-center gap-4 border-l-2 p-3 text-left transition-colors lg:min-w-0 ${
-                    isActive
-                      ? "border-indigo-500 bg-indigo-500/10"
-                      : "border-white/10 hover:bg-white/[0.04]"
-                  }`}
-                >
-                  <span className="relative h-16 w-16 shrink-0 overflow-hidden bg-neutral-800">
-                    <Image
-                      src={item.image}
-                      alt=""
-                      fill
-                      sizes="64px"
-                      className={`object-cover transition-all duration-500 ${
-                        isActive ? "grayscale-0" : "grayscale"
-                      }`}
-                    />
-                  </span>
-                  <span className="min-w-0 flex-1">
-                    <span className="block text-sm text-indigo-300">{item.brand}</span>
-                    <span
-                      className={`block truncate font-bebas text-2xl leading-tight ${
-                        isActive ? "text-white" : "text-white/60"
-                      }`}
-                    >
-                      {item.name}
+                <div role="listitem" key={item._id || item.id || i} className="shrink-0 lg:shrink">
+                  <button
+                    type="button"
+                    onMouseEnter={() => setActive(i)}
+                    onFocus={() => setActive(i)}
+                    onClick={() => setActive(i)}
+                    aria-current={isActive ? "true" : undefined}
+                    className={`flex w-full min-w-[250px] items-center gap-4 border-l-2 p-3 text-left transition-colors lg:min-w-0 ${
+                      isActive
+                        ? "border-indigo-500 bg-indigo-500/10"
+                        : "border-white/10 hover:bg-white/[0.04]"
+                    }`}
+                  >
+                    <span className="relative h-16 w-16 shrink-0 overflow-hidden bg-neutral-800">
+                      {item.image && (
+                        <Image
+                          src={item.image}
+                          alt=""
+                          fill
+                          sizes="64px"
+                          className={`object-cover transition-all duration-500 ${
+                            isActive ? "grayscale-0" : "grayscale"
+                          }`}
+                        />
+                      )}
                     </span>
-                  </span>
-                  <span className="font-bebas text-2xl text-white/70">
-                    {CURRENCY}
-                    {item.price}
-                  </span>
-                </button>
+                    <span className="min-w-0 flex-1">
+                      {item.brand && (
+                        <span className="block text-sm text-indigo-300">{item.brand}</span>
+                      )}
+                      <span
+                        className={`block truncate font-bebas text-2xl leading-tight ${
+                          isActive ? "text-white" : "text-white/60"
+                        }`}
+                      >
+                        {item.name}
+                      </span>
+                    </span>
+                    <span className="font-bebas text-2xl text-white/70">
+                      {CURRENCY}
+                      {formatPrice(item.price)}
+                    </span>
+                  </button>
+                </div>
               );
             })}
           </div>
@@ -294,4 +316,4 @@ const GraphicsSection = () => {
   );
 };
 
-export default GraphicsSection;
+export default GraphicsCard;
