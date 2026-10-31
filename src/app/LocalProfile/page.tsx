@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { Trash2, Edit3, X, Phone, MapPin, User, Loader2 } from "lucide-react";
 
-const BASE_URL = "https://t-mark-4.onrender.com";
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://t-mark5.vercel.app";
 
 // --- Interfaces ---
 interface OrderItem {

@@ -32,7 +32,7 @@ interface GlobalContextType {
 
 const GlobalContext = createContext<GlobalContextType | undefined>(undefined);
 
-const BACKEND_URL = "https://t-mark-4.onrender.com";
+const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL || "https://t-mark5.vercel.app";
 
 export const GlobalProvider = ({ children }: { children: ReactNode }) => {
     const { data: session, status } = useSession();

@@ -74,7 +74,7 @@ export default function DashboardPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const baseUrl = "https://t-mark-4.onrender.com";
+        const baseUrl = process.env.NEXT_PUBLIC_API_URL || "https://t-mark5.vercel.app";
         const [payRes, prodRes] = await Promise.all([
           fetch(`${baseUrl}/api/payment/paymentData`),
           fetch(`${baseUrl}/api/all-products/getall`),

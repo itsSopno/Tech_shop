@@ -39,7 +39,7 @@ const PaymentPage = () => {
 
         SetLoading(true);
         try {
-            const response = await fetch("https://t-mark-4.onrender.com/api/payment/paymentData");
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/payment/paymentData`);
             if (!response.ok) throw new Error("Network response was not ok");
 
             const result = await response.json();
@@ -64,7 +64,7 @@ const PaymentPage = () => {
     const handleDelete = async (id: string) => {
         setDeleteLoading(true);
         try {
-            const res = await fetch(`https://t-mark-4.onrender.com/api/payment/delete/${id}`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/payment/delete/${id}`, {
                 method: "DELETE",
                 credentials: "include"
             });

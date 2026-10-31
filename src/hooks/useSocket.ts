@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { io, Socket } from 'socket.io-client';
 
-const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL || "http://localhost:10000";
+const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL || "https://t-mark5.vercel.app";
 
 export const useSocket = (userId: string | null | undefined) => {
     const [socket, setSocket] = useState<Socket | null>(null);
@@ -19,7 +19,7 @@ export const useSocket = (userId: string | null | undefined) => {
         newSocket.on('connect', () => {
             console.log('🔗 Connected to Socket Server');
             setIsConnected(true);
-            
+
             // Join user's personal room
             newSocket.emit('join-user', userId);
         });
