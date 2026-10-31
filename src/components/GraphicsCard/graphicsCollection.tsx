@@ -35,7 +35,7 @@ const slugify = (s: string) =>
 
 const hrefFor = (item: Keycap) => {
   const id = item._id || item.id;
-  return `/keycaps/${id ?? slugify(item.name)}`;
+  return `/graphics-cards/${id ?? slugify(item.name)}`;
 };
 
 const formatPrice = (p: number | string) => {
@@ -71,7 +71,7 @@ const GraphicsCard = () => {
       if (API_URL) {
         try {
           const data = await fetchJson(API_URL);
-          const maybe = data.keycaps || data;
+          const maybe = data.graphicsCards || data;
           if (Array.isArray(maybe)) list = maybe;
         } catch {
           // API fail hole niche local fallback use hobe
@@ -182,18 +182,18 @@ const GraphicsCard = () => {
   return (
     <section
       ref={sectionRef}
-      id="keycaps"
+      id="graphics-cards"
       className="w-full bg-[#09090b] px-3 py-20 sm:px-6 lg:px-10"
     >
       <div className="mx-auto max-w-[1500px]">
         {/* Header */}
         <div className="ks-anim mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="mb-3 text-sm text-white/50">Limited edition</p>
+            <p className="mb-3 text-sm text-white/50">Top Picks</p>
             <h2 className="select-none font-space text-[clamp(40px,7vw,96px)] font-extrabold uppercase italic leading-[0.85] tracking-tighter text-white">
-              Artisan{" "}
+              Graphics{" "}
               <span className="text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.5)]">
-                Keycaps
+                Cards
               </span>
             </h2>
           </div>
@@ -257,7 +257,7 @@ const GraphicsCard = () => {
           {/* ── SELECTOR LIST ── */}
           <div
             role="list"
-            aria-label="Keycaps"
+            aria-label="Graphics Cards"
             className="ks-anim -mx-3 flex gap-2 overflow-x-auto px-3 pb-2 sm:-mx-6 sm:px-6 lg:col-span-5 lg:mx-0 lg:max-h-[600px] lg:flex-col lg:overflow-y-auto lg:overflow-x-hidden lg:px-0 lg:pb-0 lg:pr-2"
           >
             {keycaps.map((item, i) => {
@@ -270,11 +270,10 @@ const GraphicsCard = () => {
                     onFocus={() => setActive(i)}
                     onClick={() => setActive(i)}
                     aria-current={isActive ? "true" : undefined}
-                    className={`flex w-full min-w-[250px] items-center gap-4 border-l-2 p-3 text-left transition-colors lg:min-w-0 ${
-                      isActive
-                        ? "border-indigo-500 bg-indigo-500/10"
-                        : "border-white/10 hover:bg-white/[0.04]"
-                    }`}
+                    className={`flex w-full min-w-[250px] items-center gap-4 border-l-2 p-3 text-left transition-colors lg:min-w-0 ${isActive
+                      ? "border-indigo-500 bg-indigo-500/10"
+                      : "border-white/10 hover:bg-white/[0.04]"
+                      }`}
                   >
                     <span className="relative h-16 w-16 shrink-0 overflow-hidden bg-neutral-800">
                       {item.image && (
@@ -283,9 +282,8 @@ const GraphicsCard = () => {
                           alt=""
                           fill
                           sizes="64px"
-                          className={`object-cover transition-all duration-500 ${
-                            isActive ? "grayscale-0" : "grayscale"
-                          }`}
+                          className={`object-cover transition-all duration-500 ${isActive ? "grayscale-0" : "grayscale"
+                            }`}
                         />
                       )}
                     </span>
@@ -294,9 +292,8 @@ const GraphicsCard = () => {
                         <span className="block text-sm text-indigo-300">{item.brand}</span>
                       )}
                       <span
-                        className={`block truncate font-bebas text-2xl leading-tight ${
-                          isActive ? "text-white" : "text-white/60"
-                        }`}
+                        className={`block truncate font-bebas text-2xl leading-tight ${isActive ? "text-white" : "text-white/60"
+                          }`}
                       >
                         {item.name}
                       </span>
