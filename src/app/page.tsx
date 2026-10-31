@@ -10,17 +10,17 @@ import Footer from "@/components/Footer/Footer";
 // import Collection from "@/components/Collection/collection"
 import { auth } from "@/auth";
 import HeroBento from "@/components/Hero/Hero";
-import GraphicsCard from "@/components/GraphicsCard/graphicsCollection";
+import ProductShowcase from "@/components/GraphicsCard/ProductShowcase";
 
 export default async function Home() {
   const session = await auth();
   return (
     <>
-    <HeroBento session={session} />
-     
+      <HeroBento session={session} />
+
       {/* <Collection /> */}
       <KeycapsSection />
-      <GraphicsCard></GraphicsCard>
+      <ProductShowcase />
       {/* <TopProducts></TopProducts> */}
       {/* <TestiMonial></TestiMonial> */}
       <AboutPage></AboutPage>
