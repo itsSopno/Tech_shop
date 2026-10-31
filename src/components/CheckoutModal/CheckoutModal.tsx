@@ -86,7 +86,7 @@ const CheckoutForm = ({
       ];
 
       // Call the backend initiate API
-      const response = await fetch("https://t-mark-4.vercel.app/api/payment/initiate", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/payment/initiate`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

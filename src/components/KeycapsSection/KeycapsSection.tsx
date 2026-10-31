@@ -169,7 +169,7 @@ interface Keycap {
   brand: string;
 }
 
-const API_URL = "https://t-mark-4.vercel.app/api/keycaps";
+const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/api/keycaps`;
 const FALLBACK_URL = "/key.json";
 const CURRENCY = "$"; // BDT chaile "৳" kore din
 

@@ -34,7 +34,7 @@ const StoreSection = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("https://t-mark-4.vercel.app/api/all-products/getAll");
+                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/all-products/getAll`);
                 const data = await response.json();
                 if (data && data.product) {
                     setKeycaps(data.product);

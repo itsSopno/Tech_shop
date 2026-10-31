@@ -24,7 +24,7 @@ const EditKeycap = () => {
     useEffect(() => {
         if (!id) return;
         setFetchLoading(true);
-        const baseUrl = "https://t-mark-4.vercel.app";
+        const baseUrl = process.env.NEXT_PUBLIC_API_URL;
         // Keycaps have their own API endpoint
         fetch(`${baseUrl}/api/keycaps/${id}`)
             .then(res => res.json())
@@ -92,7 +92,7 @@ const EditKeycap = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
-        const baseUrl = "https://t-mark-4.vercel.app";
+        const baseUrl = process.env.NEXT_PUBLIC_API_URL;
         // Keycaps update endpoint
         const endpoint = `/api/keycaps/${id}`;
 

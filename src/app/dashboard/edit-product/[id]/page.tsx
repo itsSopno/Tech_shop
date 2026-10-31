@@ -23,7 +23,7 @@ const EditProduct = () => {
     useEffect(() => {
         if (!id) return;
         setFetchLoading(true);
-        const baseUrl = "https://t-mark-4.vercel.app";
+        const baseUrl = process.env.NEXT_PUBLIC_API_URL;
         fetch(`${baseUrl}/api/all-products/getSingle/${id}`)
             .then(res => res.json())
             .then(data => {
@@ -90,7 +90,7 @@ const EditProduct = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
-        const baseUrl = "https://t-mark-4.vercel.app";
+        const baseUrl = process.env.NEXT_PUBLIC_API_URL;
         const endpoint = `/api/all-products/update/${id}`;
 
         try {

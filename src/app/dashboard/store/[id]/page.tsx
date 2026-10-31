@@ -33,7 +33,7 @@ const ProductDetails = ({ params }: { params: Promise<{ id: string }> }) => {
         const fetchProduct = async () => {
             try {
                 // ২. এখন 'id' ব্যবহার করুন সরাসরি
-                const response = await fetch(`https://t-mark-4.vercel.app/api/all-products/getSingle/${id}`);
+                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/all-products/getSingle/${id}`);
                 const data = await response.json();
                 if (data && data.product) {
                     setProduct(data.product);

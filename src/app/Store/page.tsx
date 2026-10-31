@@ -18,7 +18,7 @@ interface Keycap {
 
 type SortKey = "featured" | "price-asc" | "price-desc" | "name";
 
-const API_URL = "https://t-mark-4.vercel.app/api/all-products/getAll";
+const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/api/all-products/getAll`;
 const CURRENCY = "$"; // BDT chaile "৳" kore din
 const ITEMS_PER_PAGE = 12;
 

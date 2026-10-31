@@ -29,7 +29,7 @@ const KeycapDetail = () => {
   useEffect(() => {
     if (!id) return;
     setLoading(true);
-    fetch("https://t-mark-4.vercel.app/api/keycaps")
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/keycaps`)
       .then((res) => res.json())
       .then((data) => {
         const items: Keycap[] = data.keycaps || data;

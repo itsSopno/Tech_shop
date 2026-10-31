@@ -34,7 +34,7 @@ interface FormState {
 type StrKey = Exclude<keyof FormState, "rayTracing" | "isFeatured">;
 type Errors = Partial<Record<StrKey, string>>;
 
-const API_URL = "https://t-mark-4.vercel.app/api/graphics";
+const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/api/graphics`;
 const CHAMFER =
   "polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px))";
 

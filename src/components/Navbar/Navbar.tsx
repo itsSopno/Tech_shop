@@ -183,8 +183,8 @@ const Navbar = ({ cartCount = 0 }: NavbarProps) => {
   const handleLogout = async () => {
     try {
       await Promise.allSettled([
-        fetch("https://t-mark-4.vercel.app/api/logout", { method: "GET", credentials: "include" }),
-        fetch("https://t-mark-4.vercel.app/api/google/logout", { method: "GET", credentials: "include" }),
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/logout`, { method: "GET", credentials: "include" }),
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/google/logout`, { method: "GET", credentials: "include" }),
       ]);
     } catch (e) {
       console.error("Backend logout error", e);
