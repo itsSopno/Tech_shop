@@ -30,7 +30,7 @@ const ItemForm = ({ type }: ItemFormProps) => {
     e.preventDefault();
     setLoading(true);
     const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-    const endpoint = type === "keycap" ? "/api/keycaps/create" : type === "keyboard" ? "/api/keyboard/create" : "/api/all-products/create";
+    const endpoint = type === "keycap" ? "/api/keycaps" : type === "keyboard" ? "/api/keyboard" : "/api/all-products";
 
     try {
       const response = await fetch(`${baseUrl}${endpoint}`, {
