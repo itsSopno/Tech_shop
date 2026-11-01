@@ -2,6 +2,8 @@
 
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import SinnersLogo from "../Footer/sinnersLogo";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -25,7 +27,9 @@ const CHAMFER =
 
 const fmt = (n: number, pad = 0) => String(Math.round(n)).padStart(pad, "0");
 
-const HEADLINE = ["Engineering", "performance", "through design."];
+const HEADLINE = ["Hardware", "for your", "whole setup."];
+
+const CATEGORIES = ["Graphics cards", "Keyboards", "Keycaps", "Controllers", "Mice", "Monitors"];
 
 const AboutPage: React.FC = () => {
   const root = useRef<HTMLElement>(null);
@@ -47,7 +51,8 @@ const AboutPage: React.FC = () => {
         // 2. Image: dark curtain uthe jay + image zoom-out, tarpor scroll-e halka parallax
         const tl = gsap.timeline({ delay: 0.2 });
         tl.to(".img-curtain", { scaleY: 0, duration: 1.1, ease: "power4.inOut" })
-          .from(".img-photo", { scale: 1.3, duration: 1.4, ease: "power3.out" }, "<");
+          .from(".img-photo", { scale: 1.3, duration: 1.4, ease: "power3.out" }, "<")
+          .from(".img-seal", { scale: 0.6, rotate: -14, opacity: 0, duration: 0.8, ease: "back.out(1.6)" }, "-=0.4");
 
         gsap.fromTo(
           ".img-photo-inner",
@@ -94,26 +99,6 @@ const AboutPage: React.FC = () => {
             { scaleX: 1, duration: 1.8, ease: "power2.out", scrollTrigger: st }
           );
         });
-
-        // 5. Marquee: scroll korle speed barhe, ar direction-o bodlay
-        const track = gsap.to(".marquee-track", {
-          xPercent: -50,
-          duration: 28,
-          ease: "none",
-          repeat: -1,
-        });
-        ScrollTrigger.create({
-          start: 0,
-          end: "max",
-          onUpdate: (self) => {
-            gsap.to(track, {
-              timeScale: self.direction * (1 + Math.min(Math.abs(self.getVelocity()) / 300, 5)),
-              duration: 0.3,
-              overwrite: true,
-            });
-            gsap.to(track, { timeScale: self.direction, duration: 1, delay: 0.3, overwrite: false });
-          },
-        });
       });
     }, root);
 
@@ -143,15 +128,30 @@ const AboutPage: React.FC = () => {
           </h1>
 
           <p className="fade-up mt-8 max-w-[46ch] text-lg leading-snug text-white/85">
-            We don&apos;t just build peripherals. We craft tools for people who refuse to settle for the
-            ordinary, born from a passion for racing and precision engineering.
-          </p>
-          <p className="fade-up mt-3 max-w-[46ch] text-[15px] leading-relaxed text-white/50">
-            Every keypress matters and every millisecond counts. Our job is to close the gap between
-            intent and execution, with materials that feel as good as they perform.
+            We sell computer hardware for gamers and creators, picked for people who care about every
+            part of their setup.
           </p>
 
-          <div className="mt-10 grid grid-cols-3 gap-5">
+          <ul className="fade-up mt-5 flex flex-wrap gap-2 text-sm">
+            {CATEGORIES.map((c) => (
+              <li key={c} className="bg-white/[0.06] px-3 py-1.5 text-white/70">
+                {c}
+              </li>
+            ))}
+            <li className="px-3 py-1.5 text-white/40">and more</li>
+          </ul>
+
+          <div className="fade-up mt-8 max-w-[46ch] border-l-2 border-[#d4ff3a] pl-4">
+            <h2 className="font-bebas text-2xl leading-none text-white">Keycaps made with our collaborators</h2>
+            <p className="mt-2 text-[15px] leading-relaxed text-white/60">
+              We create keycaps together with other creators, so every design comes with its own story.
+            </p>
+            <Link href="/Caps" className="mt-3 inline-block text-sm text-[#d4ff3a] hover:underline">
+              See the keycaps
+            </Link>
+          </div>
+
+          <div className="mt-8 grid grid-cols-3 gap-5">
             {stats.map((s) => (
               <div key={s.label} className="stat" data-value={s.value} data-pad={s.pad ?? 0}>
                 <p className="font-bebas text-5xl leading-none sm:text-6xl">
@@ -176,7 +176,7 @@ const AboutPage: React.FC = () => {
             <div className="img-photo-inner absolute -inset-[8%]">
               <Image
                 src="https://i.pinimg.com/1200x/0b/38/24/0b3824e02cd454af2df5f78c623585bc.jpg"
-                alt="The Sinners workshop"
+                alt="Sinners hardware store"
                 fill
                 sizes="(min-width: 768px) 460px, 100vw"
                 className="object-cover grayscale-[30%]"
@@ -185,30 +185,14 @@ const AboutPage: React.FC = () => {
             </div>
           </div>
           <div className="img-curtain absolute inset-0 origin-top bg-[#09090b]" />
+
+          {/* Brand seal: curtain-er pore reveal hoy */}
+          <div className="img-seal absolute bottom-4 right-4 flex h-24 w-24 items-center justify-center rounded-full bg-[#09090b] ring-1 ring-white/20 md:h-28 md:w-28">
+            <span className="absolute inset-1.5 rounded-full border border-dashed border-white/20" aria-hidden />
+            <SinnersLogo className="h-14 w-auto text-white md:h-16" cut="#09090b" />
+          </div>
         </div>
       </section>
-
-      {/* ── MARQUEE ── */}
-      <div className="border-y border-white/10 py-4" aria-hidden>
-        <div className="marquee-track flex w-max whitespace-nowrap">
-          {Array.from({ length: 2 }).map((_, k) => (
-            <div key={k} className="flex shrink-0">
-              {Array.from({ length: 6 }).map((_, i) => (
-                <span
-                  key={i}
-                  className={`mx-6 select-none font-space text-5xl font-extrabold italic tracking-tighter sm:text-6xl ${
-                    i % 2
-                      ? "text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.4)]"
-                      : "text-white"
-                  }`}
-                >
-                  Sinners
-                </span>
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
     </main>
   );
 };
