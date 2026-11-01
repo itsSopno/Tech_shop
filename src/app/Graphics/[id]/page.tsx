@@ -18,7 +18,7 @@ export default function GraphicsCardDetailPage({
       params={params}
       endpoint={`${API}/api/graphics`}
       responseKey="graphicsCard"
-      backHref="/Store/graphics"
+      backHref="/Graphics"
       backLabel="Back to Graphics Cards"
       accent="emerald"
       renderSpecs={(p: DetailProduct) => (

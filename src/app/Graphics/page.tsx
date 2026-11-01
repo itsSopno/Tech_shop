@@ -44,7 +44,7 @@ const GraphicsCardSection = () => (
     responseKeys={["graphicsCards"]}
     filterLabel="Brand"
     getFilter={(g) => g.brand}
-    getHref={(g) => `/Store/graphics/${g._id}`}
+    getHref={(g) => `/Graphics/${g._id}`}
     noun={["card", "cards"]}
     gridClass="grid-cols-1 md:grid-cols-2 2xl:grid-cols-3"
     skeletonClass="aspect-[4/5]"
