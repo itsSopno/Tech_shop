@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { ShowcaseShell, BaseProduct, formatPrice, discountPct } from "../Showcase/page";
+import { ShowcaseShell, BaseProduct, formatPrice, discountPct } from "@/components/ShowcaseShell/showcaseShell";
 
 interface GraphicsCard extends BaseProduct {
   oldPrice?: number;
@@ -62,9 +62,8 @@ const GraphicsCardSection = () => (
               alt={g.name}
               fill
               sizes="(min-width: 1536px) 30vw, (min-width: 768px) 45vw, 100vw"
-              className={`object-cover transition-all duration-700 group-hover/card:scale-105 ${
-                soldOut ? "grayscale" : "grayscale-[40%] group-hover/card:grayscale-0"
-              }`}
+              className={`object-cover transition-all duration-700 group-hover/card:scale-105 ${soldOut ? "grayscale" : "grayscale-[40%] group-hover/card:grayscale-0"
+                }`}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 via-transparent to-transparent" />
 
