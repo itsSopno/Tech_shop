@@ -23,7 +23,7 @@ const KeycapSection = () => (
     responseKeys={["keycaps"]}
     filterLabel="Brand"
     getFilter={(k) => k.brand}
-    getHref={(k) => `/Store/keycaps/${k._id}`}
+    getHref={(k) => `/keycaps/${k._id}`}
     noun={["keycap", "keycaps"]}
     gridClass="grid-cols-2 xl:grid-cols-3"
     skeletonClass="aspect-[3/4]"
