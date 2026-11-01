@@ -14,9 +14,9 @@ const CHAMFER =
 
 const NAV_ITEMS = [
   { key: "keyboards", label: "Keyboards", href: "/Store?category=keyboards" },
-  { key: "mice", label: "Mice", href: "/Store?category=mice" },
+  { key: "GraphicsCard", label: "Graphics Cards", href: "/Graphics" },
   { key: "controller", label: "Controller", href: "/Store?category=controller" },
-  { key: "keycaps", label: "KeyCaps", href: "/Store?category=keycaps" },
+  { key: "keycaps", label: "KeyCaps", href: "/Keycap" },
   { key: "gaming", label: "Gaming", href: "/Store?category=gaming" },
   { key: "story", label: "Story", href: "/Story", gapBefore: true },
   { key: "archive", label: "Archive", href: "/Caps" },
