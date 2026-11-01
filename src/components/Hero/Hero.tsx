@@ -17,7 +17,7 @@ const CHAMFER =
 
 const IMG = {
   keyboards: "https://i.pinimg.com/1200x/2a/fd/8a/2afd8aad593898f9f4aea5efce8e8c12.jpg",
-  mice: "https://i.pinimg.com/1200x/45/44/2d/45442d6d9733e9d2f38dcfe96c900b03.jpg",
+  graphicsCard: "https://i.pinimg.com/1200x/d3/04/00/d3040045a0d0179cb485506402e536db.jpg",
   controller: "https://i.pinimg.com/736x/26/73/2d/26732d31d357d34f3ebd81b48b2010a6.jpg",
   keycaps: "https://i.pinimg.com/736x/b8/70/55/b870553a9cfde3ad5aa6600f236b5c8a.jpg",
   gaming: "https://i.pinimg.com/1200x/f5/ac/87/f5ac8769da0b112b60ba5e8fdaef506e.jpg",
@@ -240,10 +240,10 @@ const HeroBento = ({ session }: HeroBentoProps) => {
             badge="New drop"
           />
           <SideTile
-            title="Mice"
-            note="Ultra-light, built for aim"
-            img={IMG.mice}
-            href="/Store?category=mice"
+            title="Graphics Cards"
+            note="High-performance gaming graphics"
+            img={IMG.graphicsCard}
+            href="/Store?category=graphics-cards"
             badge="Limited"
           />
         </div>
