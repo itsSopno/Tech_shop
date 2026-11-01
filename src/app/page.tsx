@@ -1,6 +1,6 @@
 
 import KeycapsSection from "@/components/KeycapsSection/KeycapsSection";
-import TechPartners from "@/components/Pertner/Partner";
+// import TechPartners from "@/components/Pertner/Partner";
 import AboutPage from "@/components/About/about";
 import Footer from "@/components/Footer/Footer";
 import { auth } from "@/auth";
@@ -15,7 +15,7 @@ export default async function Home() {
       <KeycapsSection />
       <ProductShowcase />
       <AboutPage></AboutPage>
-      <TechPartners />
+      {/* <TechPartners /> */}
       <Footer />
     </>
   );
