@@ -22,7 +22,7 @@ interface GraphicsCard extends BaseProduct {
 }
 
 // Apnar backend route onujayi ekhane URL bodle nin
-const ENDPOINT = `${process.env.NEXT_PUBLIC_API_URL}/api/graphics-cards`;
+const ENDPOINT = `${process.env.NEXT_PUBLIC_API_URL}/api/graphics`;
 
 const Spec = ({ label, value, unit }: { label: string; value?: string | number; unit?: string }) => (
   <div className="flex flex-col gap-0.5 bg-neutral-900 px-3 py-3">
