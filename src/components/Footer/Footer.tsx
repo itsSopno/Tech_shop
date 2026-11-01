@@ -98,7 +98,7 @@ const LandoHero = () => {
             <SinnersLogo className="h-12 w-auto text-white" cut="#1b1c39" />
             <div className="flex flex-col leading-tight">
               <span className="text-sm font-bold uppercase tracking-wide text-white">Official license</span>
-              <span className="text-xs text-white/50">Authorized Sinners store</span>
+              <span className="text-xs text-white/50">Authorized Studio Sinners</span>
             </div>
           </div>
           <p className="text-xs text-white/40">
