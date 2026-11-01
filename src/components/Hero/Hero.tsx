@@ -236,14 +236,14 @@ const HeroBento = ({ session }: HeroBentoProps) => {
             title="Keyboards"
             note="Custom built mechanical masterpieces"
             img={IMG.keyboards}
-            href="/Store?category=keyboards"
+            href="/Keboardd"
             badge="New drop"
           />
           <SideTile
             title="Graphics Cards"
             note="High-performance gaming graphics"
             img={IMG.graphicsCard}
-            href="/Store?category=graphics-cards"
+            href="/Graphics"
             badge="Limited"
           />
         </div>
