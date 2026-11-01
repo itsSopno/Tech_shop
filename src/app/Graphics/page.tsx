@@ -2,7 +2,6 @@
 
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { ShowcaseShell, BaseProduct, formatPrice, discountPct } from "@/components/ShowcaseShell/showcaseShell";
 
 interface GraphicsCard extends BaseProduct {
@@ -22,7 +21,6 @@ interface GraphicsCard extends BaseProduct {
   isFeatured?: boolean;
 }
 
-// Apnar backend route onujayi ekhane URL bodle nin
 const ENDPOINT = `${process.env.NEXT_PUBLIC_API_URL}/api/graphics`;
 
 const Spec = ({ label, value, unit }: { label: string; value?: string | number; unit?: string }) => (
@@ -64,8 +62,9 @@ const GraphicsCardSection = () => (
               alt={g.name}
               fill
               sizes="(min-width: 1536px) 30vw, (min-width: 768px) 45vw, 100vw"
-              className={`object-cover transition-all duration-700 group-hover/card:scale-105 ${soldOut ? "grayscale" : "grayscale-[40%] group-hover/card:grayscale-0"
-                }`}
+              className={`object-cover transition-all duration-700 group-hover/card:scale-105 ${
+                soldOut ? "grayscale" : "grayscale-[40%] group-hover/card:grayscale-0"
+              }`}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 via-transparent to-transparent" />
 
@@ -115,17 +114,13 @@ const GraphicsCardSection = () => (
                 ) : null}
                 <span className="font-bebas text-4xl text-white">{formatPrice(g.price) ?? "Price soon"}</span>
               </div>
-              <link>
-                <a className="group/card relative z-10 flex items-center justify-center rounded-full bg-white/5 px-4 py-1.5 font-bebas text-lg text-white transition-colors hover:bg-white/10">
-                  <span className="relative z-10">Details</span>
-                  <span
-                    aria-hidden="true"
-                    className={`bg-white px-4 py-1.5 font-bebas text-lg text-black transition-colors ${t.groupHoverBg}`}
-                  >
-                    Details
-                  </span>
-                </a>
-              </link>
+
+              {/* Card nijei <Link>, tai ekhane shudhu span. Nested <a> dile hydration error hoy. */}
+              <span
+                className={`bg-white px-4 py-1.5 font-bebas text-lg text-black transition-colors ${t.groupHoverBg}`}
+              >
+                Details
+              </span>
             </div>
           </div>
         </>
