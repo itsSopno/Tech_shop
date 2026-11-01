@@ -115,7 +115,7 @@ const GraphicsCardSection = () => (
                 ) : null}
                 <span className="font-bebas text-4xl text-white">{formatPrice(g.price) ?? "Price soon"}</span>
               </div>
-              <link href={`/Store/graphics/${g._id}`}>
+              <link>
                 <a className="group/card relative z-10 flex items-center justify-center rounded-full bg-white/5 px-4 py-1.5 font-bebas text-lg text-white transition-colors hover:bg-white/10">
                   <span className="relative z-10">Details</span>
                   <span
