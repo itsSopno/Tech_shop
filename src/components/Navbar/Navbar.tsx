@@ -13,7 +13,7 @@ const CHAMFER =
   "polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))";
 
 const NAV_ITEMS = [
-  { key: "keyboards", label: "Keyboards", href: "/Keyboardds" },
+  { key: "keyboards", label: "Keyboards", href: "/Keboardds" },
   { key: "GraphicsCard", label: "Graphics Cards", href: "/Graphics" },
   { key: "controller", label: "Controller", href: "/Store?category=controller" },
   { key: "keycaps", label: "KeyCaps", href: "/Keycap" },
