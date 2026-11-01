@@ -11,6 +11,7 @@ import LoadingWrapper from "@/components/LoadingWrapper/LoadingWrapper";
 import { ToasterProvider } from "@/components/providers/ToasterProvider";
 import { GlobalProvider } from "@/context/globalContext";
 import { cn } from "@/lib/utils";
+import Footer from "@/components/Footer/Footer";
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -42,6 +43,7 @@ export default function RootLayout({
                   <Navbar />
                   <main className="main-content">{children}</main>
                   <AIChat />
+                  <Footer/>
                 </div>
               </SmoothScroll>
             </LoadingWrapper>
