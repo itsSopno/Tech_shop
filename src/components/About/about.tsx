@@ -175,7 +175,7 @@ const AboutPage: React.FC = () => {
           <div className="img-photo absolute inset-0">
             <div className="img-photo-inner absolute -inset-[8%]">
               <Image
-                src="https://i.pinimg.com/1200x/0b/38/24/0b3824e02cd454af2df5f78c623585bc.jpg"
+                src="https://i.pinimg.com/1200x/62/ee/85/62ee854de29e8eb15d3994cec8210fed.jpg"
                 alt="Sinners hardware store"
                 fill
                 sizes="(min-width: 768px) 460px, 100vw"
@@ -187,7 +187,8 @@ const AboutPage: React.FC = () => {
           <div className="img-curtain absolute inset-0 origin-top bg-[#09090b]" />
 
           {/* Brand seal: curtain-er pore reveal hoy */}
-          <div className="img-seal absolute bottom-4 right-4 flex h-24 w-24 items-center justify-center rounded-full bg-[#09090b] ring-1 ring-white/20 md:h-28 md:w-28">
+          <div className="img-seal absolute bottom-4 right-4 flex h-24 w-24 items-center justify-center md:h-28 md:w-28">
+           {/* <div className="img-seal absolute bottom-4 right-4 flex h-24 w-24 items-center justify-center rounded-full bg-[#09090b] ring-1 ring-white/20 md:h-28 md:w-28"></div> */}
             <span className="absolute inset-1.5 rounded-full border border-dashed border-white/20" aria-hidden />
             <SinnersLogo className="h-14 w-auto text-white md:h-16" cut="#09090b" />
           </div>
