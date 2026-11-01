@@ -24,10 +24,10 @@ const IMG = {
 };
 
 const strip = [
-  { id: 1, title: "Keyboards", note: "Custom built boards", img: IMG.keyboards, href: "/Store?category=keyboards" },
-  { id: 2, title: "Graphics Cards", note: "High-performance gaming graphics", img: IMG.graphicsCard, href: "/Store?category=graphics-cards" },
+  { id: 1, title: "Keyboards", note: "Custom built boards", img: IMG.keyboards, href: "/Keboardd" },
+  { id: 2, title: "Graphics Cards", note: "High-performance gaming graphics", img: IMG.graphicsCard, href: "/Graphics" },
   { id: 3, title: "Controller", note: "Zero stick drift", img: IMG.controller, href: "/Store?category=controller" },
-  { id: 4, title: "KeyCaps", note: "Artisan, one of a kind", img: IMG.keycaps, href: "/Store?category=keycaps" },
+  { id: 4, title: "KeyCaps", note: "Artisan, one of a kind", img: IMG.keycaps, href: "/keycap" },
   { id: 5, title: "Gaming", note: "Everything for the setup", img: IMG.gaming, href: "/Store?category=gaming" },
 ];
 
