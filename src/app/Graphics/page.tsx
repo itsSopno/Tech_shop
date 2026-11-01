@@ -42,6 +42,7 @@ const GraphicsCardSection = () => (
     titleOutline="Cards"
     accent="emerald"
     endpoint={ENDPOINT}
+    responseKeys={["graphicsCards"]}
     filterLabel="Brand"
     getFilter={(g) => g.brand}
     getHref={(g) => `/Store/graphics-cards/${g._id}`}

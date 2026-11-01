@@ -20,6 +20,7 @@ const KeycapSection = () => (
     titleOutline="Keycaps"
     accent="indigo"
     endpoint={ENDPOINT}
+    responseKeys={["keycaps"]}
     filterLabel="Brand"
     getFilter={(k) => k.brand}
     getHref={(k) => `/Store/keycaps/${k._id}`}

@@ -13,7 +13,7 @@ interface Keyboard extends BaseProduct {
   isFeatured?: boolean;
 }
 
-const ENDPOINT = `${process.env.NEXT_PUBLIC_API_URL}/api/keyboards`;
+const ENDPOINT = `${process.env.NEXT_PUBLIC_API_URL}/api/keyboard`;
 
 const KeyboardSection = () => (
   <ShowcaseShell<Keyboard>
@@ -23,6 +23,7 @@ const KeyboardSection = () => (
     titleOutline="boards"
     accent="amber"
     endpoint={ENDPOINT}
+    responseKeys={["keyboards"]}
     filterLabel="Layout"
     getFilter={(k) => k.layout}
     getHref={(k) => `/Store/keyboards/${k._id}`}
@@ -42,9 +43,8 @@ const KeyboardSection = () => (
               alt={k.name}
               fill
               sizes="(min-width: 1280px) 30vw, (min-width: 640px) 45vw, 100vw"
-              className={`object-cover transition-all duration-700 group-hover/card:scale-105 ${
-                soldOut ? "grayscale" : "grayscale-[50%] group-hover/card:grayscale-0"
-              }`}
+              className={`object-cover transition-all duration-700 group-hover/card:scale-105 ${soldOut ? "grayscale" : "grayscale-[50%] group-hover/card:grayscale-0"
+                }`}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 via-neutral-900/10 to-transparent" />
 
