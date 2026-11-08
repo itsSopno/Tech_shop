@@ -204,11 +204,10 @@ const StoreSection = () => {
                           setPage(1);
                         }}
                         aria-pressed={active}
-                        className={`flex w-full items-center justify-between gap-6 border px-4 py-2.5 text-left font-bebas text-xl transition-colors lg:border-0 lg:border-l-2 lg:py-3 ${
-                          active
-                            ? "border-[#f25623] bg-[#f25623]/15 text-[#4D4D4D]"
-                            : "border-[#4D4D4D]/15 text-[#4D4D4D]/60 hover:text-[#4D4D4D] lg:border-[#4D4D4D]/15 lg:hover:border-[#4D4D4D]/40"
-                        }`}
+                        className={`flex w-full items-center justify-between gap-6 border px-4 py-2.5 text-left font-bebas text-xl transition-colors lg:border-0 lg:border-l-2 lg:py-3 ${active
+                          ? "border-[#f25623] bg-[#f25623]/15 text-[#4D4D4D]"
+                          : "border-[#4D4D4D]/15 text-[#4D4D4D]/60 hover:text-[#4D4D4D] lg:border-[#4D4D4D]/15 lg:hover:border-[#4D4D4D]/40"
+                          }`}
                       >
                         {cat.name}
                         <span className={`text-base ${active ? "text-[#f25623]" : "text-[#4D4D4D]/40"}`}>
@@ -297,17 +296,15 @@ const StoreSection = () => {
                           alt={item.name}
                           fill
                           sizes="(min-width: 1280px) 30vw, (min-width: 640px) 45vw, 100vw"
-                          className={`object-cover transition-all duration-700 group-hover/card:scale-105 ${
-                            soldOut ? "grayscale" : "grayscale-[40%] group-hover/card:grayscale-0"
-                          }`}
+                          className={`object-cover transition-all duration-700 group-hover/card:scale-105 ${soldOut ? "grayscale" : "grayscale-[40%] group-hover/card:grayscale-0"
+                            }`}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
 
                         {(soldOut || low) && (
                           <span
-                            className={`absolute left-4 top-4 px-3 py-1 font-bebas text-base ${
-                              soldOut ? "bg-[#4D4D4D] text-white" : "bg-[#f25623] text-white"
-                            }`}
+                            className={`absolute left-4 top-4 px-3 py-1 font-bebas text-base ${soldOut ? "bg-[#4D4D4D] text-white" : "bg-[#f25623] text-white"
+                              }`}
                           >
                             {soldOut ? "Sold out" : `Only ${item.stock} left`}
                           </span>
@@ -372,11 +369,10 @@ const StoreSection = () => {
                         key={p}
                         onClick={() => goToPage(p)}
                         aria-current={page === p ? "page" : undefined}
-                        className={`h-11 w-11 border font-bebas text-xl transition-colors ${
-                          page === p
-                            ? "border-[#f25623] bg-[#f25623] text-white"
-                            : "border-[#4D4D4D]/25 text-[#4D4D4D]/70 hover:border-[#4D4D4D] hover:text-[#4D4D4D]"
-                        }`}
+                        className={`h-11 w-11 border font-bebas text-xl transition-colors ${page === p
+                          ? "border-[#f25623] bg-[#f25623] text-white"
+                          : "border-[#4D4D4D]/25 text-[#4D4D4D]/70 hover:border-[#4D4D4D] hover:text-[#4D4D4D]"
+                          }`}
                       >
                         {p}
                       </button>
@@ -392,16 +388,6 @@ const StoreSection = () => {
                   </button>
                 </div>
                 <p className="text-sm text-[#4D4D4D]/60">
-                  Showing {start + 1} to {Math.min(start + ITEMS_PER_PAGE, filtered.length)} of{" "}
-                  {filtered.length}
-                </p>
-              </nav>
-            )}
-                  >
-                    Next
-                  </button>
-                </div>
-                <p className="text-sm text-white/40">
                   Showing {start + 1} to {Math.min(start + ITEMS_PER_PAGE, filtered.length)} of{" "}
                   {filtered.length}
                 </p>
