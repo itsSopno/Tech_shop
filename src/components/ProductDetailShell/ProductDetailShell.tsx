@@ -26,28 +26,28 @@ const ACCENT_MAP: Record<
     { text: string; bg: string; border: string; bgSoft: string }
 > = {
     emerald: {
-        text: "text-emerald-400",
-        bg: "bg-emerald-500",
-        border: "border-emerald-500",
-        bgSoft: "bg-emerald-500/10",
+        text: "text-[#f25623]",
+        bg: "bg-[#f25623]",
+        border: "border-[#f25623]",
+        bgSoft: "bg-[#f25623]/15",
     },
     amber: {
-        text: "text-amber-400",
-        bg: "bg-amber-500",
-        border: "border-amber-500",
-        bgSoft: "bg-amber-500/10",
+        text: "text-[#f25623]",
+        bg: "bg-[#f25623]",
+        border: "border-[#f25623]",
+        bgSoft: "bg-[#f25623]/15",
     },
     indigo: {
-        text: "text-indigo-400",
-        bg: "bg-indigo-500",
-        border: "border-indigo-500",
-        bgSoft: "bg-indigo-500/10",
+        text: "text-[#f25623]",
+        bg: "bg-[#f25623]",
+        border: "border-[#f25623]",
+        bgSoft: "bg-[#f25623]/15",
     },
     cyan: {
-        text: "text-cyan-400",
-        bg: "bg-cyan-500",
-        border: "border-cyan-500",
-        bgSoft: "bg-cyan-500/10",
+        text: "text-[#f25623]",
+        bg: "bg-[#f25623]",
+        border: "border-[#f25623]",
+        bgSoft: "bg-[#f25623]/15",
     },
 };
 
@@ -84,14 +84,14 @@ export const SpecCell = ({
     const display =
         typeof value === "boolean" ? (value ? "Yes" : "No") : String(value);
     return (
-        <div className="flex flex-col gap-1 border border-white/5 bg-white/[0.02] p-5">
-            <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/30">
+        <div className="flex flex-col gap-1 border border-[#4D4D4D]/15 bg-[#EAEAEA] p-5">
+            <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#4D4D4D]/60">
                 {label}
             </span>
-            <span className="font-bebas text-2xl leading-none text-white">
+            <span className="font-bebas text-2xl leading-none text-[#4D4D4D]">
                 {display}
                 {unit && (
-                    <span className="ml-1 text-sm text-white/40">{unit}</span>
+                    <span className="ml-1 text-sm text-[#4D4D4D]/60">{unit}</span>
                 )}
             </span>
         </div>
@@ -171,10 +171,10 @@ export default function ProductDetailShell({
     /* ── States ── */
     if (loading) {
         return (
-            <div className="min-h-screen bg-[#09090b] flex items-center justify-center">
+            <div className="min-h-screen bg-[#DEDEDE] flex items-center justify-center">
                 <div className="flex flex-col items-center gap-4">
-                    <div className="w-10 h-10 border-[3px] border-white/10 border-t-white rounded-full animate-spin" />
-                    <p className="font-bebas tracking-[0.3em] text-white/30 text-sm uppercase">
+                    <div className="w-10 h-10 border-[3px] border-[#4D4D4D]/20 border-t-[#f25623] rounded-full animate-spin" />
+                    <p className="font-bebas tracking-[0.3em] text-[#4D4D4D]/60 text-sm uppercase">
                         Loading...
                     </p>
                 </div>
@@ -184,13 +184,13 @@ export default function ProductDetailShell({
 
     if (!product) {
         return (
-            <div className="min-h-screen bg-[#09090b] flex flex-col items-center justify-center gap-6">
-                <p className="font-bebas text-5xl text-white/20 tracking-widest italic">
+            <div className="min-h-screen bg-[#DEDEDE] flex flex-col items-center justify-center gap-6">
+                <p className="font-bebas text-5xl text-[#4D4D4D]/30 tracking-widest italic">
                     Product Not Found
                 </p>
                 <Link
                     href={backHref}
-                    className="font-bebas tracking-widest text-white/40 hover:text-white transition-colors text-lg"
+                    className="font-bebas tracking-widest text-[#4D4D4D]/60 hover:text-[#f25623] transition-colors text-lg"
                 >
                     ← {backLabel}
                 </Link>
@@ -205,11 +205,11 @@ export default function ProductDetailShell({
     const isAdmin = session?.user?.email === "admin@user";
 
     return (
-        <main className="min-h-screen bg-[#09090b] text-white pt-28 pb-24 px-5 md:px-12 lg:px-20 overflow-hidden">
+        <main className="min-h-screen bg-[#DEDEDE] text-[#4D4D4D] pt-28 pb-24 px-5 md:px-12 lg:px-20 overflow-hidden">
             {/* ── Back ── */}
             <Link
                 href={backHref}
-                className="inline-flex items-center gap-2 mb-12 text-white/40 hover:text-white transition-colors group"
+                className="inline-flex items-center gap-2 mb-12 text-[#4D4D4D]/60 hover:text-[#f25623] transition-colors group"
             >
                 <span className="group-hover:-translate-x-1 transition-transform">
                     ←
@@ -223,7 +223,7 @@ export default function ProductDetailShell({
                 {/* ── Image ── */}
                 <div
                     ref={imgRef}
-                    className="relative w-full aspect-square bg-neutral-900 overflow-hidden group border border-white/5"
+                    className="relative w-full aspect-square bg-[#EAEAEA] overflow-hidden group border border-[#4D4D4D]/15"
                 >
                     <Image
                         src={product.image}
@@ -235,7 +235,7 @@ export default function ProductDetailShell({
                     />
                     {/* Stock badge */}
                     {!inStock && (
-                        <span className="absolute left-5 top-5 bg-white text-black font-bebas px-4 py-1 text-base tracking-widest">
+                        <span className="absolute left-5 top-5 bg-[#4D4D4D] text-white font-bebas px-4 py-1 text-base tracking-widest">
                             Sold Out
                         </span>
                     )}
@@ -243,7 +243,7 @@ export default function ProductDetailShell({
                         typeof product.stock === "number" &&
                         product.stock <= 5 && (
                             <span
-                                className={`absolute left-5 top-5 ${theme.bg} text-black font-bebas px-4 py-1 text-base tracking-widest`}
+                                className={`absolute left-5 top-5 ${theme.bg} text-white font-bebas px-4 py-1 text-base tracking-widest`}
                             >
                                 Only {product.stock} left
                             </span>
@@ -254,11 +254,11 @@ export default function ProductDetailShell({
                 <div className="flex flex-col gap-8">
                     {/* Name + desc */}
                     <div className="space-y-4 detail-reveal">
-                        <h1 className="font-bebas text-[clamp(48px,7vw,96px)] leading-[0.9] uppercase tracking-tight text-white">
+                        <h1 className="font-bebas text-[clamp(48px,7vw,96px)] leading-[0.9] uppercase tracking-tight text-[#4D4D4D]">
                             {product.name}
                         </h1>
                         {product.description && (
-                            <p className="text-white/40 text-base md:text-lg leading-relaxed max-w-xl">
+                            <p className="text-[#4D4D4D]/75 text-base md:text-lg leading-relaxed max-w-xl">
                                 {product.description}
                             </p>
                         )}
@@ -267,7 +267,7 @@ export default function ProductDetailShell({
                     {/* Price + Stock */}
                     <div className="flex items-center gap-10 detail-reveal">
                         <div>
-                            <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-white/30 mb-1">
+                            <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#4D4D4D]/50 mb-1">
                                 Price
                             </p>
                             <p className={`font-bebas text-5xl ${theme.text}`}>
@@ -275,11 +275,11 @@ export default function ProductDetailShell({
                             </p>
                         </div>
                         <div>
-                            <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-white/30 mb-1">
+                            <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#4D4D4D]/50 mb-1">
                                 Availability
                             </p>
                             <p
-                                className={`font-bebas text-2xl ${inStock ? "text-green-400" : "text-red-400"
+                                className={`font-bebas text-2xl ${inStock ? "text-emerald-600 font-semibold" : "text-rose-500 font-semibold"
                                     }`}
                             >
                                 {inStock
@@ -291,11 +291,11 @@ export default function ProductDetailShell({
                         </div>
                     </div>
 
-                    <div className="h-px w-full bg-white/5 detail-reveal" />
+                    <div className="h-px w-full bg-[#4D4D4D]/15 detail-reveal" />
 
                     {/* ── Spec grid ── */}
                     {renderSpecs && (
-                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-px bg-white/5 detail-reveal">
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-px bg-[#4D4D4D]/15 detail-reveal">
                             {renderSpecs(product)}
                         </div>
                     )}
@@ -306,21 +306,21 @@ export default function ProductDetailShell({
                             disabled={!inStock}
                             onClick={() => setIsCheckoutOpen(true)}
                             className={`flex-1 min-w-[180px] py-5 font-bebas text-xl tracking-widest transition-all duration-300 ${inStock
-                                    ? `${theme.bg} text-black hover:opacity-90 hover:scale-[1.02] active:scale-95`
-                                    : "bg-white/10 text-white/30 cursor-not-allowed"
+                                    ? `${theme.bg} text-white hover:opacity-90 hover:scale-[1.02] active:scale-95`
+                                    : "bg-[#4D4D4D]/20 text-[#4D4D4D]/40 cursor-not-allowed"
                                 }`}
                         >
                             {inStock ? "Acquire Item" : "Sold Out"}
                         </button>
 
-                        <button className="flex-1 min-w-[180px] py-5 font-bebas text-xl tracking-widest border border-white/15 text-white/60 hover:border-white hover:text-white transition-all duration-300">
+                        <button className="flex-1 min-w-[180px] py-5 font-bebas text-xl tracking-widest border border-[#4D4D4D]/25 text-[#4D4D4D] hover:border-[#f25623] hover:text-[#f25623] transition-all duration-300">
                             Add to Cart
                         </button>
 
                         {isAdmin && (
                             <Link
                                 href={`/dashboard/edit-product/${product._id}`}
-                                className="flex-1 min-w-[180px] py-5 font-bebas text-xl tracking-widest text-center border border-white/15 text-white/60 hover:border-white hover:text-white transition-all duration-300"
+                                className="flex-1 min-w-[180px] py-5 font-bebas text-xl tracking-widest text-center border border-[#4D4D4D]/25 text-[#4D4D4D] hover:border-[#f25623] hover:text-[#f25623] transition-all duration-300"
                             >
                                 Edit Product
                             </Link>
@@ -330,18 +330,18 @@ export default function ProductDetailShell({
                     {/* ── Meta cards ── */}
                     <div className="grid grid-cols-2 gap-3 detail-reveal">
                         <div className={`p-5 border ${theme.border} ${theme.bgSoft}`}>
-                            <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/30 mb-1">
+                            <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#4D4D4D]/60 mb-1">
                                 Authenticity
                             </p>
-                            <p className="text-sm font-bebas text-xl tracking-widest text-white">
+                            <p className="text-sm font-bebas text-xl tracking-widest text-[#4D4D4D]">
                                 100% Official
                             </p>
                         </div>
-                        <div className="p-5 border border-white/5 bg-white/[0.02]">
-                            <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/30 mb-1">
+                        <div className="p-5 border border-[#4D4D4D]/15 bg-[#EAEAEA]">
+                            <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#4D4D4D]/60 mb-1">
                                 Shipping
                             </p>
-                            <p className="text-sm font-bebas text-xl tracking-widest text-white">
+                            <p className="text-sm font-bebas text-xl tracking-widest text-[#4D4D4D]">
                                 Global Express
                             </p>
                         </div>
@@ -350,7 +350,7 @@ export default function ProductDetailShell({
             </div>
 
             {/* Watermark */}
-            <div className="fixed bottom-[-3vw] right-[-2vw] opacity-[0.025] font-bebas text-[22vw] italic pointer-events-none select-none text-white leading-none -rotate-12">
+            <div className="fixed bottom-[-3vw] right-[-2vw] opacity-[0.04] font-bebas text-[22vw] italic pointer-events-none select-none text-[#4D4D4D] leading-none -rotate-12">
                 SINNERS
             </div>
 
