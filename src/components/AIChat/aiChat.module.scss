@@ -15,10 +15,9 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+  box-shadow: 0 10px 30px rgba(242, 86, 35, 0.25);
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  border: 4px solid 0 10px 30px rgba(99, 102, 241, 0.2);
-  ;
+  border: 4px solid rgba(242, 86, 35, 0.25);
 
   &:hover {
     transform: scale(1.1);
@@ -27,7 +26,7 @@
   svg {
     width: 30px;
     height: 30px;
-    color: #000;
+    color: #f25623;
   }
 }
 
@@ -37,14 +36,14 @@
   right: 0;
   width: 380px;
   height: 550px;
-  background: rgba(18, 18, 18, 0.8);
+  background: rgba(40, 40, 40, 0.92);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(99, 102, 241, 0.2);
+  border: 1px solid rgba(242, 86, 35, 0.3);
   border-radius: 24px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
   opacity: 0;
   visibility: hidden;
   transform: translateY(20px) scale(0.95);
@@ -59,8 +58,8 @@
 
 .chatHeader {
   padding: 20px;
-  background: rgba(217, 255, 0, 0.05);
-  border-bottom: 1px solid rgba(217, 255, 0, 0.1);
+  background: rgba(242, 86, 35, 0.1);
+  border-bottom: 1px solid rgba(242, 86, 35, 0.2);
   display: flex;
   align-items: center;
   gap: 12px;
@@ -68,9 +67,9 @@
   .status {
     width: 8px;
     height: 8px;
-    background: rgba(99, 102, 241, 0.2);
+    background: #f25623;
     border-radius: 50%;
-    box-shadow: 0 0 10px rgba(99, 102, 241, 0.2);
+    box-shadow: 0 0 10px #f25623;
   }
 
   h3 {
@@ -109,26 +108,26 @@
 
   &.user {
     align-self: flex-end;
-    background: #6366f1;
-    color: #000;
+    background: #f25623;
+    color: #fff;
     border-bottom-right-radius: 4px;
     font-weight: 500;
   }
 
   &.ai {
     align-self: flex-start;
-    background: rgba(255, 255, 255, 0.05);
-    color: #ccc;
+    background: rgba(255, 255, 255, 0.08);
+    color: #eee;
     border-bottom-left-radius: 4px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 }
 
 .typing {
   font-style: italic;
   font-size: 12px;
-  color: #d9ff00;
-  opacity: 0.7;
+  color: #f25623;
+  opacity: 0.8;
 }
 
 .chatInputArea {
@@ -139,8 +138,8 @@
 
   input {
     flex: 1;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 12px;
     padding: 12px 16px;
     color: #fff;
@@ -149,12 +148,12 @@
 
     &:focus {
       outline: none;
-      border-color: #d9ff00;
+      border-color: #f25623;
     }
   }
 
   button {
-    background: #d9ff00;
+    background: #f25623;
     border: none;
     border-radius: 12px;
     width: 45px;
@@ -176,7 +175,7 @@
     svg {
       width: 20px;
       height: 20px;
-      color: #000;
+      color: #fff;
     }
   }
 }
