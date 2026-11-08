@@ -144,7 +144,7 @@ const GraphicsCard = () => {
   /* ───────── loading / error / empty ───────── */
   if (loading) {
     return (
-      <section className="w-full bg-[#09090b] px-3 py-20 sm:px-6 lg:px-10">
+      <section className="w-full bg-[#DEDEDE] px-3 py-20 sm:px-6 lg:px-10">
         <div className="mx-auto grid max-w-[1500px] gap-4 lg:grid-cols-12">
           <div
             style={{ clipPath: CHAMFER }}
@@ -162,14 +162,14 @@ const GraphicsCard = () => {
 
   if (error || !current) {
     return (
-      <section className="w-full bg-[#09090b] px-6 py-24 text-center">
-        <p className="font-bebas text-3xl text-white">
+      <section className="w-full bg-[#DEDEDE] px-6 py-24 text-center">
+        <p className="font-bebas text-3xl text-[#4D4D4D]">
           {error ? "Could not load keycaps" : "No keycaps available yet"}
         </p>
         {error && (
           <button
             onClick={load}
-            className="mt-6 bg-white px-8 py-3 font-bebas text-xl text-black transition-colors hover:bg-indigo-500 hover:text-white"
+            className="mt-6 bg-[#f25623] px-8 py-3 font-bebas text-xl text-white transition-colors hover:bg-[#d94514]"
           >
             Try again
           </button>
@@ -183,7 +183,7 @@ const GraphicsCard = () => {
     <section
       ref={sectionRef}
       id="graphics-cards"
-      className="w-full bg-[#09090b] px-3 py-20 sm:px-6 lg:px-10"
+      className="w-full bg-[#DEDEDE] px-3 py-20 sm:px-6 lg:px-10"
     >
       <div className="mx-auto max-w-[1500px]">
         {/* Header */}
@@ -224,7 +224,7 @@ const GraphicsCard = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
 
             {current.brand && (
-              <span className="stage-text absolute left-6 top-6 bg-indigo-500 px-3 py-1 font-bebas text-lg text-white">
+              <span className="stage-text absolute left-6 top-6 bg-[#f25623] px-3 py-1 font-bebas text-lg text-white">
                 {current.brand}
               </span>
             )}
@@ -246,7 +246,7 @@ const GraphicsCard = () => {
                 </span>
                 <Link
                   href={hrefFor(current)}
-                  className="bg-white px-8 py-3 font-bebas text-2xl text-black transition-colors hover:bg-indigo-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-300"
+                  className="bg-[#EAEAEA] px-8 py-3 font-bebas text-2xl text-[#4D4D4D] transition-colors hover:bg-[#f25623] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f25623]"
                 >
                   View details
                 </Link>
@@ -271,7 +271,7 @@ const GraphicsCard = () => {
                     onClick={() => setActive(i)}
                     aria-current={isActive ? "true" : undefined}
                     className={`flex w-full min-w-[250px] items-center gap-4 border-l-2 p-3 text-left transition-colors lg:min-w-0 ${isActive
-                      ? "border-indigo-500 bg-indigo-500/10"
+                      ? "border-[#f25623] bg-[#f25623]/10"
                       : "border-white/10 hover:bg-white/[0.04]"
                       }`}
                   >
@@ -289,7 +289,7 @@ const GraphicsCard = () => {
                     </span>
                     <span className="min-w-0 flex-1">
                       {item.brand && (
-                        <span className="block text-sm text-indigo-300">{item.brand}</span>
+                        <span className="block text-sm text-[#f25623]">{item.brand}</span>
                       )}
                       <span
                         className={`block truncate font-bebas text-2xl leading-tight ${isActive ? "text-white" : "text-white/60"

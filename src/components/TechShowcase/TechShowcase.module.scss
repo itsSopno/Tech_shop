@@ -2,7 +2,7 @@
 
 .section {
   min-height: 100vh;
-  background: white;
+  background: #DEDEDE;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,7 +34,7 @@
     margin-bottom: 20px;
     
     span {
-      color: #D9FF00;
+      color: #f25623;
       font-style: italic;
     }
   }
@@ -60,7 +60,7 @@
     h4 {
       font-family: $font-bebas;
       font-size: 1.5rem;
-      color: #D9FF00;
+      color: #f25623;
       margin-bottom: 8px;
     }
     p {
@@ -96,23 +96,23 @@
   font-family: $font-bebas;
   font-size: 1.5rem;
   font-style: italic;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(77, 77, 77, 0.2);
 }
 
 .part1 { 
-    background: rgba(217, 255, 0, 0.2); 
+    background: rgba(242, 86, 35, 0.2); 
     transform: translateZ(90px);
     backdrop-filter: blur(5px);
 }
 .part2 { 
-    background: rgba(255, 255, 255, 0.1); 
+    background: rgba(77, 77, 77, 0.1); 
     transform: translateZ(60px); 
 }
 .part3 { 
-    background: rgba(255, 255, 255, 0.05); 
+    background: rgba(77, 77, 77, 0.05); 
     transform: translateZ(30px); 
 }
 .base { 
-    background: #111; 
+    background: #EAEAEA; 
     transform: translateZ(0); 
 }

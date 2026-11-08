@@ -73,7 +73,7 @@ const num = (v: string) => (v.trim() === "" ? undefined : Number(v));
 
 // min-w-0 => grid/flex child-er bhetore input ar shrink korte pare
 const inputCls =
-  "h-11 w-full min-w-0 bg-white/[0.04] px-4 text-base text-white outline-none ring-1 ring-inset ring-white/10 transition placeholder:text-white/30 focus:bg-white/[0.07] focus:ring-indigo-400 aria-[invalid=true]:ring-red-400";
+  "h-11 w-full min-w-0 bg-[#EAEAEA] px-4 text-base text-[#4D4D4D] outline-none ring-1 ring-inset ring-[#4D4D4D]/10 transition placeholder:text-[#4D4D4D]/30 focus:bg-[#DEDEDE] focus:ring-[#f25623] aria-[invalid=true]:ring-red-400";
 
 /* ───────── chhoto reusable part (component-er baire, tai type korle focus hare na) ───────── */
 const Section = ({
@@ -90,7 +90,7 @@ const Section = ({
     className="min-w-0 bg-white/[0.03] p-5 ring-1 ring-inset ring-white/10 @md:p-8"
   >
     <h3 className="mb-6 flex items-center gap-3 font-bebas text-3xl text-white">
-      <span className="flex h-8 w-8 shrink-0 items-center justify-center bg-indigo-500 text-lg">
+      <span className="flex h-8 w-8 shrink-0 items-center justify-center bg-[#f25623] text-white text-lg">
         {index}
       </span>
       {title}
@@ -119,7 +119,7 @@ const Field = ({
   <div className={`min-w-0 ${full ? "@md:col-span-2" : ""}`}>
     <label htmlFor={name} className="mb-2 block text-sm text-white/60">
       {label}
-      {required && <span className="text-indigo-300"> *</span>}
+      {required && <span className="text-[#f25623]"> *</span>}
     </label>
     {children}
     {error ? (
@@ -149,14 +149,14 @@ const Toggle = ({
     aria-checked={checked}
     onClick={() => onChange(!checked)}
     className={`flex min-w-0 items-center justify-between gap-4 p-4 text-left ring-1 ring-inset transition-colors ${
-      checked ? "bg-indigo-500/10 ring-indigo-500/60" : "bg-white/[0.03] ring-white/10 hover:ring-white/25"
+      checked ? "bg-[#f25623]/10 ring-[#f25623]/60" : "bg-[#EAEAEA] ring-[#4D4D4D]/10 hover:ring-[#4D4D4D]/25"
     }`}
   >
     <span className="min-w-0">
       <span className="block font-bebas text-xl text-white">{label}</span>
       <span className="block text-sm text-white/45">{hint}</span>
     </span>
-    <span className={`relative h-6 w-11 shrink-0 transition-colors ${checked ? "bg-indigo-500" : "bg-white/20"}`}>
+    <span className={`relative h-6 w-11 shrink-0 transition-colors ${checked ? "bg-[#f25623]" : "bg-[#4D4D4D]/20"}`}>
       <span
         className={`absolute top-0.5 h-5 w-5 bg-white transition-all ${checked ? "left-[22px]" : "left-0.5"}`}
       />
@@ -425,13 +425,13 @@ const GraphicsForm = ({ type = "Graphics Card" }: GraphicsFormProps) => {
             </Section>
 
             {/* Action bar */}
-            <div className="sticky bottom-0 border-t border-white/10 bg-[#09090b]/90 py-4 backdrop-blur-xl">
+            <div className="sticky bottom-0 border-t border-[#4D4D4D]/10 bg-[#DEDEDE]/90 py-4 backdrop-blur-xl">
               {message && (
                 <p
                   role="status"
                   className={`mb-3 border-l-2 px-4 py-2.5 text-sm ${
                     message.type === "success"
-                      ? "border-indigo-400 bg-indigo-500/10 text-indigo-200"
+                      ? "border-[#f25623] bg-[#f25623]/10 text-[#f25623]"
                       : "border-red-400 bg-red-500/10 text-red-300"
                   }`}
                 >
@@ -450,7 +450,7 @@ const GraphicsForm = ({ type = "Graphics Card" }: GraphicsFormProps) => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="min-w-0 flex-1 bg-white py-3 font-bebas text-2xl tracking-wide text-black transition-colors hover:bg-indigo-500 hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
+                  className="min-w-0 flex-1 bg-[#f25623] py-3 font-bebas text-2xl tracking-wide text-white transition-colors hover:bg-[#d94514] disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {loading ? "Saving..." : `Add ${type.toLowerCase()}`}
                 </button>
@@ -478,7 +478,7 @@ const GraphicsForm = ({ type = "Graphics Card" }: GraphicsFormProps) => {
                 )}
                 <div className="absolute left-4 top-4 flex gap-2">
                   {discount > 0 && (
-                    <span className="bg-indigo-500 px-3 py-1 font-bebas text-base text-white">-{discount}%</span>
+                    <span className="bg-[#f25623] px-3 py-1 font-bebas text-base text-white">-{discount}%</span>
                   )}
                   {form.isFeatured && (
                     <span className="bg-white px-3 py-1 font-bebas text-base text-black">Featured</span>
@@ -492,7 +492,7 @@ const GraphicsForm = ({ type = "Graphics Card" }: GraphicsFormProps) => {
               </div>
 
               <div className="p-5">
-                <p className="text-sm text-indigo-300">
+                <p className="text-sm text-[#f25623]">
                   {[form.brand, form.model].filter(Boolean).join(" / ") || "Brand / model"}
                 </p>
                 <h3 className="mt-1 line-clamp-2 font-bebas text-3xl leading-tight text-white">

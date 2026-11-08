@@ -8,7 +8,7 @@
     justify-content: center;
     position: relative;
     overflow: hidden;
-    color: black;
+    color: #4D4D4D;
 }
 
 .container {
@@ -37,13 +37,13 @@
         letter-spacing: -1px;
 
         .dot {
-            color: rgba(106, 61, 202, 0.3);
+            color: rgba(242, 86, 35, 0.3);
         }
     }
 
     .heroText {
         margin-top: 60px;
-        color: black;
+        color: #4D4D4D;
 
         h1 {
             font-size: clamp(3rem, 5vw, 5rem);
@@ -52,7 +52,7 @@
             font-weight: 900;
 
             span {
-                color: rgba(106, 61, 202, 0.3);
+                color: rgba(242, 86, 35, 0.3);
             }
 
             .italic {
@@ -64,7 +64,7 @@
 
         p {
             margin-top: 20px;
-            color: black;
+            color: #4D4D4D;
             max-width: 350px;
             font-size: 0.9rem;
             text-transform: uppercase;
@@ -76,14 +76,14 @@
 .demoBox {
     margin-top: 60px;
     padding: 20px;
-    border: 1px dashed rgba(0, 0, 0, 0.3);
-    background: rgba(0, 0, 0, 0.02);
+    border: 1px dashed rgba(77, 77, 77, 0.3);
+    background: rgba(77, 77, 77, 0.02);
     width: fit-content;
 
     .demoLabel {
         display: block;
         font-size: 0.6rem;
-        color: #d9ff00;
+        color: #f25623;
         text-transform: uppercase;
         letter-spacing: 2px;
         margin-bottom: 10px;
@@ -91,10 +91,10 @@
 
     .demoItem {
         font-size: 0.8rem;
-        color: white;
+        color: #4D4D4D;
 
         span {
-            color: white;
+            color: #4D4D4D;
             margin-right: 5px;
         }
     }
@@ -108,7 +108,7 @@
 .formCard {
     width: 100%;
     max-width: 450px;
-    background: indigo;
+    background: #f25623;
     padding: 50px;
     border: 1px solid rgba(255, 255, 255, 0.05);
 
@@ -152,7 +152,7 @@
 
         &:focus {
             outline: none;
-            border-color: #d9ff00;
+            border-color: #DEDEDE;
         }
     }
 }
@@ -160,8 +160,8 @@
 .submitBtn {
     width: 100%;
     padding: 15px;
-    background: #d9ff00;
-    color: black;
+    background: #DEDEDE;
+    color: #4D4D4D;
     font-weight: 900;
     text-transform: uppercase;
     font-size: 0.8rem;
@@ -206,10 +206,10 @@
     position: relative;
 
     span {
-        background: #1a1d13;
+        background: #f25623;
         padding: 0 15px;
         font-size: 0.6rem;
-        color: rgba(255, 255, 255, 0.3);
+        color: rgba(255, 255, 255, 0.5);
         letter-spacing: 2px;
     }
 }
@@ -221,7 +221,7 @@
     color: rgba(255, 255, 255, 0.4);
 
     a {
-        color: #d9ff00;
+        color: #DEDEDE;
         text-decoration: none;
         font-weight: 700;
     }

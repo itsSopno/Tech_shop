@@ -136,7 +136,7 @@ const OchiComponentLoader = ({ onComplete }: LoaderProps) => {
               {isLast && (
                 <div
                   aria-hidden="true"
-                  className="absolute bottom-6 right-8 z-[100] font-bebas text-[20vw] leading-none tracking-tighter text-indigo-500/20 tabular-nums md:bottom-12 md:right-12 md:text-[10vw]"
+                  className="absolute bottom-6 right-8 z-[100] font-bebas text-[20vw] leading-none tracking-tighter text-[#f25623]/20 tabular-nums md:bottom-12 md:right-12 md:text-[10vw]"
                 >
                   {percent}%
                 </div>

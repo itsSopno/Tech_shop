@@ -65,7 +65,7 @@ const isUrl = (v: string) => {
 };
 
 const inputCls =
-    "h-11 w-full min-w-0 bg-white/[0.04] px-4 text-base text-white outline-none ring-1 ring-inset ring-white/10 transition placeholder:text-white/30 focus:bg-white/[0.07] focus:ring-[#D9FF00] aria-[invalid=true]:ring-red-400";
+    "h-11 w-full min-w-0 bg-[#EAEAEA] px-4 text-base text-[#4D4D4D] outline-none ring-1 ring-inset ring-[#4D4D4D]/10 transition placeholder:text-[#4D4D4D]/30 focus:bg-[#DEDEDE] focus:ring-[#f25623] aria-[invalid=true]:ring-red-400";
 
 const Section = ({
     index,
@@ -81,7 +81,7 @@ const Section = ({
         className="min-w-0 bg-white/[0.03] p-5 ring-1 ring-inset ring-white/10 @md:p-8"
     >
         <h3 className="mb-6 flex items-center gap-3 font-bebas text-3xl text-white">
-            <span className="flex h-8 w-8 shrink-0 items-center justify-center bg-[#D9FF00] text-black text-lg">
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center bg-[#f25623] text-white text-lg">
                 {index}
             </span>
             {title}
@@ -110,7 +110,7 @@ const Field = ({
     <div className={`min-w-0 ${full ? "@md:col-span-2" : ""}`}>
         <label htmlFor={name} className="mb-2 block text-sm text-white/60">
             {label}
-            {required && <span className="text-[#D9FF00]"> *</span>}
+            {required && <span className="text-[#f25623]"> *</span>}
         </label>
         {children}
         {error ? (
@@ -139,14 +139,14 @@ const Toggle = ({
         role="switch"
         aria-checked={checked}
         onClick={() => onChange(!checked)}
-        className={`flex min-w-0 items-center justify-between gap-4 p-4 text-left ring-1 ring-inset transition-colors ${checked ? "bg-[#D9FF00]/10 ring-[#D9FF00]/60" : "bg-white/[0.03] ring-white/10 hover:ring-white/25"
+        className={`flex min-w-0 items-center justify-between gap-4 p-4 text-left ring-1 ring-inset transition-colors ${checked ? "bg-[#f25623]/10 ring-[#f25623]/60" : "bg-[#EAEAEA] ring-[#4D4D4D]/10 hover:ring-[#4D4D4D]/25"
             }`}
     >
         <span className="min-w-0">
             <span className="block font-bebas text-xl text-white">{label}</span>
             <span className="block text-sm text-white/45">{hint}</span>
         </span>
-        <span className={`relative h-6 w-11 shrink-0 transition-colors ${checked ? "bg-[#D9FF00]" : "bg-white/20"}`}>
+        <span className={`relative h-6 w-11 shrink-0 transition-colors ${checked ? "bg-[#f25623]" : "bg-[#4D4D4D]/20"}`}>
             <span
                 className={`absolute top-0.5 h-5 w-5 bg-black transition-all ${checked ? "left-[22px]" : "left-0.5 bg-white"}`}
             />
@@ -384,12 +384,12 @@ const LiquidCoolerForm = () => {
                         </Section>
 
                         {/* Action bar */}
-                        <div className="sticky bottom-0 border-t border-white/10 bg-[#09090b]/90 py-4 backdrop-blur-xl">
+                        <div className="sticky bottom-0 border-t border-[#4D4D4D]/10 bg-[#DEDEDE]/90 py-4 backdrop-blur-xl">
                             {message && (
                                 <p
                                     role="status"
                                     className={`mb-3 border-l-2 px-4 py-2.5 text-sm ${message.type === "success"
-                                            ? "border-[#D9FF00] bg-[#D9FF00]/10 text-[#D9FF00]"
+                                            ? "border-[#f25623] bg-[#f25623]/10 text-[#f25623]"
                                             : "border-red-400 bg-red-500/10 text-red-300"
                                         }`}
                                 >
@@ -408,7 +408,7 @@ const LiquidCoolerForm = () => {
                                 <button
                                     type="submit"
                                     disabled={loading}
-                                    className="min-w-0 flex-1 bg-[#D9FF00] py-3 font-bebas text-2xl tracking-wide text-black transition-colors hover:bg-white disabled:cursor-not-allowed disabled:opacity-50"
+                                    className="min-w-0 flex-1 bg-[#f25623] py-3 font-bebas text-2xl tracking-wide text-white transition-colors hover:bg-[#d94514] disabled:cursor-not-allowed disabled:opacity-50"
                                 >
                                     {loading ? "Saving..." : "Add Liquid Cooler"}
                                 </button>
@@ -436,7 +436,7 @@ const LiquidCoolerForm = () => {
                                 )}
                                 <div className="absolute left-4 top-4 flex gap-2">
                                     {discount > 0 && (
-                                        <span className="bg-[#D9FF00] px-3 py-1 font-bebas text-base text-black">-{discount}%</span>
+                                        <span className="bg-[#f25623] px-3 py-1 font-bebas text-base text-white">-{discount}%</span>
                                     )}
                                     {form.isFeatured && (
                                         <span className="bg-white px-3 py-1 font-bebas text-base text-black">Featured</span>
@@ -448,7 +448,7 @@ const LiquidCoolerForm = () => {
                             </div>
 
                             <div className="p-5">
-                                <p className="text-sm text-[#D9FF00]">{form.brand || "Brand"}</p>
+                                <p className="text-sm text-[#f25623]">{form.brand || "Brand"}</p>
                                 <h3 className="mt-1 line-clamp-2 font-bebas text-3xl leading-tight text-white">
                                     {form.name || "Product name"}
                                 </h3>

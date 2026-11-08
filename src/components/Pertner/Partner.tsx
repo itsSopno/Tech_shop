@@ -28,7 +28,7 @@ const TechPartners = () => {
         <section className="relative w-full min-h-[600px] bg-[#131313] overflow-hidden flex flex-col justify-center px-6 md:px-16 py-20">
             {/* Background Huge Text (The "Collabs" Style) */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none font-creme">
-                <h1 className="text-[20vw] text-indigo-500 opacity-90 leading-none transform -rotate-12 translate-y-10 font-creme">
+                <h1 className="text-[20vw] text-[#f25623] opacity-90 leading-none transform -rotate-12 translate-y-10 font-creme">
                     Studio<span className="ml-[-2vw] font-creme">Sinners</span>
                 </h1>
             </div>

@@ -41,7 +41,7 @@ export default function PureShowcase() {
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-10">
                     <div>
                         <div className="flex items-center gap-3 mb-4">
-                            <Target size={14} className="text-indigo-500" />
+                            <Target size={14} className="text-[#f25623]" />
                             <span className="text-[10px] font-mono tracking-[4px] text-white/40 uppercase">SPECIAL_EDITION</span>
                         </div>
                         <h1 className="font-display text-xl md:text-8xl font-black tracking-aggressive uppercase font-crenzo leading-none">

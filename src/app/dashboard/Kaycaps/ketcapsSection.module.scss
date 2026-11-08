@@ -13,7 +13,7 @@
 
     .subtitle {
         font-family: var(--font-space);
-        color: var(--neon-lime);
+        color: #f25623;
         font-size: 1.2rem;
         letter-spacing: 0.3em;
         display: block;
@@ -35,8 +35,8 @@
 }
 
 .card {
-    background: #0D0D0D;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: #EAEAEA;
+    border: 1px solid rgba(77, 77, 77, 0.1);
     border-radius: 0;
     overflow: hidden;
     transition: transform 0.4s ease, border-color 0.4s ease;
@@ -50,15 +50,15 @@
 
     &:hover {
         transform: translateY(-10px);
-        border-color: var(--neon-lime);
+        border-color: #f25623;
 
         .image {
             transform: scale(1.05);
         }
 
         .viewBtn {
-            background: var(--neon-lime);
-            color: #161e00;
+            background: #f25623;
+            color: white;
         }
     }
 }
@@ -68,7 +68,7 @@
     width: 100%;
     aspect-ratio: 1/1;
     overflow: hidden;
-    background: #111;
+    background: #DEDEDE;
 }
 
 .image {
@@ -91,7 +91,7 @@
 
     .brand {
         font-size: 0.8rem;
-        color: var(--neon-lime);
+        color: #f25623;
         text-transform: uppercase;
         letter-spacing: 0.2em;
         margin-bottom: 12px;
@@ -100,7 +100,7 @@
 
     .description {
         font-size: 0.9rem;
-        color: rgba(255, 255, 255, 0.6);
+        color: rgba(77, 77, 77, 0.6);
         line-height: 1.5;
         margin-bottom: 20px;
         display: -webkit-box;
@@ -121,16 +121,16 @@
 .price {
     font-size: 1.4rem;
     font-weight: 700;
-    color: white;
+    color: #4D4D4D;
 }
 
 .viewBtn {
     font-family: $font-bebas;
     font-size: 1rem;
     padding: 8px 30px;
-    border: 1px solid #D9FF00;
+    border: 1px solid #f25623;
     background: transparent;
-    color: #D9FF00;
+    color: #f25623;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     cursor: pointer;
@@ -146,10 +146,10 @@
     font-family: $font-bebas;
 
     &:hover {
-        background: var(--neon-lime);
-        color: #161e00;
+        background: #f25623;
+        color: white;
         transform: translateY(-3px);
-        box-shadow: 0 10px 20px rgba(195, 244, 0, 0.2);
+        box-shadow: 0 10px 20px rgba(242, 86, 35, 0.2);
     }
 
     &:active {
@@ -167,8 +167,8 @@
     .spinner {
         width: 50px;
         height: 50px;
-        border: 3px solid rgba(195, 244, 0, 0.1);
-        border-top-color: var(--neon-lime);
+        border: 3px solid rgba(242, 86, 35, 0.1);
+        border-top-color: #f25623;
         border-radius: 50%;
         animation: spin 1s linear infinite;
         margin-bottom: 20px;

@@ -31,9 +31,9 @@ const PremiumTestimonials = () => {
     }, []);
 
     return (
-        <main className="min-h-screen bg-obsidian text-silver overflow-hidden relative flex items-center justify-center">
+        <main className="min-h-screen bg-[#DEDEDE] text-[#4D4D4D] overflow-hidden relative flex items-center justify-center">
             <div className="bg-text absolute inset-0 flex items-center justify-center pointer-events-none select-none">
-                <h1 className="text-[25vw] font-black text-white/[0.02] leading-none uppercase italic tracking-tighter">
+                <h1 className="text-[25vw] font-black text-[#4D4D4D]/[0.03] leading-none uppercase italic tracking-tighter">
                     REVIEWS
                 </h1>
             </div>
@@ -42,10 +42,10 @@ const PremiumTestimonials = () => {
                 {/* Header */}
                 <div className="px-6 md:px-20 mb-12 flex justify-between items-end">
                     <div className="space-y-2">
-                        <span className="text-indigo-500 font-mono text-xs tracking-[5px] uppercase">Validated_Users</span>
+                        <span className="text-[#f25623] font-mono text-xs tracking-[5px] uppercase">Validated_Users</span>
                         <h2 className="text-5xl md:text-7xl font-space font-bold leading-none uppercase">Arsenal <br /> Feedback</h2>
                     </div>
-                    <p className="hidden md:block text-white/30 font-mono text-[10px] w-48 text-right uppercase tracking-widest">
+                    <p className="hidden md:block text-[#4D4D4D]/40 font-mono text-[10px] w-48 text-right uppercase tracking-widest">
                         Encryption: Active // Database_Sync: 100% // Stable_Build_V4
                     </p>
                 </div>
@@ -58,7 +58,7 @@ const PremiumTestimonials = () => {
                     {reviews.map((item) => (
                         <div
                             key={item.id}
-                            className="snap-center shrink-0 w-[85vw] md:w-[450px] aspect-[4/5] bg-white/[0.02] border border-white/5 relative group p-8 flex flex-col justify-between overflow-hidden"
+                            className="snap-center shrink-0 w-[85vw] md:w-[450px] aspect-[4/5] bg-[#EAEAEA] border border-[#4D4D4D]/10 relative group p-8 flex flex-col justify-between overflow-hidden"
                         >
                             {/* Image Background (Hover reveal) */}
                             <div className="absolute inset-0 opacity-20 group-hover:opacity-60 transition-opacity duration-700">
@@ -67,28 +67,28 @@ const PremiumTestimonials = () => {
 
                             {/* Card Content */}
                             <div className="relative z-10">
-                                <span className="text-indigo-500 font-mono text-xs mb-2 block">{item.id} {'// LOG'}</span>
+                                <span className="text-[#f25623] font-mono text-xs mb-2 block">{item.id} {'// LOG'}</span>
                                 <h3 className="text-4xl font-space font-bold tracking-wider group-hover:italic transition-all uppercase">{item.product}</h3>
                             </div>
 
                             <div className="relative z-10 space-y-6">
-                                <p className="text-xl md:text-2xl font-light leading-snug text-white/80">
+                                <p className="text-xl md:text-2xl font-light leading-snug text-[#4D4D4D]/80">
                                     &ldquo;{item.feedback}&rdquo;
                                 </p>
 
-                                <div className="flex items-center justify-between border-t border-white/10 pt-6">
+                                <div className="flex items-center justify-between border-t border-[#4D4D4D]/10 pt-6">
                                     <div>
-                                        <p className="text-xs text-white/40 uppercase tracking-widest">Buyer</p>
-                                        <p className="font-space font-bold text-2xl text-indigo-500">{item.user}</p>
+                                        <p className="text-xs text-[#4D4D4D]/40 uppercase tracking-widest">Buyer</p>
+                                        <p className="font-space font-bold text-2xl text-[#f25623]">{item.user}</p>
                                     </div>
-                                    <div className="w-10 h-10 border border-white/10 flex items-center justify-center group-hover:bg-indigo-500 group-hover:text-black transition-all">
+                                    <div className="w-10 h-10 border border-[#4D4D4D]/10 flex items-center justify-center group-hover:bg-[#f25623] group-hover:text-white group-hover:border-[#f25623] transition-all">
                                         →
                                     </div>
                                 </div>
                             </div>
 
                             {/* Top Accent Line */}
-                            <div className="absolute top-0 left-0 w-0 h-[2px] bg-indigo-500 group-hover:w-full transition-all duration-700"></div>
+                            <div className="absolute top-0 left-0 w-0 h-[2px] bg-[#f25623] group-hover:w-full transition-all duration-700"></div>
                         </div>
                     ))}
                 </div>

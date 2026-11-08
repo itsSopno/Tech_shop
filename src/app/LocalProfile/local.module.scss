@@ -3,7 +3,7 @@
 .section {
     padding: 100px 5%;
     // background: #0A0A0A;
-    color: black;
+    color: #4D4D4D;
     min-height: 100vh;
 }
 
@@ -13,7 +13,7 @@
 
     .subtitle {
         font-family: $font-bebas;
-        color: #D9FF00;
+        color: #f25623;
         font-size: 1.2rem;
         letter-spacing: 0.3em;
         display: block;
@@ -35,8 +35,8 @@
 }
 
 .card {
-    background: #1A1A1A;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: #EAEAEA;
+    border: 1px solid rgba(77, 77, 77, 0.1);
     border-radius: 4px;
     overflow: hidden;
     transition: transform 0.4s ease, border-color 0.4s ease;
@@ -47,15 +47,15 @@
 
     &:hover {
         transform: translateY(-10px);
-        border-color: #D9FF00;
+        border-color: #f25623;
 
         .image {
             transform: scale(1.05);
         }
 
         .viewBtn {
-            background: #D9FF00;
-            color: black;
+            background: #f25623;
+            color: white;
         }
     }
 }
@@ -65,7 +65,7 @@
     width: 100%;
     aspect-ratio: 1/1;
     overflow: hidden;
-    background: #111;
+    background: #DEDEDE;
 }
 
 .image {
@@ -88,7 +88,7 @@
 
     .brand {
         font-size: 0.8rem;
-        color: #D9FF00;
+        color: #f25623;
         text-transform: uppercase;
         letter-spacing: 0.2em;
         margin-bottom: 12px;
@@ -97,7 +97,7 @@
 
     .description {
         font-size: 0.9rem;
-        color: rgba(255, 255, 255, 0.6);
+        color: rgba(77, 77, 77, 0.6);
         line-height: 1.5;
         margin-bottom: 20px;
         display: -webkit-box;
@@ -117,15 +117,15 @@
     .price {
         font-size: 1.4rem;
         font-weight: 700;
-        color: white;
+        color: #4D4D4D;
     }
 
     .viewBtn {
         font-family: $font-bebas;
         font-size: 1rem;
         padding: 8px 16px;
-        border: 1px solid #D9FF00;
-        color: #D9FF00;
+        border: 1px solid #f25623;
+        color: #f25623;
         text-transform: uppercase;
         transition: all 0.3s ease;
         text-decoration: none;
@@ -142,8 +142,8 @@
     .spinner {
         width: 50px;
         height: 50px;
-        border: 3px solid rgba(217, 255, 0, 0.1);
-        border-top-color: #D9FF00;
+        border: 3px solid rgba(242, 86, 35, 0.1);
+        border-top-color: #f25623;
         border-radius: 50%;
         animation: spin 1s linear infinite;
         margin-bottom: 20px;
@@ -160,8 +160,8 @@
     .filterBtn {
         padding: 10px 24px;
         background: transparent;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        color: rgba(255, 255, 255, 0.6);
+        border: 1px solid rgba(77, 77, 77, 0.2);
+        color: rgba(77, 77, 77, 0.6);
         font-family: 'Bebas Neue', sans-serif;
         text-transform: uppercase;
         letter-spacing: 2px;
@@ -171,16 +171,16 @@
         overflow: hidden;
 
         &:hover {
-            border-color: white;
-            color: white;
+            border-color: #4D4D4D;
+            color: #4D4D4D;
             transform: translateY(-2px);
         }
 
         &.active {
-            background: white;
-            color: black;
-            border-color: white;
-            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+            background: #f25623;
+            color: white;
+            border-color: #f25623;
+            box-shadow: 0 10px 20px rgba(242, 86, 35, 0.15);
         }
     }
 }
@@ -197,19 +197,19 @@
         width: 50px;
         height: 50px;
         border-radius: 50%;
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(77, 77, 77, 0.2);
         display: flex;
         justify-content: center;
         align-items: center;
         background: transparent;
-        color: white;
+        color: #4D4D4D;
         cursor: pointer;
         transition: all 0.3s ease;
 
         &:hover:not(:disabled) {
-            background: white;
-            color: black;
-            border-color: white;
+            background: #f25623;
+            color: white;
+            border-color: #f25623;
         }
 
         &:disabled {
@@ -222,10 +222,10 @@
         font-family: 'Bebas Neue', sans-serif;
         font-size: 1.5rem;
         letter-spacing: 3px;
-        color: rgba(255, 255, 255, 0.3);
+        color: rgba(77, 77, 77, 0.3);
 
         span {
-            color: white;
+            color: #4D4D4D;
         }
     }
 }

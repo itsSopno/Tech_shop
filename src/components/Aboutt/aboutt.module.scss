@@ -1,15 +1,14 @@
 @use "../../styles/theme" as *;
 
 .aboutWrapper {
-    // Off-white/Cream like the 'Collabs' section
-    background-color: #131313;
-    color: white;
+    background-color: #DEDEDE;
+    color: #4D4D4D;
     min-height: 100vh;
 }
 
 .hero {
     padding: 150px 0 100px;
-    color: #d9ff00; // Acid Green
+    color: #f25623;
 
     .heroContent {
         .subtitle {
@@ -18,7 +17,7 @@
             font-size: 0.75rem;
             display: block;
             margin-bottom: 20px;
-            color: rgba(255, 255, 255, 0.5);
+            color: rgba(77, 77, 77, 0.5);
         }
 
         .title {
@@ -29,7 +28,7 @@
             letter-spacing: -0.04em;
 
             span {
-                color: white;
+                color: #4D4D4D;
             }
 
             .italic {
@@ -59,7 +58,7 @@
             position: absolute;
             bottom: -40px;
             right: -20px;
-            color: #d9ff00;
+            color: #f25623;
             transform: rotate(-10deg);
             z-index: 5;
             text-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
@@ -84,11 +83,11 @@
             font-weight: 700;
             line-height: 1.2;
             margin-bottom: 30px;
-            color: #1a1a1a;
+            color: #4D4D4D;
         }
 
         .body {
-            color: #666;
+            color: rgba(77, 77, 77, 0.6);
             line-height: 1.8;
             margin-bottom: 50px;
         }
@@ -98,7 +97,7 @@
 .statsGrid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: 1px solid rgba(77, 77, 77, 0.1);
     padding-top: 40px;
 
     .statItem {
@@ -108,14 +107,14 @@
         .statValue {
             font-size: 2.5rem;
             font-weight: 900;
-            color: #1a1d13;
+            color: #f25623;
         }
 
         .statLabel {
             font-size: 0.65rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            color: #999;
+            color: rgba(77, 77, 77, 0.5);
         }
     }
 }

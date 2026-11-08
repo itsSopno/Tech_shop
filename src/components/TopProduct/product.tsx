@@ -59,7 +59,7 @@ const TopProducts: React.FC = () => {
                 {/* Section Header */}
                 <div className={styles.header}>
                     <h2 className="font-space font-bold text-5xl md:text-8xl text-silver uppercase italic">
-                        Top <br /> <span className="text-indigo-500">Picks.</span>
+                        Top <br /> <span className="text-[#f25623]">Picks.</span>
                     </h2>
                     <p className={styles.description}>
                         Engineered for speed. Built for precision. The ultimate desk setup starts here.

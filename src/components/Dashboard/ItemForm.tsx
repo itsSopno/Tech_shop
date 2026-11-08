@@ -59,7 +59,7 @@ const ItemForm = ({ type }: ItemFormProps) => {
         <h2 className="text-white font-display text-4xl font-bold tracking-tight uppercase">
           New {type}
         </h2>
-        <div className="h-[2px] w-12 bg-[#D9FF00] mx-auto mt-4" />
+        <div className="h-[2px] w-12 bg-[#f25623] mx-auto mt-4" />
       </div>
 
       <form
@@ -67,7 +67,7 @@ const ItemForm = ({ type }: ItemFormProps) => {
         className="w-full max-w-2xl p-10 border border-white/5 rounded-none shadow-2xl"
       >
         {message && (
-          <div className={`mb-8 p-4 text-xs font-bold tracking-widest uppercase border ${message.type === "success" ? "border-[#D9FF00] text-[#D9FF00]" : "border-red-500 text-red-500"
+          <div className={`mb-8 p-4 text-xs font-bold tracking-widest uppercase border ${message.type === "success" ? "border-[#f25623] text-[#f25623]" : "border-red-500 text-red-500"
             }`}>
             {message.text}
           </div>
@@ -78,17 +78,17 @@ const ItemForm = ({ type }: ItemFormProps) => {
           {/* Inputs */}
           <div className="flex flex-col gap-2">
             <label className="text-[10px] text-white/40 font-bold uppercase tracking-widest">Product Name</label>
-            <input required name="name" value={formData.name} onChange={handleChange} className="bg-transparent border-b border-white/10 p-2 text-white outline-none focus:border-[#D9FF00] transition-colors" />
+            <input required name="name" value={formData.name} onChange={handleChange} className="bg-transparent border-b border-white/10 p-2 text-white outline-none focus:border-[#f25623] transition-colors" />
           </div>
 
           <div className="flex flex-col gap-2">
             <label className="text-[10px] text-white/40 font-bold uppercase tracking-widest">Price (USD)</label>
-            <input required type="number" name="price" value={formData.price} onChange={handleChange} className="bg-transparent border-b border-white/10 p-2 text-white outline-none focus:border-[#D9FF00] transition-colors" />
+            <input required type="number" name="price" value={formData.price} onChange={handleChange} className="bg-transparent border-b border-white/10 p-2 text-white outline-none focus:border-[#f25623] transition-colors" />
           </div>
 
           <div className="md:col-span-2 flex flex-col gap-2">
             <label className="text-[10px] text-white/40 font-bold uppercase tracking-widest">Image URL</label>
-            <input required name="image" value={formData.image} onChange={handleChange} className="bg-transparent border-b border-white/10 p-2 text-white outline-none focus:border-[#D9FF00] transition-colors" />
+            <input required name="image" value={formData.image} onChange={handleChange} className="bg-transparent border-b border-white/10 p-2 text-white outline-none focus:border-[#f25623] transition-colors" />
           </div>
 
           <div className="md:col-span-2 flex flex-col gap-2">
@@ -99,7 +99,7 @@ const ItemForm = ({ type }: ItemFormProps) => {
           {type === "keyboard" && (
             <div className="flex flex-col gap-2">
               <label className="text-[10px] text-white/40 font-bold uppercase tracking-widest">Layout</label>
-              <select name="layout" value={formData.layout} onChange={handleChange} className="bg-transparent border-b border-white/10 p-2 text-white outline-none focus:border-[#D9FF00] transition-colors cursor-pointer">
+              <select name="layout" value={formData.layout} onChange={handleChange} className="bg-transparent border-b border-white/10 p-2 text-white outline-none focus:border-[#f25623] transition-colors cursor-pointer">
                 <option value="60%" className="bg-[#121212]">60%</option>
                 <option value="75%" className="bg-[#121212]">75%</option>
                 <option value="TKL" className="bg-[#121212]">TKL</option>
@@ -109,7 +109,7 @@ const ItemForm = ({ type }: ItemFormProps) => {
 
           <div className="flex flex-col gap-2">
             <label className="text-[10px] text-white/40 font-bold uppercase tracking-widest">Brand</label>
-            <input name="brand" value={formData.brand} onChange={handleChange} className="bg-transparent border-b border-white/10 p-2 text-white outline-none focus:border-[#D9FF00] transition-colors" />
+            <input name="brand" value={formData.brand} onChange={handleChange} className="bg-transparent border-b border-white/10 p-2 text-white outline-none focus:border-[#f25623] transition-colors" />
           </div>
 
         </div>
@@ -117,7 +117,7 @@ const ItemForm = ({ type }: ItemFormProps) => {
         <button
           type="submit"
           disabled={loading}
-          className="w-full mt-12 py-4 bg-[#D9FF00] text-black font-bold text-xs tracking-[0.2em] uppercase hover:bg-white transition-all disabled:opacity-50"
+          className="w-full mt-12 py-4 bg-[#f25623] text-white font-bold text-xs tracking-[0.2em] uppercase hover:bg-[#d94514] transition-all disabled:opacity-50"
         >
           {loading ? "Processing..." : `Register ${type}`}
         </button>

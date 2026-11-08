@@ -120,28 +120,28 @@ const EditProduct = () => {
 
     if (fetchLoading) {
         return (
-            <div className="flex items-center justify-center min-h-screen">
-                <div className="w-12 h-12 border-2 border-[#D9FF00]/20 border-t-[#D9FF00] rounded-full animate-spin" />
+            <div className="flex items-center justify-center min-h-screen bg-[#DEDEDE]">
+                <div className="w-12 h-12 border-2 border-[#f25623]/20 border-t-[#f25623] rounded-full animate-spin" />
             </div>
         );
     }
 
     return (
-        <div className="flex flex-col items-center justify-center p-6 selection:text-black mt-20">
+        <div className="flex flex-col items-center justify-center p-6 bg-[#DEDEDE] min-h-screen selection:text-white selection:bg-[#f25623] mt-20">
             {/* Header Area */}
             <div className="text-center mb-12">
-                <h2 className="text-white font-display text-4xl font-bold tracking-tight uppercase">
+                <h2 className="text-[#4D4D4D] font-display text-4xl font-bold tracking-tight uppercase">
                     Edit Product
                 </h2>
-                <div className="h-[2px] w-12 bg-[#D9FF00] mx-auto mt-4" />
+                <div className="h-[2px] w-12 bg-[#f25623] mx-auto mt-4" />
             </div>
 
             <form
                 onSubmit={handleSubmit}
-                className="w-full max-w-2xl p-10 border border-white/5 rounded-none shadow-2xl"
+                className="w-full max-w-2xl p-10 border border-[#4D4D4D]/10 bg-[#EAEAEA] rounded-none shadow-2xl"
             >
                 {message && (
-                    <div className={`mb-8 p-4 text-xs font-bold tracking-widest uppercase border ${message.type === "success" ? "border-[#D9FF00] text-[#D9FF00]" : "border-red-500 text-red-500"
+                    <div className={`mb-8 p-4 text-xs font-bold tracking-widest uppercase border ${message.type === "success" ? "border-[#f25623] text-[#f25623]" : "border-red-500 text-red-500"
                         }`}>
                         {message.text}
                     </div>
@@ -150,27 +150,27 @@ const EditProduct = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {/* Inputs */}
                     <div className="flex flex-col gap-2">
-                        <label className="text-[10px] text-white/40 font-bold uppercase tracking-widest">Product Name</label>
-                        <input required name="name" value={formData.name} onChange={handleChange} className="bg-transparent border-b border-white/10 p-2 text-white outline-none focus:border-[#D9FF00] transition-colors" />
+                        <label className="text-[10px] text-[#4D4D4D]/50 font-bold uppercase tracking-widest">Product Name</label>
+                        <input required name="name" value={formData.name} onChange={handleChange} className="bg-transparent border-b border-[#4D4D4D]/20 p-2 text-[#4D4D4D] outline-none focus:border-[#f25623] transition-colors" />
                     </div>
 
                     <div className="flex flex-col gap-2">
-                        <label className="text-[10px] text-white/40 font-bold uppercase tracking-widest">Price (USD)</label>
-                        <input required type="number" name="price" value={formData.price} onChange={handleChange} className="bg-transparent border-b border-white/10 p-2 text-white outline-none focus:border-[#D9FF00] transition-colors" />
+                        <label className="text-[10px] text-[#4D4D4D]/50 font-bold uppercase tracking-widest">Price (USD)</label>
+                        <input required type="number" name="price" value={formData.price} onChange={handleChange} className="bg-transparent border-b border-[#4D4D4D]/20 p-2 text-[#4D4D4D] outline-none focus:border-[#f25623] transition-colors" />
                     </div>
 
                     {/* <div className="md:col-span-2 flex flex-col gap-2">
-                        <label className="text-[10px] text-white/40 font-bold uppercase tracking-widest">Image URL</label>
-                        <input required name="image" value={formData.image} onChange={handleChange} className="bg-transparent border-b border-white/10 p-2 text-white outline-none focus:border-[#D9FF00] transition-colors" />
+                        <label className="text-[10px] text-[#4D4D4D]/50 font-bold uppercase tracking-widest">Image URL</label>
+                        <input required name="image" value={formData.image} onChange={handleChange} className="bg-transparent border-b border-[#4D4D4D]/20 p-2 text-[#4D4D4D] outline-none focus:border-[#f25623] transition-colors" />
                     </div> */}
                     <div className="md:col-span-2 group flex flex-col gap-3">
-                        <label className="text-[10px] text-white/40 font-bold uppercase tracking-[0.2em] group-focus-within:text-[#D9FF00] transition-colors">
+                        <label className="text-[10px] text-[#4D4D4D]/50 font-bold uppercase tracking-[0.2em] group-focus-within:text-[#f25623] transition-colors">
                             Image Source (Upload or URL)
                         </label>
 
                         <div className="flex flex-col gap-4">
                             {/* Upload Button */}
-                            <label className="cursor-pointer bg-white/5 border border-white/10 p-4 text-center text-[10px] text-white/80 font-bold uppercase tracking-[0.2em] hover:bg-[#D9FF00]/10 hover:text-[#D9FF00] hover:border-[#D9FF00]/50 transition-all duration-300">
+                            <label className="cursor-pointer bg-[#DEDEDE] border border-[#4D4D4D]/10 p-4 text-center text-[10px] text-[#4D4D4D]/60 font-bold uppercase tracking-[0.2em] hover:bg-[#f25623]/10 hover:text-[#f25623] hover:border-[#f25623]/50 transition-all duration-300">
                                 {uploadingImage ? "UPLOADING TO MAINFRAME..." : "SELECT FILE TO UPLOAD"}
                                 <input
                                     type="file"
@@ -188,12 +188,12 @@ const EditProduct = () => {
                                 value={formData.image}
                                 onChange={handleChange}
                                 placeholder="Or paste an image URL directly"
-                                className="bg-transparent border-b border-white/10 p-2 text-white font-light outline-none focus:border-[#D9FF00] transition-all duration-500"
+                                className="bg-transparent border-b border-[#4D4D4D]/20 p-2 text-[#4D4D4D] font-light outline-none focus:border-[#f25623] transition-all duration-500"
                             />
 
                             {/* Preview Wrapper */}
                             {formData.image && (
-                                <div className="relative w-full h-40 mt-2 border border-white/10 bg-black/50 overflow-hidden group-hover:border-[#D9FF00]/30 transition-colors">
+                                <div className="relative w-full h-40 mt-2 border border-[#4D4D4D]/10 bg-[#DEDEDE] overflow-hidden group-hover:border-[#f25623]/30 transition-colors">
                                     <Image src={formData.image} alt="Preview" fill className="object-contain p-4" />
                                 </div>
                             )}
@@ -201,30 +201,30 @@ const EditProduct = () => {
                     </div>
 
                     <div className="md:col-span-2 flex flex-col gap-2">
-                        <label className="text-[10px] text-white/40 font-bold uppercase tracking-widest">Description</label>
-                        <textarea required name="description" rows={2} value={formData.description} onChange={handleChange} className="bg-transparent border-b border-white/10 p-2 text-white outline-none focus:border-[#D9FF00] transition-colors resize-none" />
+                        <label className="text-[10px] text-[#4D4D4D]/50 font-bold uppercase tracking-widest">Description</label>
+                        <textarea required name="description" rows={2} value={formData.description} onChange={handleChange} className="bg-transparent border-b border-[#4D4D4D]/20 p-2 text-[#4D4D4D] outline-none focus:border-[#f25623] transition-colors resize-none" />
                     </div>
 
                     <div className="flex flex-col gap-2">
-                        <label className="text-[10px] text-white/40 font-bold uppercase tracking-widest">Category</label>
-                        <select name="category" value={formData.category} onChange={handleChange} className="bg-transparent border-b border-white/10 p-2 text-white outline-none focus:border-[#D9FF00] transition-colors cursor-pointer">
-                            <option value="Keyboards" className="bg-[#121212]">Keyboards</option>
-                            <option value="Keycaps" className="bg-[#121212]">Keycaps</option>
-                            <option value="Switches" className="bg-[#121212]">Switches</option>
-                            <option value="Accessories" className="bg-[#121212]">Accessories</option>
+                        <label className="text-[10px] text-[#4D4D4D]/50 font-bold uppercase tracking-widest">Category</label>
+                        <select name="category" value={formData.category} onChange={handleChange} className="bg-transparent border-b border-[#4D4D4D]/20 p-2 text-[#4D4D4D] outline-none focus:border-[#f25623] transition-colors cursor-pointer">
+                            <option value="Keyboards" className="bg-[#EAEAEA]">Keyboards</option>
+                            <option value="Keycaps" className="bg-[#EAEAEA]">Keycaps</option>
+                            <option value="Switches" className="bg-[#EAEAEA]">Switches</option>
+                            <option value="Accessories" className="bg-[#EAEAEA]">Accessories</option>
                         </select>
                     </div>
 
                     <div className="flex flex-col gap-2">
-                        <label className="text-[10px] text-white/40 font-bold uppercase tracking-widest">Stock/Quantity</label>
-                        <input type="number" name="quantity" value={formData.quantity} onChange={handleChange} className="bg-transparent border-b border-white/10 p-2 text-white outline-none focus:border-[#D9FF00] transition-colors" />
+                        <label className="text-[10px] text-[#4D4D4D]/50 font-bold uppercase tracking-widest">Stock/Quantity</label>
+                        <input type="number" name="quantity" value={formData.quantity} onChange={handleChange} className="bg-transparent border-b border-[#4D4D4D]/20 p-2 text-[#4D4D4D] outline-none focus:border-[#f25623] transition-colors" />
                     </div>
                 </div>
 
                 <button
                     type="submit"
                     disabled={loading}
-                    className="w-full mt-12 py-4 bg-[#D9FF00] text-black font-bold text-xs tracking-[0.2em] uppercase hover:bg-white transition-all disabled:opacity-50"
+                    className="w-full mt-12 py-4 bg-[#f25623] text-white font-bold text-xs tracking-[0.2em] uppercase hover:bg-[#d94514] transition-all disabled:opacity-50"
                 >
                     {loading ? "Processing..." : "Update Product"}
                 </button>
