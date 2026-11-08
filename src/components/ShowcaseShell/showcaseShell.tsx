@@ -81,16 +81,16 @@ export const THEME: Record<Accent, Theme> = {
     glow: "rgba(245,158,11,0.16)",
   },
   indigo: {
-    text: "text-indigo-400",
-    textSoft: "text-indigo-300",
-    bg: "bg-indigo-500",
-    bgSoft: "bg-indigo-500/15",
-    border: "border-indigo-500",
-    ring: "focus:ring-indigo-400",
-    outline: "focus-visible:outline-indigo-400",
-    hoverBg: "hover:bg-indigo-500",
-    groupHoverBg: "group-hover/card:bg-indigo-500",
-    glow: "rgba(99,102,241,0.16)",
+    text: "text-[#f25623]",
+    textSoft: "text-[#f25623]/80",
+    bg: "bg-[#f25623]",
+    bgSoft: "bg-[#f25623]/15",
+    border: "border-[#f25623]",
+    ring: "focus:ring-[#f25623]",
+    outline: "focus-visible:outline-[#f25623]",
+    hoverBg: "hover:bg-[#f25623]",
+    groupHoverBg: "group-hover/card:bg-[#f25623]",
+    glow: "rgba(242,86,35,0.16)",
   },
   cyan: {
     text: "text-cyan-400",
@@ -246,22 +246,22 @@ export function ShowcaseShell<T extends BaseProduct>({
     <section
       ref={sectionRef}
       id={id}
-      className="min-h-screen w-full bg-[#09090b] px-3 pb-20 pt-24 sm:px-6 lg:px-10"
+      className="min-h-screen w-full bg-[#DEDEDE] px-3 pb-20 pt-24 sm:px-6 lg:px-10 text-[#4D4D4D]"
     >
       <div className="mx-auto max-w-[1500px]">
         {/* HEADER */}
-        <header className="mb-10 flex flex-col gap-4 border-b border-white/10 pb-8 sm:flex-row sm:items-end sm:justify-between">
+        <header className="mb-10 flex flex-col gap-4 border-b border-[#4D4D4D]/15 pb-8 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="mb-3 text-sm text-white/50">{eyebrow}</p>
-            <h1 className="select-none font-space text-[clamp(44px,8vw,110px)] font-extrabold uppercase italic leading-[0.85] tracking-tighter text-white">
+            <p className="mb-3 text-sm text-[#4D4D4D]/60">{eyebrow}</p>
+            <h1 className="select-none font-space text-[clamp(44px,8vw,110px)] font-extrabold uppercase italic leading-[0.85] tracking-tighter text-[#4D4D4D]">
               {title}{" "}
-              <span className="text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.5)]">
+              <span className="text-transparent [-webkit-text-stroke:1px_rgba(77,77,77,0.5)]">
                 {titleOutline}
               </span>
             </h1>
           </div>
           {!loading && !error && (
-            <p className="font-bebas text-2xl text-white/60">
+            <p className="font-bebas text-2xl text-[#4D4D4D]/70">
               <span className={theme.text}>{filtered.length}</span>{" "}
               {filtered.length === 1 ? noun[0] : noun[1]}
             </p>
@@ -344,12 +344,12 @@ export function ShowcaseShell<T extends BaseProduct>({
                   setSort(e.target.value as SortKey);
                   setPage(1);
                 }}
-                className={`w-full cursor-pointer bg-white/[0.04] px-4 py-3 text-base text-white outline-none ring-1 ring-inset ring-white/10 ${theme.ring}`}
+                className={`w-full cursor-pointer bg-[#4D4D4D]/10 px-4 py-3 text-base text-[#4D4D4D] outline-none ring-1 ring-inset ring-[#4D4D4D]/20 ${theme.ring}`}
               >
-                <option className="bg-neutral-900" value="featured">Default</option>
-                <option className="bg-neutral-900" value="price-asc">Price, low to high</option>
-                <option className="bg-neutral-900" value="price-desc">Price, high to low</option>
-                <option className="bg-neutral-900" value="name">Name, A to Z</option>
+                <option className="bg-[#EAEAEA] text-[#4D4D4D]" value="featured">Default</option>
+                <option className="bg-[#EAEAEA] text-[#4D4D4D]" value="price-asc">Price, low to high</option>
+                <option className="bg-[#EAEAEA] text-[#4D4D4D]" value="price-desc">Price, high to low</option>
+                <option className="bg-[#EAEAEA] text-[#4D4D4D]" value="name">Name, A to Z</option>
               </select>
             </div>
           </aside>
@@ -358,11 +358,11 @@ export function ShowcaseShell<T extends BaseProduct>({
           <div>
             {error ? (
               <div className="flex flex-col items-center gap-5 py-24 text-center">
-                <p className="font-bebas text-3xl text-white">Could not load {noun[1]}</p>
-                <p className="text-white/50">Check your connection and try again.</p>
+                <p className="font-bebas text-3xl text-[#4D4D4D]">Could not load {noun[1]}</p>
+                <p className="text-[#4D4D4D]/60">Check your connection and try again.</p>
                 <button
                   onClick={load}
-                  className={`bg-white px-8 py-3 font-bebas text-xl text-black transition-colors ${theme.hoverBg} hover:text-white`}
+                  className={`bg-[#4D4D4D] px-8 py-3 font-bebas text-xl text-[#DEDEDE] transition-colors ${theme.hoverBg} hover:text-white`}
                 >
                   Try again
                 </button>
@@ -422,19 +422,19 @@ export function ShowcaseShell<T extends BaseProduct>({
             {!loading && !error && totalPages > 1 && (
               <nav
                 aria-label="Pagination"
-                className="mt-14 flex flex-col items-center gap-4 border-t border-white/10 pt-8"
+                className="mt-14 flex flex-col items-center gap-4 border-t border-[#4D4D4D]/15 pt-8"
               >
                 <div className="flex flex-wrap items-center justify-center gap-2">
                   <button
                     disabled={page === 1}
                     onClick={() => goToPage(page - 1)}
-                    className="h-11 border border-white/15 px-5 font-bebas text-lg text-white transition-colors hover:border-white disabled:cursor-not-allowed disabled:opacity-25 disabled:hover:border-white/15"
+                    className="h-11 border border-[#4D4D4D]/25 px-5 font-bebas text-lg text-[#4D4D4D] transition-colors hover:border-[#4D4D4D] disabled:cursor-not-allowed disabled:opacity-25 disabled:hover:border-[#4D4D4D]/25"
                   >
                     Prev
                   </button>
                   {getPageList(page, totalPages).map((p, i) =>
                     p === "gap" ? (
-                      <span key={`gap-${i}`} className="px-1 text-white/30">
+                      <span key={`gap-${i}`} className="px-1 text-[#4D4D4D]/40">
                         ...
                       </span>
                     ) : (
@@ -444,8 +444,8 @@ export function ShowcaseShell<T extends BaseProduct>({
                         aria-current={page === p ? "page" : undefined}
                         className={`h-11 w-11 border font-bebas text-xl transition-colors ${
                           page === p
-                            ? `${theme.border} ${theme.bg} text-black`
-                            : "border-white/15 text-white/60 hover:border-white hover:text-white"
+                            ? `${theme.border} ${theme.bg} text-white`
+                            : "border-[#4D4D4D]/25 text-[#4D4D4D]/70 hover:border-[#4D4D4D] hover:text-[#4D4D4D]"
                         }`}
                       >
                         {p}
@@ -455,12 +455,12 @@ export function ShowcaseShell<T extends BaseProduct>({
                   <button
                     disabled={page === totalPages}
                     onClick={() => goToPage(page + 1)}
-                    className="h-11 border border-white/15 px-5 font-bebas text-lg text-white transition-colors hover:border-white disabled:cursor-not-allowed disabled:opacity-25 disabled:hover:border-white/15"
+                    className="h-11 border border-[#4D4D4D]/25 px-5 font-bebas text-lg text-[#4D4D4D] transition-colors hover:border-[#4D4D4D] disabled:cursor-not-allowed disabled:opacity-25 disabled:hover:border-[#4D4D4D]/25"
                   >
                     Next
                   </button>
                 </div>
-                <p className="text-sm text-white/40">
+                <p className="text-sm text-[#4D4D4D]/60">
                   Showing {start + 1} to {Math.min(start + ITEMS_PER_PAGE, filtered.length)} of{" "}
                   {filtered.length}
                 </p>

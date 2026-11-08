@@ -109,16 +109,16 @@ const AboutPage: React.FC = () => {
   }, []);
 
   return (
-    <main ref={root} className="w-full overflow-hidden bg-[#09090b] text-white">
+    <main ref={root} className="w-full overflow-hidden bg-[#DEDEDE] text-[#4D4D4D]">
       <section className="mx-auto grid max-w-[1200px] items-center gap-10 px-6 pb-14 pt-28 md:grid-cols-[1.15fr_0.85fr] md:gap-14 md:px-10 md:pb-20">
         {/* ── TEXT ── */}
         <div className="copy">
-          <h1 className="font-space text-[clamp(34px,5.6vw,76px)] font-extrabold leading-[0.95] tracking-tighter">
+          <h1 className="font-space text-[clamp(34px,5.6vw,76px)] font-extrabold leading-[0.95] tracking-tighter text-[#4D4D4D]">
             {HEADLINE.map((line, i) => (
               <span key={line} className="block overflow-hidden pb-[0.08em]">
                 <span
                   className={`line-in block ${
-                    i === 1 ? "text-transparent [-webkit-text-stroke:1.5px_#d4ff3a]" : ""
+                    i === 1 ? "text-transparent [-webkit-text-stroke:1.5px_#f25623]" : ""
                   } ${i === 2 ? "italic" : ""}`}
                 >
                   {line}
@@ -127,26 +127,26 @@ const AboutPage: React.FC = () => {
             ))}
           </h1>
 
-          <p className="fade-up mt-8 max-w-[46ch] text-lg leading-snug text-white/85">
+          <p className="fade-up mt-8 max-w-[46ch] text-lg leading-snug text-[#4D4D4D]/85">
             We sell computer hardware for gamers and creators, picked for people who care about every
             part of their setup.
           </p>
 
           <ul className="fade-up mt-5 flex flex-wrap gap-2 text-sm">
             {CATEGORIES.map((c) => (
-              <li key={c} className="bg-white/[0.06] px-3 py-1.5 text-white/70">
+              <li key={c} className="bg-[#4D4D4D]/10 px-3 py-1.5 text-[#4D4D4D]">
                 {c}
               </li>
             ))}
-            <li className="px-3 py-1.5 text-white/40">and more</li>
+            <li className="px-3 py-1.5 text-[#4D4D4D]/50">and more</li>
           </ul>
 
-          <div className="fade-up mt-8 max-w-[46ch] border-l-2 border-[#d4ff3a] pl-4">
-            <h2 className="font-bebas text-2xl leading-none text-white">Keycaps made with our collaborators</h2>
-            <p className="mt-2 text-[15px] leading-relaxed text-white/60">
+          <div className="fade-up mt-8 max-w-[46ch] border-l-2 border-[#f25623] pl-4">
+            <h2 className="font-bebas text-2xl leading-none text-[#4D4D4D]">Keycaps made with our collaborators</h2>
+            <p className="mt-2 text-[15px] leading-relaxed text-[#4D4D4D]/75">
               We create keycaps together with other creators, so every design comes with its own story.
             </p>
-            <Link href="/Caps" className="mt-3 inline-block text-sm text-[#d4ff3a] hover:underline">
+            <Link href="/Caps" className="mt-3 inline-block text-sm text-[#f25623] hover:underline font-semibold">
               See the keycaps
             </Link>
           </div>
@@ -154,14 +154,14 @@ const AboutPage: React.FC = () => {
           <div className="mt-8 grid grid-cols-3 gap-5">
             {stats.map((s) => (
               <div key={s.label} className="stat" data-value={s.value} data-pad={s.pad ?? 0}>
-                <p className="font-bebas text-5xl leading-none sm:text-6xl">
+                <p className="font-bebas text-5xl leading-none sm:text-6xl text-[#4D4D4D]">
                   <span className="stat-num">{fmt(s.value, s.pad)}</span>
-                  {s.suffix && <span className="text-[#d4ff3a]">{s.suffix}</span>}
+                  {s.suffix && <span className="text-[#f25623]">{s.suffix}</span>}
                 </p>
-                <div className="mt-3 h-px w-full bg-white/15">
-                  <div className="stat-fill h-full origin-left bg-[#d4ff3a]" />
+                <div className="mt-3 h-px w-full bg-[#4D4D4D]/20">
+                  <div className="stat-fill h-full origin-left bg-[#f25623]" />
                 </div>
-                <p className="mt-2 text-xs text-white/50 sm:text-sm">{s.label}</p>
+                <p className="mt-2 text-xs text-[#4D4D4D]/60 sm:text-sm">{s.label}</p>
               </div>
             ))}
           </div>
@@ -184,13 +184,13 @@ const AboutPage: React.FC = () => {
               />
             </div>
           </div>
-          <div className="img-curtain absolute inset-0 origin-top bg-[#09090b]" />
+          <div className="img-curtain absolute inset-0 origin-top bg-[#DEDEDE]" />
 
           {/* Brand seal: curtain-er pore reveal hoy */}
           <div className="img-seal absolute bottom-4 right-4 flex h-24 w-24 items-center justify-center md:h-28 md:w-28">
-           {/* <div className="img-seal absolute bottom-4 right-4 flex h-24 w-24 items-center justify-center rounded-full bg-[#09090b] ring-1 ring-white/20 md:h-28 md:w-28"></div> */}
-            <span className="absolute inset-1.5 rounded-full border border-dashed border-white/20" aria-hidden />
-            <SinnersLogo className="h-14 w-auto text-white md:h-16" cut="#09090b" />
+           {/* <div className="img-seal absolute bottom-4 right-4 flex h-24 w-24 items-center justify-center rounded-full bg-[#DEDEDE] ring-1 ring-white/20 md:h-28 md:w-28"></div> */}
+            <span className="absolute inset-1.5 rounded-full border border-dashed border-white/40" aria-hidden />
+            <SinnersLogo className="h-14 w-auto text-white md:h-16" cut="#DEDEDE" />
           </div>
         </div>
       </section>

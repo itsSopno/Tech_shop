@@ -56,15 +56,15 @@
 // );
 // _variables.scss
 
-// Lando Signature Palette (Pixel Perfect Match)
-$primary: #D9FF00; // ল্যান্ডোর সিগনেচার নিয়ন গ্রিন
-$background: #FDFDFD; // অফ-হোয়াইট ব্যাকগ্রাউন্ড
-$text: #1A1A1A; // ডিপ চারকোল ব্ল্যাক
-$text-muted: #A1A1A1;
-$border-color: #EAEAEA;
+// Brand Signature Palette (Updated: #DEDEDE background, #4D4D4D text, #f25623 accent)
+$primary: #f25623;
+$primary-hover: #d94514;
+$background: #DEDEDE;
+$text: #4D4D4D;
+$text-muted: #737373;
+$border-color: #CCCCCC;
 
 // Typography - High Impact
-// Bebas Neue অবশ্যই ইম্পোর্ট করতে হবে Headings এর জন্য
 $font-bebas: 'Bebas Neue', sans-serif;
 $font-inter: 'Inter', system-ui, -apple-system, sans-serif;
 

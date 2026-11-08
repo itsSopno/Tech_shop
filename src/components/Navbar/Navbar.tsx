@@ -66,12 +66,12 @@ const CloseIcon = () => (
 const Logo = () => (
   <Link href="/" aria-label="Sinners Tech home" className="flex items-center gap-3">
     <svg width="30" height="30" viewBox="0 0 40 40" aria-hidden="true">
-      <path d="M8 34 L19 6 H25 L14 34 Z" fill="#6366f1" />
-      <path d="M20 34 L31 6 H37 L26 34 Z" fill="#fff" />
+      <path d="M8 34 L19 6 H25 L14 34 Z" fill="#f25623" />
+      <path d="M20 34 L31 6 H37 L26 34 Z" fill="#4D4D4D" />
     </svg>
-    <span className="font-space text-xl font-extrabold uppercase italic leading-none tracking-tighter text-white">
+    <span className="font-space text-xl font-extrabold uppercase italic leading-none tracking-tighter text-[#4D4D4D]">
       Sinners
-      <span className="text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.6)]">Tech</span>
+      <span className="text-transparent [-webkit-text-stroke:1px_rgba(77,77,77,0.6)]">Tech</span>
     </span>
   </Link>
 );
@@ -199,17 +199,17 @@ const Navbar = ({ cartCount = 0 }: NavbarProps) => {
 
   const cartBadge =
     cartCount > 0 ? (
-      <span className="absolute -right-1.5 -top-1.5 flex h-5 min-w-5 items-center justify-center bg-indigo-500 px-1 text-xs font-bold text-white">
+      <span className="absolute -right-1.5 -top-1.5 flex h-5 min-w-5 items-center justify-center bg-[#f25623] px-1 text-xs font-bold text-white">
         {cartCount}
       </span>
     ) : null;
 
   const iconBtn =
-    "relative flex h-11 w-11 items-center justify-center text-white/70 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400";
+    "relative flex h-11 w-11 items-center justify-center text-[#4D4D4D]/75 transition-colors hover:text-[#4D4D4D] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#f25623]";
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-[100] border-b border-white/10 bg-[#09090b]/85 backdrop-blur-xl">
+      <header className="fixed inset-x-0 top-0 z-[100] border-b border-[#4D4D4D]/15 bg-[#DEDEDE]/90 backdrop-blur-xl">
         {/* ═════ ROW 1: logo, search, actions ═════ */}
         <div className="mx-auto flex h-16 max-w-[1500px] items-center gap-2 px-4 sm:px-6 lg:grid lg:h-[72px] lg:grid-cols-[auto_1fr_auto] lg:gap-10 lg:px-10">
           <Logo />
@@ -219,7 +219,7 @@ const Navbar = ({ cartCount = 0 }: NavbarProps) => {
             <label htmlFor="nav-search" className="sr-only">
               Search products
             </label>
-            <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-white/35">
+            <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[#4D4D4D]/40">
               <SearchIcon />
             </span>
             <input
@@ -229,9 +229,9 @@ const Navbar = ({ cartCount = 0 }: NavbarProps) => {
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search keyboards, mice, keycaps"
               style={{ clipPath: CHAMFER }}
-              className="peer h-11 w-full bg-white/[0.05] pl-12 pr-14 text-base text-white outline-none ring-1 ring-inset ring-white/10 transition placeholder:text-white/35 focus:bg-white/[0.08] focus:ring-indigo-400"
+              className="peer h-11 w-full bg-[#4D4D4D]/[0.06] pl-12 pr-14 text-base text-[#4D4D4D] outline-none ring-1 ring-inset ring-[#4D4D4D]/15 transition placeholder:text-[#4D4D4D]/40 focus:bg-[#4D4D4D]/[0.08] focus:ring-[#f25623]"
             />
-            <kbd className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 border border-white/20 px-2 py-0.5 text-xs text-white/40 peer-focus:hidden">
+            <kbd className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 border border-[#4D4D4D]/25 px-2 py-0.5 text-xs text-[#4D4D4D]/50 peer-focus:hidden">
               /
             </kbd>
           </form>
@@ -257,22 +257,22 @@ const Navbar = ({ cartCount = 0 }: NavbarProps) => {
             {/* Desktop account */}
             <div className="hidden lg:block">
               {status === "loading" ? (
-                <div className="h-11 w-36 animate-pulse bg-white/[0.05]" />
+                <div className="h-11 w-36 animate-pulse bg-[#4D4D4D]/10" />
               ) : session ? (
                 <div ref={accountRef} className="relative">
                   <button
                     onClick={() => setAccountOpen((v) => !v)}
                     aria-haspopup="menu"
                     aria-expanded={accountOpen}
-                    className="flex h-11 items-center gap-3 pl-1 pr-3 text-white/80 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400"
+                    className="flex h-11 items-center gap-3 pl-1 pr-3 text-[#4D4D4D]/80 transition-colors hover:text-[#4D4D4D] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#f25623]"
                   >
                     <span
                       style={{ clipPath: CHAMFER }}
-                      className="flex h-9 w-9 items-center justify-center bg-indigo-500 font-bebas text-xl text-white"
+                      className="flex h-9 w-9 items-center justify-center bg-[#f25623] font-bebas text-xl text-white"
                     >
                       {initial}
                     </span>
-                    <span className="max-w-[120px] truncate font-bebas text-xl">
+                    <span className="max-w-[120px] truncate font-bebas text-xl text-[#4D4D4D]">
                       {session.user?.name ?? "Account"}
                     </span>
                   </button>
@@ -281,7 +281,7 @@ const Navbar = ({ cartCount = 0 }: NavbarProps) => {
                     <div
                       role="menu"
                       style={{ clipPath: CHAMFER }}
-                      className="absolute right-0 top-full mt-3 w-56 bg-[#101015] py-2 ring-1 ring-white/10"
+                      className="absolute right-0 top-full mt-3 w-56 bg-[#EAEAEA] py-2 ring-1 ring-[#4D4D4D]/15 shadow-xl"
                     >
                       {[
                         { label: "Profile", href: "/Profile" },
@@ -292,16 +292,16 @@ const Navbar = ({ cartCount = 0 }: NavbarProps) => {
                           key={l.href}
                           href={l.href}
                           role="menuitem"
-                          className="block px-5 py-2.5 font-bebas text-xl text-white/70 transition-colors hover:bg-white/[0.06] hover:text-white"
+                          className="block px-5 py-2.5 font-bebas text-xl text-[#4D4D4D]/75 transition-colors hover:bg-[#4D4D4D]/10 hover:text-[#4D4D4D]"
                         >
                           {l.label}
                         </Link>
                       ))}
-                      <div className="my-2 h-px bg-white/10" />
+                      <div className="my-2 h-px bg-[#4D4D4D]/15" />
                       <button
                         role="menuitem"
                         onClick={handleLogout}
-                        className="block w-full px-5 py-2.5 text-left font-bebas text-xl text-white/70 transition-colors hover:bg-white/[0.06] hover:text-white"
+                        className="block w-full px-5 py-2.5 text-left font-bebas text-xl text-[#4D4D4D]/75 transition-colors hover:bg-[#4D4D4D]/10 hover:text-[#4D4D4D]"
                       >
                         Log out
                       </button>
@@ -312,14 +312,14 @@ const Navbar = ({ cartCount = 0 }: NavbarProps) => {
                 <div className="flex items-center gap-2">
                   <Link
                     href="/login"
-                    className="px-4 py-2 font-bebas text-xl text-white/80 transition-colors hover:text-white"
+                    className="px-4 py-2 font-bebas text-xl text-[#4D4D4D]/80 transition-colors hover:text-[#4D4D4D]"
                   >
                     Login
                   </Link>
                   <Link
                     href="/register"
                     style={{ clipPath: CHAMFER }}
-                    className="bg-white px-6 py-2.5 font-bebas text-xl text-black transition-colors hover:bg-indigo-500 hover:text-white"
+                    className="bg-[#f25623] px-6 py-2.5 font-bebas text-xl text-white transition-colors hover:bg-[#d94514]"
                   >
                     Register
                   </Link>
@@ -344,7 +344,7 @@ const Navbar = ({ cartCount = 0 }: NavbarProps) => {
               placeholder="Search keyboards, mice, keycaps"
               aria-label="Search products"
               style={{ clipPath: CHAMFER }}
-              className="h-11 w-full bg-white/[0.06] px-4 text-base text-white outline-none ring-1 ring-inset ring-white/10 placeholder:text-white/35 focus:ring-indigo-400"
+              className="h-11 w-full bg-[#4D4D4D]/[0.06] px-4 text-base text-[#4D4D4D] outline-none ring-1 ring-inset ring-[#4D4D4D]/15 placeholder:text-[#4D4D4D]/40 focus:ring-[#f25623]"
             />
           </form>
         )}
@@ -356,12 +356,12 @@ const Navbar = ({ cartCount = 0 }: NavbarProps) => {
           }`}
         >
           <div className="min-h-0 overflow-hidden">
-            <div className="mx-auto flex h-11 max-w-[1500px] items-stretch justify-between border-t border-white/[0.06] px-10">
+            <div className="mx-auto flex h-11 max-w-[1500px] items-stretch justify-between border-t border-[#4D4D4D]/15 px-10">
               <ul className="relative flex items-stretch" onMouseLeave={() => moveTo(activeKey)}>
                 {NAV_ITEMS.map((item) => (
                   <React.Fragment key={item.key}>
                     {item.gapBefore && (
-                      <li aria-hidden="true" className="mx-3 h-4 w-px -skew-x-[20deg] self-center bg-white/25" />
+                      <li aria-hidden="true" className="mx-3 h-4 w-px -skew-x-[20deg] self-center bg-[#4D4D4D]/25" />
                     )}
                     <li>
                       <Link
@@ -374,7 +374,7 @@ const Navbar = ({ cartCount = 0 }: NavbarProps) => {
                         onBlur={() => moveTo(activeKey)}
                         aria-current={activeKey === item.key ? "page" : undefined}
                         className={`flex h-11 items-center px-4 font-bebas text-xl tracking-wide transition-colors ${
-                          activeKey === item.key ? "text-white" : "text-white/55 hover:text-white"
+                          activeKey === item.key ? "text-[#f25623]" : "text-[#4D4D4D]/70 hover:text-[#4D4D4D]"
                         }`}
                       >
                         {item.label}
@@ -386,13 +386,13 @@ const Navbar = ({ cartCount = 0 }: NavbarProps) => {
                 {/* Ekta indicator, hover onujayi slide kore */}
                 <span
                   aria-hidden="true"
-                  className="pointer-events-none absolute bottom-0 h-[3px] -skew-x-[20deg] bg-indigo-500 shadow-[0_0_12px_rgba(99,102,241,0.7)] transition-all duration-300 ease-out"
+                  className="pointer-events-none absolute bottom-0 h-[3px] -skew-x-[20deg] bg-[#f25623] shadow-[0_0_12px_rgba(242,86,35,0.7)] transition-all duration-300 ease-out"
                   style={{ left: bar.left, width: bar.width, opacity: bar.show ? 1 : 0 }}
                 />
               </ul>
 
-              <p className="hidden items-center gap-2.5 text-sm text-white/45 xl:flex">
-                <span className="h-2 w-2 animate-pulse rounded-full bg-indigo-500" />
+              <p className="hidden items-center gap-2.5 text-sm text-[#4D4D4D]/60 xl:flex">
+                <span className="h-2 w-2 animate-pulse rounded-full bg-[#f25623]" />
                 Shipping all over Bangladesh
               </p>
             </div>
@@ -410,7 +410,7 @@ const Navbar = ({ cartCount = 0 }: NavbarProps) => {
       >
         <div
           onClick={() => setDrawerOpen(false)}
-          className={`absolute inset-0 bg-black/70 backdrop-blur-sm transition-opacity duration-300 ${
+          className={`absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300 ${
             drawerOpen ? "opacity-100" : "opacity-0"
           }`}
         />
@@ -420,16 +420,16 @@ const Navbar = ({ cartCount = 0 }: NavbarProps) => {
           aria-modal="true"
           aria-label="Menu"
           style={{ clipPath: "polygon(28px 0, 100% 0, 100% 100%, 0 100%, 0 28px)" }}
-          className={`absolute right-0 top-0 flex h-full w-[88%] max-w-sm flex-col overflow-y-auto bg-[#0c0c10] transition-transform duration-300 ease-out ${
+          className={`absolute right-0 top-0 flex h-full w-[88%] max-w-sm flex-col overflow-y-auto bg-[#DEDEDE] border-l border-[#4D4D4D]/15 transition-transform duration-300 ease-out ${
             drawerOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
           <div className="flex h-16 items-center justify-between px-5">
-            <span className="font-bebas text-2xl text-white/50">Menu</span>
+            <span className="font-bebas text-2xl text-[#4D4D4D]/60">Menu</span>
             <button
               onClick={() => setDrawerOpen(false)}
               aria-label="Close menu"
-              className="flex h-11 w-11 items-center justify-center text-white hover:text-indigo-300"
+              className="flex h-11 w-11 items-center justify-center text-[#4D4D4D] hover:text-[#f25623]"
             >
               <CloseIcon />
             </button>
@@ -440,7 +440,7 @@ const Navbar = ({ cartCount = 0 }: NavbarProps) => {
               <li>
                 <Link
                   href="/Store"
-                  className="flex items-center justify-between border-b border-white/10 py-4 font-bebas text-3xl text-white"
+                  className="flex items-center justify-between border-b border-[#4D4D4D]/15 py-4 font-bebas text-3xl text-[#4D4D4D]"
                 >
                   All products
                 </Link>
@@ -449,8 +449,8 @@ const Navbar = ({ cartCount = 0 }: NavbarProps) => {
                 <li key={item.key}>
                   <Link
                     href={item.href}
-                    className={`flex items-center justify-between border-b border-white/10 py-4 font-bebas text-3xl transition-colors hover:text-white ${
-                      activeKey === item.key ? "text-indigo-300" : "text-white/60"
+                    className={`flex items-center justify-between border-b border-[#4D4D4D]/15 py-4 font-bebas text-3xl transition-colors hover:text-[#4D4D4D] ${
+                      activeKey === item.key ? "text-[#f25623]" : "text-[#4D4D4D]/70"
                     }`}
                   >
                     {item.label}
@@ -464,32 +464,32 @@ const Navbar = ({ cartCount = 0 }: NavbarProps) => {
           <div className="mt-auto space-y-3 p-5 pt-8">
             {session ? (
               <>
-                <p className="truncate text-sm text-white/50">
+                <p className="truncate text-sm text-[#4D4D4D]/70">
                   Signed in as {session.user?.name ?? session.user?.email}
                 </p>
                 <div className="grid grid-cols-2 gap-3">
-                  <Link href="/Profile" className="border border-white/20 py-3 text-center font-bebas text-xl text-white">
+                  <Link href="/Profile" className="border border-[#4D4D4D]/20 py-3 text-center font-bebas text-xl text-[#4D4D4D]">
                     Profile
                   </Link>
-                  <Link href="/Payment" className="border border-white/20 py-3 text-center font-bebas text-xl text-white">
+                  <Link href="/Payment" className="border border-[#4D4D4D]/20 py-3 text-center font-bebas text-xl text-[#4D4D4D]">
                     Payment
                   </Link>
                 </div>
                 {isAdmin && (
-                  <Link href="/dashboard" className="block border border-indigo-500/60 py-3 text-center font-bebas text-xl text-indigo-200">
+                  <Link href="/dashboard" className="block border border-[#f25623]/60 py-3 text-center font-bebas text-xl text-[#f25623]">
                     Dashboard
                   </Link>
                 )}
-                <button onClick={handleLogout} className="w-full bg-white py-3 font-bebas text-xl text-black hover:bg-indigo-500 hover:text-white">
+                <button onClick={handleLogout} className="w-full bg-[#f25623] py-3 font-bebas text-xl text-white hover:bg-[#d94514]">
                   Log out
                 </button>
               </>
             ) : (
               <div className="grid grid-cols-2 gap-3">
-                <Link href="/login" className="border border-white/25 py-3 text-center font-bebas text-xl text-white">
+                <Link href="/login" className="border border-[#4D4D4D]/25 py-3 text-center font-bebas text-xl text-[#4D4D4D]">
                   Login
                 </Link>
-                <Link href="/register" className="bg-white py-3 text-center font-bebas text-xl text-black hover:bg-indigo-500 hover:text-white">
+                <Link href="/register" className="bg-[#f25623] py-3 text-center font-bebas text-xl text-white hover:bg-[#d94514]">
                   Register
                 </Link>
               </div>

@@ -9,12 +9,13 @@
   --font-playfair: var(--font-playfair);
   --font-space: var(--font-space-grotesk);
 
-  --color-obsidian: #131313;
-  --color-silver: #c6c6c6;
-  --color-neon-lime: #c3f400;
-  --color-neon-lime-alt: #2ae500;
-  --color-surface-low: #1c1b1b;
-  --color-surface-high: #2a2a2a;
+  --color-obsidian: #DEDEDE;
+  --color-silver: #4D4D4D;
+  --color-primary-accent: #f25623;
+  --color-neon-lime: #f25623;
+  --color-neon-lime-alt: #d94514;
+  --color-surface-low: #E2E2E2;
+  --color-surface-high: #CCCCCC;
 }
 
 @theme inline {

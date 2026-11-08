@@ -51,7 +51,7 @@ const Spotlight = () => (
     className="pointer-events-none absolute inset-0 z-20 opacity-0 transition-opacity duration-300 group-hover/tile:opacity-100"
     style={{
       background:
-        "radial-gradient(420px circle at var(--mx,50%) var(--my,50%), rgba(99,102,241,0.2), transparent 60%)",
+        "radial-gradient(420px circle at var(--mx,50%) var(--my,50%), rgba(242,86,35,0.25), transparent 60%)",
     }}
   />
 );
@@ -69,7 +69,7 @@ const SideTile = ({ title, note, img, href, badge }: SideTileProps) => (
     href={href}
     onMouseMove={spot}
     style={{ clipPath: CHAMFER }}
-    className="bento-tile group/tile relative block min-h-[220px] overflow-hidden bg-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400"
+    className="bento-tile group/tile relative block min-h-[220px] overflow-hidden bg-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#f25623]"
   >
     <Image
       src={img}
@@ -81,16 +81,16 @@ const SideTile = ({ title, note, img, href, badge }: SideTileProps) => (
     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
     <Spotlight />
 
-    <span className="absolute right-6 top-6 z-30 bg-indigo-500 px-3 py-1 font-bebas text-sm tracking-widest text-white">
+    <span className="absolute right-6 top-6 z-30 bg-[#f25623] px-3 py-1 font-bebas text-sm tracking-widest text-white">
       {badge}
     </span>
 
     <div className="absolute bottom-6 left-6 right-6 z-30 flex items-end justify-between gap-4">
       <div>
         <h3 className="font-bebas text-4xl leading-none text-white lg:text-5xl">{title}</h3>
-        <p className="mt-2 text-sm text-white/60">{note}</p>
+        <p className="mt-2 text-sm text-white/70">{note}</p>
       </div>
-      <span className="flex h-11 shrink-0 items-center bg-white px-5 font-bebas text-lg tracking-wider text-black transition-colors group-hover/tile:bg-indigo-500 group-hover/tile:text-white">
+      <span className="flex h-11 shrink-0 items-center bg-white px-5 font-bebas text-lg tracking-wider text-black transition-colors group-hover/tile:bg-[#f25623] group-hover/tile:text-white">
         Shop now
       </span>
     </div>
@@ -159,7 +159,7 @@ const HeroBento = ({ session }: HeroBentoProps) => {
   };
 
   return (
-    <section ref={rootRef} className="w-full bg-[#09090b] px-3 pb-6 pt-20 sm:px-6 lg:px-10">
+    <section ref={rootRef} className="w-full bg-[#DEDEDE] px-3 pb-6 pt-20 sm:px-6 lg:px-10">
       <div className="mx-auto grid max-w-[1500px] grid-cols-1 gap-3 lg:grid-cols-12">
         {/* ── MAIN TILE: video hero ── */}
         <div
@@ -180,20 +180,20 @@ const HeroBento = ({ session }: HeroBentoProps) => {
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/10" />
           <Spotlight />
 
-          <div className="absolute left-6 top-6 z-30 flex items-center gap-3 text-sm text-white/60">
-            <span className="h-2 w-2 animate-pulse rounded-full bg-indigo-500" />
+          <div className="absolute left-6 top-6 z-30 flex items-center gap-3 text-sm text-white/70">
+            <span className="h-2 w-2 animate-pulse rounded-full bg-[#f25623]" />
             Online now, shipping from Dhaka
           </div>
 
           <div className="absolute inset-x-6 bottom-8 z-30 sm:inset-x-10 sm:bottom-12">
-            <p className="mb-5 max-w-md text-base text-white/70 sm:text-lg">
+            <p className="mb-5 max-w-md text-base text-white/80 sm:text-lg">
               Custom boards, artisan keycaps and gear tuned for speed.
             </p>
 
             <h1 className="mb-10 select-none font-space text-[clamp(52px,9vw,150px)] font-extrabold uppercase italic leading-[0.8] tracking-tighter text-white">
               Tech
               <br />
-              <span className="text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.5)]">
+              <span className="text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.6)]">
                 Sinners
               </span>
             </h1>
@@ -201,27 +201,27 @@ const HeroBento = ({ session }: HeroBentoProps) => {
             <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
                 href="/Store"
-                className="bg-white px-10 py-4 text-center font-bebas text-2xl tracking-[0.08em] text-black transition-colors hover:bg-indigo-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-300"
+                className="bg-[#f25623] px-10 py-4 text-center font-bebas text-2xl tracking-[0.08em] text-white transition-colors hover:bg-[#d94514] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f25623]"
               >
                 Explore store
               </Link>
               <Link
                 href="/Story"
-                className="border border-white/25 px-10 py-4 text-center font-bebas text-2xl tracking-[0.08em] text-white/85 transition-colors hover:border-white hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-300"
+                className="border border-white/40 px-10 py-4 text-center font-bebas text-2xl tracking-[0.08em] text-white transition-colors hover:border-white hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f25623]"
               >
                 Our vision
               </Link>
               {isUserMatched ? (
                 <Link
                   href="/Community"
-                  className="border border-indigo-500/60 bg-indigo-500/20 px-10 py-4 text-center font-bebas text-2xl tracking-[0.08em] text-white transition-colors hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-300"
+                  className="border border-[#f25623]/60 bg-[#f25623]/20 px-10 py-4 text-center font-bebas text-2xl tracking-[0.08em] text-white transition-colors hover:bg-[#f25623] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f25623]"
                 >
                   Community
                 </Link>
               ) : (
                 <Link
                   href="/CreateProfile"
-                  className="bg-indigo-500 px-10 py-4 text-center font-bebas text-2xl tracking-[0.08em] text-white transition-colors hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-300"
+                  className="bg-[#4D4D4D] px-10 py-4 text-center font-bebas text-2xl tracking-[0.08em] text-[#DEDEDE] transition-colors hover:bg-[#f25623] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f25623]"
                 >
                   Join us
                 </Link>
@@ -250,14 +250,14 @@ const HeroBento = ({ session }: HeroBentoProps) => {
 
         {/* ── TICKER ── */}
         <div
-          className="bento-tile overflow-hidden border-y border-white/10 bg-black py-3 lg:col-span-12"
+          className="bento-tile overflow-hidden border-y border-[#4D4D4D]/15 bg-[#DEDEDE] py-3 lg:col-span-12"
           aria-hidden="true"
         >
-          <div className="ticker-track flex w-max gap-12 whitespace-nowrap font-bebas text-xl tracking-[0.15em] text-white/50">
+          <div className="ticker-track flex w-max gap-12 whitespace-nowrap font-bebas text-xl tracking-[0.15em] text-[#4D4D4D]/75">
             {[...ticker, ...ticker, ...ticker, ...ticker].map((t, i) => (
               <span key={i} className="flex items-center gap-12">
                 {t}
-                <span className="h-1.5 w-1.5 rotate-45 bg-indigo-500" />
+                <span className="h-1.5 w-1.5 rotate-45 bg-[#f25623]" />
               </span>
             ))}
           </div>
@@ -295,7 +295,7 @@ const HeroBento = ({ session }: HeroBentoProps) => {
                     {cat.title}
                   </h3>
                   <div
-                    className={`mt-2 h-[2px] bg-indigo-500 transition-all duration-500 ${
+                    className={`mt-2 h-[2px] bg-[#f25623] transition-all duration-500 ${
                       active ? "w-full" : "w-0"
                     }`}
                   />
@@ -308,7 +308,7 @@ const HeroBento = ({ session }: HeroBentoProps) => {
                     <Link
                       href={cat.href}
                       tabIndex={active ? 0 : -1}
-                      className="shrink-0 bg-white px-4 py-1.5 font-bebas text-lg tracking-wider text-black hover:bg-indigo-500 hover:text-white"
+                      className="shrink-0 bg-white px-4 py-1.5 font-bebas text-lg tracking-wider text-black hover:bg-[#f25623] hover:text-white"
                     >
                       Shop now
                     </Link>

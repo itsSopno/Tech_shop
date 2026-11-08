@@ -33,7 +33,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning className={cn("font-sans", geist.variable)}>
-      <body className={`${inter.variable} ${bebasNeue.variable} ${playfair.variable} ${spaceGrotesk.variable} ${jetBrainsMono.variable} antialiased bg-[#131313] text-[#c6c6c6]`}>
+      <body className={`${inter.variable} ${bebasNeue.variable} ${playfair.variable} ${spaceGrotesk.variable} ${jetBrainsMono.variable} antialiased bg-[#DEDEDE] text-[#4D4D4D]`}>
         <SessionProvider>
           <GlobalProvider>
             <ToasterProvider />

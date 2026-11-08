@@ -17,9 +17,9 @@ const BRANDS = ["ASUS", "AJAZZ", "REDDRAGON", "HYPERX", "LOGITECH"];
 const LandoHero = () => {
   return (
     <section className="footer">
-      <section className="body relative mx-2 my-4 flex flex-col items-center overflow-hidden rounded-[24px] bg-indigo-500/20 px-4 py-8 text-indigo-500 md:mx-4 md:rounded-[36px] md:px-12 md:py-10">
+      <section className="body relative mx-2 my-4 flex flex-col items-center overflow-hidden rounded-[24px] bg-[#f25623] px-4 py-8 text-white md:mx-4 md:rounded-[36px] md:px-12 md:py-10">
         {/* Background contour lines */}
-        <div className="pointer-events-none absolute inset-0 opacity-5 md:opacity-10">
+        <div className="pointer-events-none absolute inset-0 opacity-10">
           <svg width="100%" height="100%" viewBox="0 0 1000 1000" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 200 Q 250 100 500 200 T 1000 200" fill="none" stroke="white" strokeWidth="1" />
             <path d="M0 400 Q 250 300 500 400 T 1000 400" fill="none" stroke="white" strokeWidth="1" />
@@ -31,18 +31,18 @@ const LandoHero = () => {
         <div className="relative z-10 grid w-full max-w-6xl grid-cols-1 items-center gap-8 md:grid-cols-3 md:gap-0">
           {/* Navigation */}
           <div className="order-2 flex flex-col items-center gap-2 text-center md:order-1 md:items-start md:text-left">
-            <span className="mb-1 text-[10px] uppercase tracking-[0.3em] text-white/40">Navigation</span>
+            <span className="mb-1 text-[10px] uppercase tracking-[0.3em] text-white/70">Navigation</span>
             <div className="flex flex-row flex-wrap justify-center gap-x-5 gap-y-1 md:flex-col md:gap-y-1">
               {NAV.map((l) => (
                 <Link
                   key={l.href}
                   href={l.href}
-                  className="text-lg font-bold uppercase text-white transition-all hover:italic hover:text-indigo-500 md:text-xl"
+                  className="text-lg font-bold uppercase text-white transition-all hover:italic hover:text-[#4D4D4D] md:text-xl"
                 >
                   {l.label}
                 </Link>
               ))}
-              <Link href="/store" className="text-lg font-bold uppercase text-indigo-500 md:mt-2 md:text-xl">
+              <Link href="/store" className="text-lg font-bold uppercase text-[#4D4D4D] md:mt-2 md:text-xl hover:text-white">
                 Store
               </Link>
             </div>
@@ -50,12 +50,12 @@ const LandoHero = () => {
 
           {/* Center: headline + helmet */}
           <div className="relative order-1 flex flex-col items-center md:order-2">
-            <div className="pointer-events-none absolute -top-6 select-none font-line text-4xl font-black tracking-tighter text-white opacity-10 md:-top-8 md:text-6xl">
+            <div className="pointer-events-none absolute -top-6 select-none font-line text-4xl font-black tracking-tighter text-white opacity-20 md:-top-8 md:text-6xl">
               SINNERS
             </div>
 
             <h2 className="z-20 text-center font-crenzo text-3xl font-black uppercase leading-[0.85] sm:text-4xl md:text-5xl">
-              <span className="font-milky italic text-indigo-500">Always</span> <br />
+              <span className="font-milky italic text-[#4D4D4D]">Always</span> <br />
               <span className="italic text-white">Ready</span>
               <br />
               <span className="text-2xl italic text-white sm:text-3xl md:text-4xl">For Customers.</span>
@@ -72,10 +72,10 @@ const LandoHero = () => {
 
           {/* Socials */}
           <div className="order-3 flex flex-col items-center gap-2 text-center md:items-end md:text-right">
-            <span className="mb-1 text-[10px] uppercase tracking-[0.3em] text-white/40">Follow On</span>
+            <span className="mb-1 text-[10px] uppercase tracking-[0.3em] text-white/70">Follow On</span>
             <div className="flex flex-row flex-wrap justify-center gap-x-5 gap-y-1 md:flex-col">
               {SOCIALS.map((s) => (
-                <a key={s} href="#" className="text-base font-bold uppercase text-white transition-colors hover:text-indigo-500 md:text-lg">
+                <a key={s} href="#" className="text-base font-bold uppercase text-white transition-colors hover:text-[#4D4D4D] md:text-lg">
                   {s}
                 </a>
               ))}
@@ -84,7 +84,7 @@ const LandoHero = () => {
         </div>
 
         {/* Partner brands */}
-        <div className="relative z-10 mt-8 flex w-full flex-wrap items-center justify-center gap-x-8 gap-y-2 opacity-30 grayscale transition-all duration-500 hover:grayscale-0">
+        <div className="relative z-10 mt-8 flex w-full flex-wrap items-center justify-center gap-x-8 gap-y-2 opacity-60 grayscale transition-all duration-500 hover:grayscale-0">
           {BRANDS.map((b) => (
             <span key={b} className="text-[10px] font-bold uppercase tracking-[0.2em] text-white md:text-xs">
               {b}
@@ -93,15 +93,15 @@ const LandoHero = () => {
         </div>
 
         {/* Official license + Sinners logo */}
-        <div className="relative z-10 mt-6 flex w-full max-w-6xl flex-col items-center justify-between gap-4 border-t border-white/10 pt-5 text-center sm:flex-row sm:text-left">
+        <div className="relative z-10 mt-6 flex w-full max-w-6xl flex-col items-center justify-between gap-4 border-t border-white/20 pt-5 text-center sm:flex-row sm:text-left">
           <div className="flex items-center gap-3">
-            <SinnersLogo className="h-12 w-auto text-white" cut="#1b1c39" />
+            <SinnersLogo className="h-12 w-auto text-white" cut="#f25623" />
             <div className="flex flex-col leading-tight">
               <span className="text-sm font-bold uppercase tracking-wide text-white">Official license</span>
-              <span className="text-xs text-white/50">Authorized Studio Sinners</span>
+              <span className="text-xs text-white/75">Authorized Studio Sinners</span>
             </div>
           </div>
-          <p className="text-xs text-white/40">
+          <p className="text-xs text-white/70">
             &copy; {new Date().getFullYear()} Sinners. All rights reserved.
           </p>
         </div>

@@ -1,22 +1,22 @@
 @use "sass:map";
 // _theme.scss
 
-// Modern Premium Color Palette
-$primary: #6366f1; // Indigo 500
-$primary-hover: #4f46e5; // Indigo 600
-$secondary: #0f172a; // Slate 900
-$accent: #10b981; // Emerald 500
-$background: #f8fafc; // Slate 50
-$surface: #ffffff;
-$text: #1e293b; // Slate 800
-$text-muted: #64748b; // Slate 500
-$border: #e2e8f0; // Slate 200
+// Modern Premium Color Palette (Updated: #DEDEDE background, #4D4D4D text, #f25623 accent)
+$primary: #f25623; // Accent Orange
+$primary-hover: #d94514; // Accent Orange Hover
+$secondary: #4D4D4D; // Slate
+$accent: #f25623; // Accent Orange
+$background: #DEDEDE; // Light grey canvas
+$surface: #EAEAEA;
+$text: #4D4D4D; // Dark text
+$text-muted: #737373;
+$border: #CCCCCC;
 
 // Dark Mode Palette
-$dark-bg: #020617;
-$dark-surface: #1e293b;
-$dark-text: #f8fafc;
-$dark-border: #334155;
+$dark-bg: #DEDEDE;
+$dark-surface: #EAEAEA;
+$dark-text: #4D4D4D;
+$dark-border: #CCCCCC;
 
 // Typography
 $font-family-base: 'Inter', system-ui, -apple-system, sans-serif;

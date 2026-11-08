@@ -4,10 +4,11 @@
   --font-bebas: 'Bebas Neue', sans-serif;
   --font-inter: 'Inter', sans-serif;
   --font-space: 'Space Grotesk', sans-serif;
-  --obsidian: #09090b;
-  --silver: #c6c6c6;
-  --neon-lime: #c3f400;
-  --neon-lime-alt: #2ae500;
+  --obsidian: #DEDEDE;
+  --silver: #4D4D4D;
+  --primary-accent: #f25623;
+  --neon-lime: #f25623;
+  --neon-lime-alt: #d94514;
 }
 
 // Reset & Base
@@ -77,12 +78,12 @@ body {
 }
 
 .outline-text {
-  -webkit-text-stroke: 1px #1A1A1A;
+  -webkit-text-stroke: 1px #4D4D4D;
   color: transparent;
   font-style: italic;
 
   body.dark & {
-    -webkit-text-stroke: 1px #FDFDFD;
+    -webkit-text-stroke: 1px #4D4D4D;
   }
 }
 
@@ -171,16 +172,16 @@ body {
   }
 
   &::-webkit-scrollbar-thumb {
-    background: rgba(217, 255, 0, 0.2);
+    background: rgba(242, 86, 35, 0.4);
     border-radius: 10px;
     transition: background 0.3s ease;
   }
 
   &:hover::-webkit-scrollbar-thumb {
-    background: rgba(217, 255, 0, 0.5);
+    background: rgba(242, 86, 35, 0.8);
   }
 
   // Firefox
   scrollbar-width: thin;
-  scrollbar-color: rgba(217, 255, 0, 0.2) transparent;
+  scrollbar-color: rgba(242, 86, 35, 0.4) transparent;
 }

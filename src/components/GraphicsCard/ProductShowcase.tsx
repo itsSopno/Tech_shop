@@ -45,8 +45,8 @@ const TABS: Tab[] = [
         apiPath: "/api/graphics",
         responseKey: "graphicsCards",
         detailBase: "/graphics-cards",
-        accentFrom: "#6366f1",
-        accentTo: "#8b5cf6",
+        accentFrom: "#f25623",
+        accentTo: "#d94514",
         tagLine: "Top Picks",
     },
     {
@@ -216,7 +216,7 @@ const ProductShowcase = () => {
         <section
             ref={sectionRef}
             id="product-showcase"
-            className="w-full bg-[#09090b] px-3 py-20 sm:px-6 lg:px-10"
+            className="w-full bg-[#DEDEDE] px-3 py-20 sm:px-6 lg:px-10"
         >
             <div className="mx-auto max-w-[1500px]">
 
@@ -229,16 +229,16 @@ const ProductShowcase = () => {
                         >
                             {tab.tagLine}
                         </p>
-                        <h2 className="select-none font-space text-[clamp(36px,6vw,88px)] font-extrabold uppercase italic leading-[0.88] tracking-tighter text-white">
+                        <h2 className="select-none font-space text-[clamp(36px,6vw,88px)] font-extrabold uppercase italic leading-[0.88] tracking-tighter text-[#4D4D4D]">
                             {tab.label.split(" ")[0]}{" "}
-                            <span className="text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.45)]">
+                            <span className="text-transparent [-webkit-text-stroke:1px_rgba(77,77,77,0.45)]">
                                 {tab.label.split(" ").slice(1).join(" ")}
                             </span>
                         </h2>
                     </div>
 
                     {/* tab pills */}
-                    <div className="flex shrink-0 gap-1 rounded-none border border-white/10 p-1">
+                    <div className="flex shrink-0 gap-1 rounded-none border border-[#4D4D4D]/15 p-1 bg-[#E5E5E5]/50">
                         {TABS.map((t, i) => {
                             const isActive = i === activeTab;
                             return (
@@ -256,8 +256,8 @@ const ProductShowcase = () => {
                                             : {}
                                     }
                                     className={`flex items-center gap-2 border px-4 py-2 font-bebas text-lg transition-all duration-300 ${isActive
-                                            ? "border-current"
-                                            : "border-transparent text-white/40 hover:text-white/70"
+                                        ? "border-current"
+                                        : "border-transparent text-[#4D4D4D]/60 hover:text-[#4D4D4D]"
                                         }`}
                                 >
                                     <span className="text-sm">{t.icon}</span>
@@ -274,7 +274,7 @@ const ProductShowcase = () => {
                     <Skeleton />
                 ) : error || !current ? (
                     <div className="py-24 text-center">
-                        <p className="font-bebas text-3xl text-white">
+                        <p className="font-bebas text-3xl text-[#4D4D4D]">
                             {error
                                 ? `Could not load ${tab.label}`
                                 : `No ${tab.label} available yet`}
@@ -287,6 +287,7 @@ const ProductShowcase = () => {
                                 Try again
                             </button>
                         )}
+
                     </div>
                 ) : (
                     <div className="grid gap-4 lg:grid-cols-12">
@@ -382,8 +383,8 @@ const ProductShowcase = () => {
                                                     : {}
                                             }
                                             className={`flex w-full min-w-[250px] items-center gap-4 border-l-2 p-3 text-left transition-all duration-300 lg:min-w-0 ${isActive
-                                                    ? ""
-                                                    : "border-white/10 hover:bg-white/[0.04]"
+                                                ? ""
+                                                : "border-[#4D4D4D]/20 bg-[#E5E5E5]/60 hover:bg-[#E5E5E5]"
                                                 }`}
                                         >
                                             <span className="relative h-16 w-16 shrink-0 overflow-hidden bg-neutral-800">
@@ -401,20 +402,20 @@ const ProductShowcase = () => {
                                             <span className="min-w-0 flex-1">
                                                 {item.brand && (
                                                     <span
-                                                        className="block text-sm"
+                                                        className="block text-sm font-medium"
                                                         style={{ color: isActive ? tab.accentFrom : undefined }}
                                                     >
                                                         {item.brand}
                                                     </span>
                                                 )}
                                                 <span
-                                                    className={`block truncate font-bebas text-2xl leading-tight ${isActive ? "text-white" : "text-white/60"
+                                                    className={`block truncate font-bebas text-2xl leading-tight ${isActive ? "text-[#4D4D4D]" : "text-[#4D4D4D]/70"
                                                         }`}
                                                 >
                                                     {item.name}
                                                 </span>
                                             </span>
-                                            <span className="font-bebas text-2xl text-white/70">
+                                            <span className="font-bebas text-2xl text-[#4D4D4D]/80">
                                                 ${formatPrice(item.price)}
                                             </span>
                                         </button>

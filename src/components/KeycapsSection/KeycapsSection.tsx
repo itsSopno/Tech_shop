@@ -123,12 +123,12 @@ const KeycapsSection = () => {
   /* ───────── loading / error / empty ───────── */
   if (loading) {
     return (
-      <section className="w-full bg-[#09090b] px-3 py-20 sm:px-6 lg:px-10">
+      <section className="w-full bg-[#DEDEDE] px-3 py-20 sm:px-6 lg:px-10">
         <div className="mx-auto grid max-w-[1500px] gap-4 lg:grid-cols-12">
-          <div style={{ clipPath: CHAMFER }} className="h-[420px] animate-pulse bg-white/[0.05] lg:col-span-7 lg:h-[560px]" />
+          <div style={{ clipPath: CHAMFER }} className="h-[420px] animate-pulse bg-[#4D4D4D]/10 lg:col-span-7 lg:h-[560px]" />
           <div className="flex flex-col gap-2 lg:col-span-5">
             {Array.from({ length: 5 }).map((_, i) => (
-              <div key={i} className="h-24 animate-pulse bg-white/[0.04]" />
+              <div key={i} className="h-24 animate-pulse bg-[#4D4D4D]/[0.05]" />
             ))}
           </div>
         </div>
@@ -138,14 +138,14 @@ const KeycapsSection = () => {
 
   if (error || !current) {
     return (
-      <section className="w-full bg-[#09090b] px-6 py-24 text-center">
-        <p className="font-bebas text-3xl text-white">
+      <section className="w-full bg-[#DEDEDE] px-6 py-24 text-center">
+        <p className="font-bebas text-3xl text-[#4D4D4D]">
           {error ? "Could not load keycaps" : "No keycaps available yet"}
         </p>
         {error && (
           <button
             onClick={load}
-            className="mt-6 bg-white px-8 py-3 font-bebas text-xl text-black transition-colors hover:bg-indigo-500 hover:text-white"
+            className="mt-6 bg-[#f25623] px-8 py-3 font-bebas text-xl text-white transition-colors hover:bg-[#d94514]"
           >
             Try again
           </button>
@@ -159,22 +159,22 @@ const KeycapsSection = () => {
     <section
       ref={sectionRef}
       id="keycaps"
-      className="w-full bg-[#09090b] px-3 py-20 sm:px-6 lg:px-10"
+      className="w-full bg-[#DEDEDE] px-3 py-20 sm:px-6 lg:px-10"
     >
       <div className="mx-auto max-w-[1500px]">
         {/* Header */}
         <div className="ks-anim mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="mb-3 text-sm text-white/50">Limited edition</p>
-            <h2 className="select-none font-space text-[clamp(40px,7vw,96px)] font-extrabold uppercase italic leading-[0.85] tracking-tighter text-white">
+            <p className="mb-3 text-sm text-[#4D4D4D]/60">Limited edition</p>
+            <h2 className="select-none font-space text-[clamp(40px,7vw,96px)] font-extrabold uppercase italic leading-[0.85] tracking-tighter text-[#4D4D4D]">
               Artisan{" "}
-              <span className="text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.5)]">
+              <span className="text-transparent [-webkit-text-stroke:1px_rgba(77,77,77,0.5)]">
                 Keycaps
               </span>
             </h2>
           </div>
-          <p className="font-bebas text-2xl text-white/50" aria-live="polite">
-            <span className="text-white">{active + 1}</span> of {keycaps.length}
+          <p className="font-bebas text-2xl text-[#4D4D4D]/60" aria-live="polite">
+            <span className="text-[#4D4D4D]">{active + 1}</span> of {keycaps.length}
           </p>
         </div>
 
@@ -197,7 +197,7 @@ const KeycapsSection = () => {
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
 
-            <span className="stage-text absolute left-6 top-6 bg-indigo-500 px-3 py-1 font-bebas text-lg text-white">
+            <span className="stage-text absolute left-6 top-6 bg-[#f25623] px-3 py-1 font-bebas text-lg text-white">
               {current.brand}
             </span>
 
@@ -205,7 +205,7 @@ const KeycapsSection = () => {
               <h3 className="stage-text max-w-2xl font-space text-[clamp(28px,4.5vw,60px)] font-extrabold uppercase italic leading-[0.95] tracking-tight text-white">
                 {current.name}
               </h3>
-              <p className="stage-text mt-4 line-clamp-2 max-w-lg text-base text-white/65">
+              <p className="stage-text mt-4 line-clamp-2 max-w-lg text-base text-white/75">
                 {current.description}
               </p>
 
@@ -216,7 +216,7 @@ const KeycapsSection = () => {
                 </span>
                 <Link
                   href={hrefFor(current)}
-                  className="bg-white px-8 py-3 font-bebas text-2xl text-black transition-colors hover:bg-indigo-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-300"
+                  className="bg-[#f25623] px-8 py-3 font-bebas text-2xl text-white transition-colors hover:bg-[#d94514] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f25623]"
                 >
                   View details
                 </Link>
@@ -242,8 +242,8 @@ const KeycapsSection = () => {
                   aria-current={isActive}
                   className={`flex min-w-[250px] shrink-0 items-center gap-4 border-l-2 p-3 text-left transition-colors lg:min-w-0 ${
                     isActive
-                      ? "border-indigo-500 bg-indigo-500/10"
-                      : "border-white/10 hover:bg-white/[0.04]"
+                      ? "border-[#f25623] bg-[#f25623]/15"
+                      : "border-[#4D4D4D]/20 bg-[#E5E5E5]/60 hover:bg-[#E5E5E5]"
                   }`}
                 >
                   <span className="relative h-16 w-16 shrink-0 overflow-hidden bg-neutral-800">
@@ -258,16 +258,16 @@ const KeycapsSection = () => {
                     />
                   </span>
                   <span className="min-w-0 flex-1">
-                    <span className="block text-sm text-indigo-300">{item.brand}</span>
+                    <span className="block text-sm text-[#f25623] font-medium">{item.brand}</span>
                     <span
                       className={`block truncate font-bebas text-2xl leading-tight ${
-                        isActive ? "text-white" : "text-white/60"
+                        isActive ? "text-[#4D4D4D]" : "text-[#4D4D4D]/70"
                       }`}
                     >
                       {item.name}
                     </span>
                   </span>
-                  <span className="font-bebas text-2xl text-white/70">
+                  <span className="font-bebas text-2xl text-[#4D4D4D]/80">
                     {CURRENCY}
                     {item.price}
                   </span>
