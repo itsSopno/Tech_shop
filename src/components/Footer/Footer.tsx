@@ -17,7 +17,7 @@ const BRANDS = ["ASUS", "AJAZZ", "REDDRAGON", "HYPERX", "LOGITECH"];
 const LandoHero = () => {
   return (
     <section className="footer">
-      <section className="body relative mx-2 my-4 flex flex-col items-center overflow-hidden rounded-[24px] bg-[#f25623] px-4 py-8 text-white md:mx-4 md:rounded-[36px] md:px-12 md:py-10">
+      <section className="body relative mx-2 my-4 flex flex-col items-center overflow-hidden rounded-[24px] bg-[#4D4D4D] px-4 py-8 text-[#DEDEDE] md:mx-4 md:rounded-[36px] md:px-12 md:py-10">
         {/* Background contour lines */}
         <div className="pointer-events-none absolute inset-0 opacity-10">
           <svg width="100%" height="100%" viewBox="0 0 1000 1000" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
